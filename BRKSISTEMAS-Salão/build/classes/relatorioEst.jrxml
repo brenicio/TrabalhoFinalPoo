@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioEst" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6adf4764-d671-4973-bf55-f19538ebf620">
+	<property name="ireport.zoom" value="1.0000000000000018"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="codbarra" class="java.lang.Integer"/>
+	<field name="descricaoprod" class="java.lang.String"/>
+	<field name="valorcusto" class="java.lang.String"/>
+	<field name="valorvenda" class="java.lang.String"/>
+	<field name="quantprod" class="java.lang.Integer"/>
+	<field name="nomemarca" class="java.lang.String"/>
+	<field name="nomecategoria" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="abc2f1f3-b833-42a1-9da7-dd35f68ef17e"/>
+				<staticText>
+					<reportElement x="20" y="20" width="215" height="50" forecolor="#FFFFFF" uuid="be20fe31-8d9c-4eb1-9412-34c805cd9c4c"/>
+					<textElement textAlignment="Center">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Estoque de Produtos]]></text>
+				</staticText>
+				<image>
+					<reportElement x="309" y="20" width="266" height="70" uuid="5bf49a76-ca93-434d-ba0a-aaf2adbc2771"/>
+					<imageExpression><![CDATA["C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="262681af-e51d-44d4-a338-2ae7736a09b2"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código de Barra:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="100" y="0" width="164" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7d4dfe25-0d42-48f7-887f-520da7cdfb4e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Produto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="264" y="0" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="a1aeb30a-bf27-45fd-8bbb-3f3987cb77b4"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome da Categoria:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="375" y="1" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9b53909f-9013-4b15-8ba9-a5783d12a6ed"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome da Marca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="486" y="1" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="9dbb0f52-1c66-499a-a68d-1d87ad0b4b06"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtd. Estoque:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="555" height="1" uuid="0192600e-50b4-454d-90e3-296932eb7a57"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="555" height="1" uuid="4b798a9b-2b16-4721-8fcf-46aea8625bef"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="23" width="555" height="1" uuid="270b7039-4c4e-4bd5-aa7f-ba8e8182ba86"/>
+			</line>
+			<textField>
+				<reportElement x="100" y="2" width="164" height="20" uuid="88a571e3-d852-4e43-af24-2cb51405ab35"/>
+				<textFieldExpression><![CDATA[$F{descricaoprod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="2" width="68" height="20" uuid="23459551-2c8e-4cac-962a-71e02e022e59"/>
+				<textFieldExpression><![CDATA[$F{quantprod}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="2" width="111" height="20" uuid="81593b1d-9869-4ca9-9d06-db39b9f4a67e"/>
+				<textFieldExpression><![CDATA[$F{nomecategoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="2" width="111" height="20" uuid="749d9774-6931-447f-887b-9262422c69f0"/>
+				<textFieldExpression><![CDATA[$F{nomemarca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="100" height="20" uuid="8e4879b0-efcb-4e3e-9ac1-d6878d64df9d"/>
+				<textFieldExpression><![CDATA[$F{codbarra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="d253be77-9c62-49ee-bb3f-a991ee811f5f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="c171ca42-9033-4137-8009-5d3089573fa9"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="4" width="100" height="13" uuid="76a284d9-7e21-4ace-8aa5-b2037b453cbb"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="16" width="555" height="1" uuid="4b487fae-1b4b-4470-bc88-c438c1deaa8a"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
