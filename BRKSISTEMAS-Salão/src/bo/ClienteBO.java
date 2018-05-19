@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import to.ClienteTO;
 import to.PessoaTO;
 
-public class ClienteBO extends PessoaBO {
+public class ClienteBO implements PessoaBO {
 
     private final ClienteDAO clienteDao;
     private ClienteTO cliTo;

@@ -3,32 +3,33 @@ package bo;
 import to.FuncionarioTO;
 import dao.FuncionarioDAO;
 import java.util.ArrayList;
+import to.PessoaTO;
 
 public class FuncionarioBO extends PessoaBO {
 
-    private final FuncionarioDAO funcionarioDao;
-    private FuncionarioTO funcionarioTo;
+    private static FuncionarioDAO funcionarioDao;
+    private static FuncionarioTO funcionarioTo;
 
     public FuncionarioBO() throws Exception {
         funcionarioDao = new FuncionarioDAO();
         funcionarioTo = new FuncionarioTO();
 
     }
-
-    public String incluir(FuncionarioTO funcionarioTo) throws Exception {
-        String ret = consisteDados(funcionarioTo);
+    
+    public static String incluir(PessoaTO pessoaTo) throws Exception {
+        FuncionarioTO funcTo = (FuncionarioTO) pessoaTo;
+        String ret = consisteDados(funcTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = VerificaFuncionario(funcionarioTo);
+        ret = VerificaFuncionario(funcTo);
         if (!ret.equals("")) {
 
             return ret;
         }
 
-        ret = funcionarioDao.incluir(funcionarioTo);
-        //  System.out.println(ret);
+//        ret = funcTo.incluir(funcTo);
         return ret;
     }
 
@@ -42,7 +43,7 @@ public class FuncionarioBO extends PessoaBO {
         return ret;
     }
 
-    private String VerificaFuncionario(FuncionarioTO funcTo) throws Exception {
+    private static String VerificaFuncionario(FuncionarioTO funcTo) throws Exception {
         funcionarioTo = funcionarioDao.VerificarFuncionario(funcTo.getRg(), funcTo.getCpf(), funcTo.getMatricula());
         if (funcTo.getRg().equals(funcionarioTo.getRg()) | funcTo.getCpf().equals(funcionarioTo.getCpf())) {
             return "O RG ou CPF informado já pertence a um Funcionario Cadastrado! Verifique os dados informados e tente novamente.";
@@ -55,7 +56,7 @@ public class FuncionarioBO extends PessoaBO {
 
     }
 
-    private String consisteDados(FuncionarioTO funcionarioTo) {
+    private static String consisteDados(FuncionarioTO funcionarioTo) {
         if (funcionarioTo.getMatricula() == 0) {
             return "Matricula não informada!";
         }
