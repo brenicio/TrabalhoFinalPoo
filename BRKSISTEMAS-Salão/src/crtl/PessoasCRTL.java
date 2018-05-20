@@ -1,5 +1,6 @@
-package poo;
+package crtl;
 
+import poo.*;
 import bo.FuncionarioBO;
 import java.text.ParseException;
 

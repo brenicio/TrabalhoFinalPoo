@@ -1,317 +1,330 @@
 package dao;
 
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import to.PessoasTO;
 import to.ClienteTO;
-import to.FuncionarioTO;
 
 public class ClienteDAO {
 
-    public ClienteDAO() throws Exception {
+    public static class ClienteDAOS implements PessoasDAO {
 
-    }
+        @Override
+        public String Incluir(PessoasTO p) {
+            ClienteTO clienteTo;
+            clienteTo = (ClienteTO) p;
+            try {
 
-    public String incluir(ClienteTO clienteTo) throws Exception {
-        try {
+                Conexao con = new Conexao();
+                String SQL;
+                SQL = "INSERT INTO CLIENTE (nome,rg,sexo,cpf,telfixo,telcelular,email,endereco,bairro,cidade,foto,status,dataprivisita,dataultvisita,datacadastro)"
+                        + "VALUES ('" + clienteTo.getNome() + "','" + clienteTo.getRg() + "','" + clienteTo.getSexo() + "','" + clienteTo.getCpf() + "','" + clienteTo.getTelefone() + "','" + clienteTo.getCelular() + "','" + clienteTo.getEmail() + "',"
+                        + "'" + clienteTo.getEndereco() + "','" + clienteTo.getBairro() + "','" + clienteTo.getCidade() + "','" + clienteTo.getCmfotoCli() + "','" + clienteTo.getStatusCli() + "','" + clienteTo.getDatapriVisita() + "','" + clienteTo.getDataultVisita() + "','" + clienteTo.getDataCadastro() + "')";
+                con.conectaBD();
+                con.executaSQL(SQL);
+                con.desconectaBD();
 
-            Conexao con = new Conexao();
-            String SQL;
-            SQL = "INSERT INTO CLIENTE (nome,rg,sexo,cpf,telfixo,telcelular,email,endereco,bairro,cidade,foto,status,dataprivisita,dataultvisita,datacadastro)"
-                    + "VALUES ('" + clienteTo.getNomeCli() + "','" + clienteTo.getRgCli() + "','" + clienteTo.getSexo() + "','" + clienteTo.getCpfCli() + "','" + clienteTo.getTelfixoCLi() + "','" + clienteTo.getCelularCli() + "','" + clienteTo.getEmailCli() + "',"
-                    + "'" + clienteTo.getEnderecoCli() + "','" + clienteTo.getBairoCli() + "','" + clienteTo.getCidadeCli() + "','" + clienteTo.getCmfotoCli() + "','" + clienteTo.getStatusCli() + "','" + clienteTo.getDatapriVisita() + "','" + clienteTo.getDataultVisita() + "','" + clienteTo.getDataCadastro() + "')";
-            con.conectaBD();
-            con.executaSQL(SQL);
-            con.desconectaBD();
-
-            return "";
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
-
-    public String alterar(ClienteTO clienteTo) throws Exception {
-        try {
-            Conexao con = new Conexao();
-            String SQL;
-
-            SQL = "UPDATE CLIENTE SET nome='" + clienteTo.getNomeCli() + "', rg = '" + clienteTo.getRgCli() + "', sexo='" + clienteTo.getSexo() + "', cpf = '" + clienteTo.getCpfCli() + "',telfixo = '" + clienteTo.getTelfixoCLi() + "', telcelular = '" + clienteTo.getCelularCli() + "', email = '" + clienteTo.getEmailCli() + "', "
-                    + "endereco ='" + clienteTo.getEnderecoCli() + "',bairro = '" + clienteTo.getBairoCli() + "',cidade = '" + clienteTo.getCidadeCli() + "',foto = '" + clienteTo.getCmfotoCli() + "',status = '" + clienteTo.getStatusCli() + "', dataultvisita='" + clienteTo.getDataultVisita() + "',datacadastro='" + clienteTo.getDataCadastro() + "' WHERE codcliente=" + clienteTo.getCodCliente() + "";
-
-            con.conectaBD();
-            con.executaSQL(SQL);
-            con.desconectaBD();
-            return "";
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public String AtualizarDataVisita(int codCliente) throws Exception {
-        try {
-            Conexao con = new Conexao();
-            String SQL;
-
-            SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "' WHERE codcliente=" + codCliente + "";
-
-            con.conectaBD();
-            con.executaSQL(SQL);
-            con.desconectaBD();
-            return "";
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
-    public ClienteTO Consultar(String nome) throws Exception {
-
-        Conexao con = new Conexao();
-        String SQL;
-        ClienteTO cli = new ClienteTO();
-        SQL = "SELECT * FROM cliente WHERE nome LIKE '%" + nome + "%'";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
+            } catch (Exception e) {
+                System.out.println("Erro ao Inlcuir: " + e.getMessage());
 
             }
-            return cli;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+            return "";
         }
-        rs.close();
-        con.desconectaBD();
 
-        return cli;
-    }
+        @Override
+        public String Alterar(PessoasTO p) {
+            ClienteTO clienteTo;
+            clienteTo = (ClienteTO) p;
+            try {
+                Conexao con = new Conexao();
+                String SQL;
 
-    public ClienteTO ConsultarID(int id) throws Exception {
+                SQL = "UPDATE CLIENTE SET nome='" + clienteTo.getNome() + "', rg = '" + clienteTo.getRg() + "', sexo='" + clienteTo.getSexo() + "', cpf = '" + clienteTo.getCpf() + "',telfixo = '" + clienteTo.getTelefone() + "', telcelular = '" + clienteTo.getCelular() + "', email = '" + clienteTo.getEmail() + "', "
+                        + "endereco ='" + clienteTo.getEndereco() + "',bairro = '" + clienteTo.getBairro() + "',cidade = '" + clienteTo.getCidade() + "',foto = '" + clienteTo.getCmfotoCli() + "',status = '" + clienteTo.getStatusCli() + "', dataultvisita='" + clienteTo.getDataultVisita() + "',datacadastro='" + clienteTo.getDataCadastro() + "' WHERE codcliente=" + clienteTo.getCodCliente() + "";
 
-        Conexao con = new Conexao();
-        String SQL;
-        ClienteTO cli = new ClienteTO();
-        SQL = "SELECT * FROM CLIENTE WHERE codcliente = " + id + "";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                con.conectaBD();
+                con.executaSQL(SQL);
+                con.desconectaBD();
+            } catch (Exception e) {
+                System.out.println("Erro ao alterar: " + e.getMessage());
             }
-            return cli;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+            return "";
         }
-        rs.close();
-        con.desconectaBD();
 
-        return cli;
-    }
+        public String AtualizarDataVisita(int codCliente) {
+            try {
+                Conexao con = new Conexao();
+                String SQL;
 
-    public ArrayList<ClienteTO> consultarTodos() throws Exception {
-        ArrayList<ClienteTO> cliA = new ArrayList();
-        //*********************************************
-        //RECUPERA TODOS OS ALUNOS DO BANCO
-        //*********************************************
-        ResultSet rs;
-        Conexao con = new Conexao();
-        con.conectaBD();
-        String SQL = "SELECT * FROM CLIENTE";
-        rs = con.executaConsulta(SQL);
-        //***********************************************
-        //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
-        //************************************************************
-        while (rs.next()) {
+                SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "' WHERE codcliente=" + codCliente + "";
+
+                con.conectaBD();
+                con.executaSQL(SQL);
+                con.desconectaBD();
+            } catch (Exception e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+            return "";
+        }
+
+        @Override
+        public PessoasTO Consultar(String nome) {
+
+            Conexao con = new Conexao();
+            String SQL;
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cliA.add(cli);
+            SQL = "SELECT * FROM cliente WHERE nome LIKE '%" + nome + "%'";
+            try {
 
+                con.conectaBD();
+                ResultSet rs = con.executaConsulta(SQL);
+
+                if (rs.next()) {
+
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+
+                }
+                rs.close();
+                con.desconectaBD();
+
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+
+            return cli;
         }
-        //************************************************************
 
-        //RETORNA O ARRAYLIST PARA O BO
-        rs.close();
-        con.desconectaBD();
-        return cliA;
-    }
+        @Override
+        public PessoasTO ConsultarID(int id) {
 
-    public String excluirID(long ID) throws Exception {
-        try {
-            //EXCLUI UM ALUNO DO BANCO (COM O ID PASSADO COMO PARÂMETRO)
-            //************************************************************
-            //ABRE CONEXAO COM O BANCO
-            //************************************************************
             Conexao con = new Conexao();
             String SQL;
-            con.conectaBD();
-            SQL = "DELETE FROM CLIENTE WHERE CODCLIENTE =" + ID + "";
-            con.executaSQL(SQL);
-            con.desconectaBD();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-            return ex.getMessage();
-        }
-
-        return "";
-
-    }
-
-    public ArrayList<ClienteTO> consultarTodosC(String nome) throws Exception {
-        ArrayList<ClienteTO> clienteA = new ArrayList();
-        //*********************************************
-        //RECUPERA TODOS OS ALUNOS DO BANCO
-        //*********************************************
-        ResultSet rs;
-        Conexao con = new Conexao();
-        con.conectaBD();
-        String SQL = "SELECT * from CLIENTE WHERE nome LIKE '%" + nome + "%'";
-        rs = con.executaConsulta(SQL);
-        //***********************************************
-        //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
-        //************************************************************
-        while (rs.next()) {
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
-            clienteA.add(cli);
+            SQL = "SELECT * FROM CLIENTE WHERE codcliente = " + id + "";
+            try {
 
-        }
-        rs.close();
-        con.desconectaBD();
-        return clienteA;
-    }
+                con.conectaBD();
+                ResultSet rs = con.executaConsulta(SQL);
 
-    public ClienteTO VerificarCliente(String rg, String cpf) throws Exception {
+                if (rs.next()) {
 
-        Conexao con = new Conexao();
-        String SQL;
-        ClienteTO cli = new ClienteTO();
-        SQL = "SELECT codcliente,rg,cpf,nome FROM cliente WHERE rg = '" + rg + "' or cpf='" + cpf + "'";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
 
-            if (rs.next()) {
+                }
+                rs.close();
+                con.desconectaBD();
 
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setCpfCli(rs.getString("cpf"));
-
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
             }
+
             return cli;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
         }
-        rs.close();
-        con.desconectaBD();
 
-        return cli;
-    }
+        @Override
+        public ArrayList<PessoasTO> ConsultarTodos() {
+            ArrayList<PessoasTO> p = new ArrayList();
+            //*********************************************
+            //RECUPERA TODOS OS ALUNOS DO BANCO
+            //*********************************************
+            try {
+                ResultSet rs;
+                Conexao con = new Conexao();
+                con.conectaBD();
+                String SQL = "SELECT * FROM CLIENTE";
+                rs = con.executaConsulta(SQL);
+                //***********************************************
+                //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
+                //************************************************************
+                while (rs.next()) {
+                    ClienteTO cli = new ClienteTO();
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+                    cli.setCmfotoCli(rs.getString("foto"));
+                    p.add(cli);
 
-    public ClienteTO VerificarClienteNome(String nome) throws Exception {
+                }
+                //************************************************************
 
-        Conexao con = new Conexao();
-        String SQL;
-        ClienteTO cli = new ClienteTO();
-        SQL = "SELECT codcliente,rg,cpf,nome FROM cliente WHERE nome = '" + nome + "'";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setCpfCli(rs.getString("cpf"));
-
+                //RETORNA O ARRAYLIST PARA O BO
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
             }
-            return cli;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+            return p;
         }
-        rs.close();
-        con.desconectaBD();
 
-        return cli;
-    }
+        @Override
+        public void ExcluirID(long ID) {
+            try {
+                //EXCLUI UM ALUNO DO BANCO (COM O ID PASSADO COMO PARÂMETRO)
+                //************************************************************
+                //ABRE CONEXAO COM O BANCO
+                //************************************************************
+                Conexao con = new Conexao();
+                String SQL;
+                con.conectaBD();
+                SQL = "DELETE FROM CLIENTE WHERE CODCLIENTE =" + ID + "";
+                con.executaSQL(SQL);
+                con.desconectaBD();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
 
-    private String getDate() {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
+        public ArrayList<PessoasTO> ConsultarTodosC(String nome) {
+            ArrayList<PessoasTO> p = new ArrayList();
+            //*********************************************
+            //RECUPERA TODOS OS ALUNOS DO BANCO
 
-    public String VerificarStatus() {
-        try {
+            try {
+                ResultSet rs;
+                Conexao con = new Conexao();
+                con.conectaBD();
+                String SQL = "SELECT * from CLIENTE WHERE nome LIKE '%" + nome + "%'";
+                rs = con.executaConsulta(SQL);
+                //***********************************************
+                //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
+                //************************************************************
+                while (rs.next()) {
+                    ClienteTO cli = new ClienteTO();
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setCmfotoCli(rs.getString("foto"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+                    p.add(cli);
 
+                }
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+            return p;
+        }
+
+        public PessoasTO VerificarCliente(String rg, String cpf) {
+
+            Conexao con = new Conexao();
+            String SQL;
+            ClienteTO cli = new ClienteTO();
+            SQL = "SELECT codcliente,rg,cpf,nome FROM cliente WHERE rg = '" + rg + "' or cpf='" + cpf + "'";
+
+            try {
+                con.conectaBD();
+                ResultSet rs = con.executaConsulta(SQL);
+
+                if (rs.next()) {
+
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setCpf(rs.getString("cpf"));
+
+                }
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+
+            return cli;
+        }
+
+        public PessoasTO VerificarClienteNome(String nome) {
+
+            Conexao con = new Conexao();
+            String SQL;
+            ClienteTO cli = new ClienteTO();
+            SQL = "SELECT codcliente,rg,cpf,nome FROM cliente WHERE nome = '" + nome + "'";
+            con.conectaBD();
+            ResultSet rs = con.executaConsulta(SQL);
+            try {
+
+                if (rs.next()) {
+
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setCpf(rs.getString("cpf"));
+
+                }
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+
+            return cli;
+        }
+
+        private String getDate() {
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date();
+            return dateFormat.format(date);
+        }
+
+        public String VerificarStatus() {
             Conexao con = new Conexao();
             String SQL;
             SQL = "UPDATE CLIENTE SET status = 'INATIVO' WHERE (SELECT CURRENT_DATE - (select to_date(dataultvisita,'DD MM YYYY') as data)) > 29";
@@ -319,142 +332,150 @@ public class ClienteDAO {
             con.executaSQL(SQL);
             con.desconectaBD();
             return "";
-        } catch (Exception e) {
-            throw e;
         }
-    }
-    public ArrayList<ClienteTO> consultarTodosVenda() throws Exception {
-        ArrayList<ClienteTO> cliA = new ArrayList();
-        //*********************************************
-        //RECUPERA TODOS OS ALUNOS DO BANCO
-        //*********************************************
-        ResultSet rs;
-        Conexao con = new Conexao();
-        con.conectaBD();
-        String SQL = "SELECT * FROM CLIENTE WHERE STATUS='ATIVO'";
-        rs = con.executaConsulta(SQL);
-        //***********************************************
-        //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
-        //************************************************************
-        while (rs.next()) {
-            ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cliA.add(cli);
 
-        }
-        //************************************************************
+        public ArrayList<PessoasTO> ConsultarTodosVenda() {
+            ArrayList<PessoasTO> p = new ArrayList();
+            Conexao con = new Conexao();
+            String SQL = "SELECT * FROM CLIENTE WHERE STATUS='ATIVO'";
+            //*********************************************
+            //RECUPERA TODOS OS ALUNOS DO BANCO
+            //*********************************************
+            try {
+                ResultSet rs;
+                con.conectaBD();
+                rs = con.executaConsulta(SQL);
+                //***********************************************
+                //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
+                //************************************************************
+                while (rs.next()) {
+                    ClienteTO cli = new ClienteTO();
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+                    cli.setCmfotoCli(rs.getString("foto"));
+                    p.add(cli);
 
-        //RETORNA O ARRAYLIST PARA O BO
-        rs.close();
-        con.desconectaBD();
-        return cliA;
-    }
-    public ArrayList<ClienteTO> consultarTodosCVenda(String nome) throws Exception {
-        ArrayList<ClienteTO> clienteA = new ArrayList();
-        //*********************************************
-        //RECUPERA TODOS OS ALUNOS DO BANCO
-        //*********************************************
-        ResultSet rs;
-        Conexao con = new Conexao();
-        con.conectaBD();
-        String SQL = "SELECT * from CLIENTE WHERE nome LIKE '%" + nome + "%' AND STATUS='ATIVO'";
-        rs = con.executaConsulta(SQL);
-        //***********************************************
-        //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
-        //************************************************************
-        while (rs.next()) {
-            ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
-            clienteA.add(cli);
+                }
+                //************************************************************
 
-        }
-        rs.close();
-        con.desconectaBD();
-        return clienteA;
-    }
-    public ClienteTO ConsultarIDVenda(int id) throws Exception {
-
-        Conexao con = new Conexao();
-        String SQL;
-        ClienteTO cli = new ClienteTO();
-        SQL = "SELECT * FROM CLIENTE WHERE codcliente = " + id + " AND STATUS='ATIVO'";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                //RETORNA O ARRAYLIST PARA O BO
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
             }
-            return cli;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+            return p;
         }
-        rs.close();
-        con.desconectaBD();
 
-        return cli;
-    }
-    public String DesbloquearClientes(){
-        try {
+        public ArrayList<PessoasTO> ConsultarTodosCVenda(String nome) {
+            ArrayList<PessoasTO> p = new ArrayList();
+
+            ResultSet rs;
+            Conexao con = new Conexao();
+            String SQL = "SELECT * from CLIENTE WHERE nome LIKE '%" + nome + "%' AND STATUS='ATIVO'";
+
+            try {
+                con.conectaBD();
+                rs = con.executaConsulta(SQL);
+                //***********************************************
+                //PARA CADA CLIENTE MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
+                //************************************************************
+                while (rs.next()) {
+                    ClienteTO cli = new ClienteTO();
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setCmfotoCli(rs.getString("foto"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+                    p.add(cli);
+
+                }
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+            return p;
+        }
+
+        public PessoasTO ConsultarClienteIDVenda(int id) {
+
             Conexao con = new Conexao();
             String SQL;
-
-            SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "', dataprivisita='"+getDate()+"', status='ATIVO'";
-
+            ClienteTO cli = new ClienteTO();
+            SQL = "SELECT * FROM CLIENTE WHERE codcliente = " + id + " AND STATUS='ATIVO'";
             con.conectaBD();
-            con.executaSQL(SQL);
-            con.desconectaBD();
-            return "";
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
+            ResultSet rs = con.executaConsulta(SQL);
+            try {
 
+                if (rs.next()) {
+
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
+
+                }
+                rs.close();
+                con.desconectaBD();
+            } catch (SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+
+            return cli;
+        }
+
+        public String DesbloquearClientes() {
+            try {
+                Conexao con = new Conexao();
+                String SQL;
+
+                SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "', dataprivisita='" + getDate() + "', status='ATIVO'";
+
+                con.conectaBD();
+                con.executaSQL(SQL);
+                con.desconectaBD();
+                return "";
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            return "";
+        }
+
+    }
 }
