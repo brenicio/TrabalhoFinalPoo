@@ -5,7 +5,7 @@ import dao.FuncionarioDAO;
 import java.util.ArrayList;
 import to.PessoaTO;
 
-public class FuncionarioBO implements PessoaBO {
+public class FuncionarioBO implements PessoasBO {
 
     private static FuncionarioDAO funcionarioDao;
     private static FuncionarioTO funcionarioTo;

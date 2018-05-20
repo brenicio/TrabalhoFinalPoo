@@ -3,9 +3,9 @@ package bo;
 import dao.ClienteDAO;
 import java.util.ArrayList;
 import to.ClienteTO;
-import to.PessoaTO;
+import to.PessoasTO;
 
-public class ClienteBO implements PessoaBO {
+public class ClienteBO implements PessoasBO {
 
     private final ClienteDAO clienteDao;
     private ClienteTO cliTo;
@@ -16,7 +16,7 @@ public class ClienteBO implements PessoaBO {
     }
 
     @Override
-    public String incluir(PessoaTO pessoaTo) throws Exception {
+    public String incluir(PessoasTO pessoaTo) throws Exception {
         PessoaTO cliente = pessoaTo;
         String ret = consisteDados((ClienteTO) cliente);
         if (!ret.equals("")) {
@@ -33,8 +33,8 @@ public class ClienteBO implements PessoaBO {
     }
 
     @Override
-    public String alterar(PessoaTO pessoaTo) throws Exception {
-        PessoaTO cliente = pessoaTo;
+    public String alterar(PessoasTO pessoaTo) throws Exception {
+        PessoasTO cliente = pessoaTo;
         String ret = consisteDados((ClienteTO) cliente);
         if (!ret.equals("")) {
             return ret;
