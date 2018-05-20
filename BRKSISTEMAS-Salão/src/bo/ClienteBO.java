@@ -10,92 +10,92 @@ public class ClienteBO implements PessoasBO {
     private final ClienteDAO clienteDao;
     private ClienteTO cliTo;
 
-    public ClienteBO() throws Exception {
+    public ClienteBO(){
         clienteDao = new ClienteDAO();
         cliTo = new ClienteTO();
     }
 
     @Override
-    public String incluir(PessoasTO pessoaTo) throws Exception {
-        PessoaTO cliente = pessoaTo;
-        String ret = consisteDados((ClienteTO) cliente);
+    public String Incluir(PessoasTO pessoasTo){
+        String ret = consisteDados(pessoasTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = VerificaCliente((ClienteTO) cliente);
+        ret = VerificaCliente(pessoasTo);
         if (!ret.equals("")) {
 
             return ret;
         }
-        ret = clienteDao.incluir((ClienteTO) cliente);
+        ret = clienteDao.Incluir(pessoasTo);
         return ret;
     }
 
     @Override
-    public String alterar(PessoasTO pessoaTo) throws Exception {
-        PessoasTO cliente = pessoaTo;
-        String ret = consisteDados((ClienteTO) cliente);
+    public String Alterar(PessoasTO pessoasTo){
+        String ret = consisteDados(pessoasTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = clienteDao.alterar((ClienteTO) cliente);
+        ret = clienteDao.Alterar(pessoasTo);
         return ret;
     }
 
-    private String consisteDados(ClienteTO clienteTo) {
+    private String consisteDados(PessoasTO p) {
 
-        if (clienteTo.getNomeCli().equals("")) {
+        if (p.getNome().equals("")) {
             return "Nome não informado";
         }
-        if (clienteTo.getRgCli().equals("")) {
+        if (p.getRg().equals("")) {
 
             return "RG não informado";
         }
-        if (clienteTo.getCpfCli().replace("-", "").replace(".", "").replace(" ", "").equals("")) {
+        if (p.getCpf().replace("-", "").replace(".", "").replace(" ", "").equals("")) {
             return "CPF não informado";
         }
 
         return "";
     }
 
-    private String VerificaCliente(ClienteTO clienteTo) throws Exception {
-        cliTo = clienteDao.VerificarCliente(clienteTo.getRgCli(), clienteTo.getCpfCli());
-        if (clienteTo.getRgCli().equals(cliTo.getRgCli()) | clienteTo.getCpfCli().equals(cliTo.getCpfCli())) {
+    private String VerificaCliente(PessoasTO p) {
+        cliTo = (ClienteTO)clienteDao.VerificarCliente(p.getRg(), p.getCpf());
+        if (p.getRg().equals(cliTo.getRg()) | p.getCpf().equals(cliTo.getCpf())) {
             return "O RG ou CPF informado já pertence a um Cliente Cadastrado! Verifique os dados informados e tente novamente.";
         }
-        ClienteTO to = clienteDao.VerificarClienteNome(clienteTo.getNomeCli());
-        if (clienteTo.getNomeCli().equals(to.getNomeCli())) {
-            return "Já existe um cliente com o nome de: " + clienteTo.getNomeCli() + " !";
+        ClienteTO to = (ClienteTO)clienteDao.VerificarClienteNome(p.getNome());
+        if (p.getNome().equals(to.getNome())) {
+            return "Já existe um cliente com o nome de: " + p.getNome() + " !";
         }
         return "";
 
     }
 
-    public ClienteTO Consultar(String nome) throws Exception {
-        ClienteTO clienteTo = clienteDao.Consultar(nome);
-        return clienteTo;
+    @Override
+    public PessoasTO Consultar(String nome){
+        PessoasTO p = clienteDao.Consultar(nome);
+        return p;
     }
 
-    public ClienteTO ConsultarID(int id) throws Exception {
-        ClienteTO clienteTo = clienteDao.ConsultarID(id);
-        return clienteTo;
+    @Override
+    public PessoasTO ConsultarID(int id){
+        PessoasTO p = clienteDao.ConsultarID(id);
+        return p;
     }
 
-    public ArrayList<ClienteTO> consultarTodos() throws Exception {
-        ArrayList clientes = clienteDao.consultarTodos();
-        return clientes;
+    @Override
+    public ArrayList<PessoasTO> ConsultarTodos(){
+        ArrayList<PessoasTO> p = clienteDao.ConsultarTodos();
+        return p;
     }
 
-    public ArrayList<ClienteTO> consultarTodosC(String nome) throws Exception {
-        ArrayList clientes = clienteDao.consultarTodosC(nome);
-        return clientes;
+    public ArrayList<PessoasTO> ConsultarTodosC(String nome){
+        ArrayList<PessoasTO> p = clienteDao.ConsultarTodosC(nome);
+        return p;
     }
 
-    public String excluirID(long id) throws Exception {
-        String ret;
-        ret = clienteDao.excluirID(id);
-        return ret;
+    @Override
+    public void ExcluirID(long id){
+        clienteDao.ExcluirID(id);
     }
 }
