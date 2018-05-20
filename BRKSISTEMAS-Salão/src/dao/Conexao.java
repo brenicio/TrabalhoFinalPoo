@@ -35,7 +35,7 @@ public class Conexao {
     //private String url = "jdbc:postgresql://127.0.0.1:5432/asa";
     private String url = "jdbc:postgresql://localhost:5432/db_paulo";
     private String login = "postgres";
-    private String password = "891715";
+    private String password = "INSIRA SENHA DO BD AQUI";
    
     //******************************************************************************//
     //  - Construtor para o objeto da classe Conexao                                //
