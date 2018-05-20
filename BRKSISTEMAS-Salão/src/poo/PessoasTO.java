@@ -23,6 +23,8 @@ public class PessoasTO {
     private String cep;
     private String sexo;
 
+    
+
     public String getTelefoneRecado() {
         return telefoneRecado;
     }

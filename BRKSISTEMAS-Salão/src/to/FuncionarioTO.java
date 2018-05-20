@@ -22,6 +22,10 @@ public class FuncionarioTO extends PessoaTO{
     private String datanasc;
     private String cts;
     private String serie;
+
+    public FuncionarioTO() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     public String getSetor() {

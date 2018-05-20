@@ -7,9 +7,7 @@ public class FuncionarioTO extends PessoasTO {
     private String cts;
     private String serie;
 
-    public FuncionarioTO() {
-       
-    }
+    
 
 
     public int getMatricula() {
