@@ -17,7 +17,6 @@ public class PessoasCRTL {
 
     private PessoasTO pes;
     private ArrayList<PessoasTO> pessoas;
-    private
 
     public PessoasCRTL() {
         pes = new PessoasTO();
@@ -25,7 +24,7 @@ public class PessoasCRTL {
     }
 
     public void IncluirFuncionario() {
-        
+
     }
 
     public void alterarFuncionario() {

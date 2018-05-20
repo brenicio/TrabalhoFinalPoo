@@ -5,7 +5,7 @@ import dao.FuncionarioDAO;
 import java.util.ArrayList;
 import to.PessoaTO;
 
-public class FuncionarioBO extends PessoaBO {
+public class FuncionarioBO implements PessoaBO {
 
     private static FuncionarioDAO funcionarioDao;
     private static FuncionarioTO funcionarioTo;
@@ -15,8 +15,9 @@ public class FuncionarioBO extends PessoaBO {
         funcionarioTo = new FuncionarioTO();
 
     }
-    
-    public static String incluir(PessoaTO pessoaTo) throws Exception {
+
+    @Override
+    public String incluir(PessoaTO pessoaTo) throws Exception {
         FuncionarioTO funcTo = (FuncionarioTO) pessoaTo;
         String ret = consisteDados(funcTo);
         if (!ret.equals("")) {
@@ -29,17 +30,20 @@ public class FuncionarioBO extends PessoaBO {
             return ret;
         }
 
-//        ret = funcTo.incluir(funcTo);
+        ret = funcionarioDao.incluir((FuncionarioTO) funcTo);
         return ret;
     }
 
-    public String alterar(FuncionarioTO funcionarioTo) throws Exception {
-        String ret = consisteDados(funcionarioTo);
+    
+    @Override
+    public String alterar(PessoaTO pessoaTo) throws Exception {
+        PessoaTO cliente = pessoaTo;
+        String ret = consisteDados((FuncionarioTO) pessoaTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = funcionarioDao.alterar(funcionarioTo);
+        ret = funcionarioDao.alterar((FuncionarioTO) pessoaTo);
         return ret;
     }
 
@@ -48,7 +52,6 @@ public class FuncionarioBO extends PessoaBO {
         if (funcTo.getRg().equals(funcionarioTo.getRg()) | funcTo.getCpf().equals(funcionarioTo.getCpf())) {
             return "O RG ou CPF informado já pertence a um Funcionario Cadastrado! Verifique os dados informados e tente novamente.";
         }
-        //FuncionarioTO to = funcionarioDao.VerificarClienteNome(clienteTo.getNomeCli());
         if (funcTo.getMatricula() == funcionarioTo.getMatricula()) {
             return "Já existe um funcionario com a matricula: " + funcTo.getMatricula() + " digite outra matricula!";
         }

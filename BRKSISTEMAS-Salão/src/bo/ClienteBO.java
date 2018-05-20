@@ -17,9 +17,7 @@ public class ClienteBO implements PessoaBO {
 
     @Override
     public String incluir(PessoaTO pessoaTo) throws Exception {
-
         PessoaTO cliente = pessoaTo;
-
         String ret = consisteDados((ClienteTO) cliente);
         if (!ret.equals("")) {
             return ret;
@@ -30,22 +28,19 @@ public class ClienteBO implements PessoaBO {
 
             return ret;
         }
-
         ret = clienteDao.incluir((ClienteTO) cliente);
-
         return ret;
-
     }
 
-    public String alterar(ClienteTO clienteTo) throws Exception {
-        String ret = consisteDados(clienteTo);
+    @Override
+    public String alterar(PessoaTO pessoaTo) throws Exception {
+        PessoaTO cliente = pessoaTo;
+        String ret = consisteDados((ClienteTO) cliente);
         if (!ret.equals("")) {
-            //  JOptionPane.showMessageDialog(null, "chegou em BOif-1");
             return ret;
-
         }
 
-        ret = clienteDao.alterar(clienteTo);
+        ret = clienteDao.alterar((ClienteTO) cliente);
         return ret;
     }
 
