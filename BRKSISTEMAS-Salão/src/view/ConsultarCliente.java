@@ -5,16 +5,17 @@
  */
 package view;
 
-import crtl.ClienteCRTL;
+import crtl.PessoasCRTL;
 import dao.ClienteDAO;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
+import model.Mascara;
 import model.TableMODEL;
 import to.ClienteTO;
-import to.ServicoTO;
 
 /**
  *
@@ -22,16 +23,18 @@ import to.ServicoTO;
  */
 public class ConsultarCliente extends javax.swing.JInternalFrame {
 
-    ClienteCRTL crtl = new ClienteCRTL();
+    PessoasCRTL pessoasCrtl = new PessoasCRTL();
     ManterCliente enviaDados = new ManterCliente();
     public static VendasEfetuadasServico venda = new VendasEfetuadasServico();
     public static VendasEfetuadass vendaProd = new VendasEfetuadass();
     String telaSelecionada = "";
+    Iterator ito;
+    ClienteTO cliTo = new ClienteTO();
 
     /**
      * Creates new form ConsultarCliente
      */
-    public ConsultarCliente() throws Exception {
+    public ConsultarCliente() {
         initComponents();
         preencherTabela();
         MenuPrincipal.getPainel().add(enviaDados);
@@ -39,7 +42,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         GanharFoco(txtPesquisa);
     }
 
-    public ConsultarCliente(VendasEfetuadasServico parent, String tela) throws Exception {
+    public ConsultarCliente(VendasEfetuadasServico parent, String tela) {
         this.venda = parent;
         telaSelecionada = tela;
         initComponents();
@@ -47,7 +50,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         GanharFoco(txtPesquisa);
     }
 
-    public ConsultarCliente(VendasEfetuadass parent, String tela) throws Exception {
+    public ConsultarCliente(VendasEfetuadass parent, String tela) {
         this.vendaProd = parent;
         telaSelecionada = tela;
         initComponents();
@@ -176,32 +179,32 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         int linha = jTableCliente.getSelectedRow();
-        crtl.getClienteTo().setCodCliente(Integer.parseInt(jTableCliente.getValueAt(linha, 0).toString()));
-        crtl.getClienteTo().setNomeCli(jTableCliente.getModel().getValueAt(linha, 1).toString());
-        crtl.getClienteTo().setEnderecoCli(jTableCliente.getModel().getValueAt(linha, 2).toString());
-        crtl.getClienteTo().setCidadeCli(jTableCliente.getModel().getValueAt(linha, 3).toString());
-        crtl.getClienteTo().setCpfCli(jTableCliente.getModel().getValueAt(linha, 4).toString());
-        crtl.getClienteTo().setRgCli(jTableCliente.getModel().getValueAt(linha, 5).toString());
-        crtl.getClienteTo().setSexo(jTableCliente.getModel().getValueAt(linha, 6).toString());
-        crtl.getClienteTo().setStatusCli(jTableCliente.getModel().getValueAt(linha, 7).toString());
-        crtl.getClienteTo().setCelularCli(jTableCliente.getModel().getValueAt(linha, 8).toString());
-        crtl.getClienteTo().setTelfixoCLi(jTableCliente.getModel().getValueAt(linha, 9).toString());
-        crtl.getClienteTo().setEmailCli(jTableCliente.getModel().getValueAt(linha, 10).toString());
-        crtl.getClienteTo().setBairoCli(jTableCliente.getModel().getValueAt(linha, 11).toString());
-        crtl.getClienteTo().setDataultVisita(jTableCliente.getModel().getValueAt(linha, 12).toString());
-        crtl.getClienteTo().setDataCadastro(jTableCliente.getModel().getValueAt(linha, 13).toString());
-        crtl.getClienteTo().setCmfotoCli(jTableCliente.getModel().getValueAt(linha, 14).toString());
+        cliTo.setCodCliente(Integer.parseInt(jTableCliente.getValueAt(linha, 0).toString()));
+        cliTo.setNome(jTableCliente.getModel().getValueAt(linha, 1).toString());
+        cliTo.setEndereco(jTableCliente.getModel().getValueAt(linha, 2).toString());
+        cliTo.setCidade(jTableCliente.getModel().getValueAt(linha, 3).toString());
+        cliTo.setCpf(jTableCliente.getModel().getValueAt(linha, 4).toString());
+        cliTo.setRg(jTableCliente.getModel().getValueAt(linha, 5).toString());
+        cliTo.setSexo(jTableCliente.getModel().getValueAt(linha, 6).toString());
+        cliTo.setStatusCli(jTableCliente.getModel().getValueAt(linha, 7).toString());
+        cliTo.setCelular(jTableCliente.getModel().getValueAt(linha, 8).toString());
+        cliTo.setTelefone(jTableCliente.getModel().getValueAt(linha, 9).toString());
+        cliTo.setEmail(jTableCliente.getModel().getValueAt(linha, 10).toString());
+        cliTo.setBairro(jTableCliente.getModel().getValueAt(linha, 11).toString());
+        cliTo.setDataultVisita(jTableCliente.getModel().getValueAt(linha, 12).toString());
+        cliTo.setDataCadastro(jTableCliente.getModel().getValueAt(linha, 13).toString());
+        cliTo.setCmfotoCli(jTableCliente.getModel().getValueAt(linha, 14).toString());
 
         if (telaSelecionada.equals("venda")) {
-            venda.RecebendoDadosCliente(crtl.getClienteTo());
+            venda.RecebendoDadosCliente(cliTo);
             this.dispose();
             venda.setVisible(true);
         } else if (telaSelecionada.equals("vendaProd")) {
-            vendaProd.ReceberDadosCliente(crtl.getClienteTo());
+            vendaProd.ReceberDadosCliente(cliTo);
             this.dispose();
             vendaProd.setVisible(true);
         } else {
-            enviaDados.recebendo(crtl.getClienteTo());
+            enviaDados.recebendo(cliTo);
             this.dispose();
             enviaDados.setVisible(true);
         }
@@ -250,14 +253,16 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         if (telaSelecionada.equals("venda")) {
             if (cbOpcao.getSelectedIndex() == 0) {
+                
                 try {
-                    preencherTabela2Venda();
+                    preencherTabelaVenda(txtPesquisa.getText());
                 } catch (Exception ex) {
                     Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
             } else if (cbOpcao.getSelectedIndex() == 1 && !"".equals(txtPesquisa.getText())) {
                 try {
-                    preencherTabela3Venda();
+                    preencherTabelaVenda(Integer.parseInt(txtPesquisa.getText()));
                 } catch (Exception ex) {
                     Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -272,9 +277,9 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             }
         } else {
             if (cbOpcao.getSelectedIndex() == 0) {
-                preencherTabela2();
+                preencherTabela(txtPesquisa.getText());
             } else if (cbOpcao.getSelectedIndex() == 1 && !"".equals(txtPesquisa.getText())) {
-                preencherTabela3();
+                preencherTabela(Integer.parseInt(txtPesquisa.getText()));
             }
 
             if (txtPesquisa.getText().equalsIgnoreCase("")) {
@@ -288,15 +293,16 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         LimparCampos();
     }//GEN-LAST:event_cbOpcaoActionPerformed
     public void Maiuscula(JFormattedTextField txt) {
-        crtl.Maiuscula(txt);
+        Mascara.Maiuscula(txt);
     }
 
     public void LimparCampos() {
         txtPesquisa.setText("");
     }
 
-    public void GanharFoco(final JTextField txt) {
+    private void GanharFoco(final JTextField txt) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 txt.requestFocusInWindow();
             }
@@ -304,20 +310,22 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     }
 
     public void somenteNumero() {
-        crtl.somenteNumero(txtPesquisa, 4);
+        Mascara.somenteNumero(txtPesquisa, 4);
     }
 
-    public void preencherTabela() {
-        ClienteCRTL serv = new ClienteCRTL();
+    private void preencherTabela() {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        dados = serv.consultarTodos();
-        int i = 0;
-        while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNomeCli(), dados.get(i).getEnderecoCli(), dados.get(i).getCidadeCli(), dados.get(i).getCpfCli(),
-                dados.get(i).getRgCli(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelularCli(), dados.get(i).getTelfixoCLi(), dados.get(i).getEmailCli(),
-                dados.get(i).getBairoCli(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
-            i++;
+        ito = pessoasCrtl.ConsultarTodos("Cliente").iterator();
+        while (ito.hasNext()) {
+            dados.add((ClienteTO) ito.next());
+        }
+
+        for (int i = 0; i < dados.size(); i++) {
+
+            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNome(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCpf(),
+                dados.get(i).getRg(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(),
+                dados.get(i).getBairro(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
         }
 
         String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
@@ -377,17 +385,19 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
 
     }
 
-    public void preencherTabelaVenda() throws Exception {
-        ClienteDAO serv = new ClienteDAO();
+    private void preencherTabelaVenda() {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        dados = serv.consultarTodosVenda();
-        int i = 0;
-        while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNomeCli(), dados.get(i).getEnderecoCli(), dados.get(i).getCidadeCli(), dados.get(i).getCpfCli(),
-                dados.get(i).getRgCli(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelularCli(), dados.get(i).getTelfixoCLi(), dados.get(i).getEmailCli(),
-                dados.get(i).getBairoCli(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
-            i++;
+        ito = pessoasCrtl.ConsultarTodosAtivosClienteVenda().iterator();
+
+        while (ito.hasNext()) {
+            dados.add((ClienteTO) ito.next());
+        }
+
+        for (int i = 0; i < dados.size(); i++) {
+            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNome(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCpf(),
+                dados.get(i).getRg(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(),
+                dados.get(i).getBairro(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
         }
 
         String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
@@ -447,18 +457,91 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
 
     }
 
-    public void preencherTabela2() {
-        ClienteCRTL cliCrtl = new ClienteCRTL();
+    public void preencherTabela(String texto) {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
 
-        dados = cliCrtl.consultarTodosC(txtPesquisa.getText());
+        ito = pessoasCrtl.ConsultarTodos(texto, "Cliente").iterator();
+
+        while (ito.hasNext()) {
+            dados.add((ClienteTO) ito.next());
+        }
+
+        for (int i = 0; i < dados.size(); i++) {
+            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNome(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCpf(),
+                dados.get(i).getRg(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(),
+                dados.get(i).getBairro(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
+        }
+        String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
+
+        TableMODEL modelo = new TableMODEL(dados1, Colunas);
+        jTableCliente.setModel(modelo);
+
+        jTableCliente.getColumnModel().getColumn(0).setPreferredWidth(80);
+        jTableCliente.getColumnModel().getColumn(0).setMaxWidth(80);
+        jTableCliente.getColumnModel().getColumn(1).setPreferredWidth(600);
+        jTableCliente.getColumnModel().getColumn(1).setMaxWidth(600);
+        jTableCliente.getColumnModel().getColumn(0).setMinWidth(80);
+        jTableCliente.getColumnModel().getColumn(1).setMinWidth(600);
+        jTableCliente.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(2).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(2).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(3).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(3).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(4).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(4).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(4).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(5).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(5).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(5).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(6).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(6).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(6).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(7).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(7).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(7).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(8).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(8).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(8).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(9).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(9).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(9).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(10).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(10).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(10).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(11).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(11).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(11).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(12).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(12).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(12).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(13).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(13).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(13).setMinWidth(200);
+        jTableCliente.getColumnModel().getColumn(14).setPreferredWidth(200);
+        jTableCliente.getColumnModel().getColumn(14).setMaxWidth(200);
+        jTableCliente.getColumnModel().getColumn(14).setMinWidth(200);
+
+        jTableCliente.setAutoResizeMode(jTableCliente.AUTO_RESIZE_OFF);
+
+        jTableCliente.getTableHeader().setReorderingAllowed(false);
+    }
+
+    public void preencherTabelaVenda(String texto) throws Exception {
+        ArrayList<ClienteTO> dados = new ArrayList();
+        ArrayList dados1 = new ArrayList();
+
+        ito = pessoasCrtl.ConsultarTodosAtivosClienteVenda(txtPesquisa.getText()).iterator();
+        while (ito.hasNext()) {
+            dados.add((ClienteTO) ito.next());
+        }
 
         int i = 0;
         while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNomeCli(), dados.get(i).getEnderecoCli(), dados.get(i).getCidadeCli(), dados.get(i).getCpfCli(),
-                dados.get(i).getRgCli(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelularCli(), dados.get(i).getTelfixoCLi(), dados.get(i).getEmailCli(),
-                dados.get(i).getBairoCli(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
+            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNome(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCpf(),
+                dados.get(i).getRg(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(),
+                dados.get(i).getBairro(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
             i++;
         }
         String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
@@ -517,86 +600,14 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         jTableCliente.getTableHeader().setReorderingAllowed(false);
     }
 
-    public void preencherTabela2Venda() throws Exception {
-        ClienteDAO dao = new ClienteDAO();
-        ArrayList<ClienteTO> dados = new ArrayList();
+    public void preencherTabelaVenda(int id) {
         ArrayList dados1 = new ArrayList();
 
-        dados = dao.consultarTodosCVenda(txtPesquisa.getText());
+        cliTo = (ClienteTO) pessoasCrtl.ConsultarClienteIDVenda(id);
 
-        int i = 0;
-        while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodCliente(), dados.get(i).getNomeCli(), dados.get(i).getEnderecoCli(), dados.get(i).getCidadeCli(), dados.get(i).getCpfCli(),
-                dados.get(i).getRgCli(), dados.get(i).getSexo(), dados.get(i).getStatusCli(), dados.get(i).getCelularCli(), dados.get(i).getTelfixoCLi(), dados.get(i).getEmailCli(),
-                dados.get(i).getBairoCli(), dados.get(i).getDataultVisita(), dados.get(i).getDataCadastro(), dados.get(i).getCmfotoCli()});
-            i++;
-        }
-        String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
-
-        TableMODEL modelo = new TableMODEL(dados1, Colunas);
-        jTableCliente.setModel(modelo);
-
-        jTableCliente.getColumnModel().getColumn(0).setPreferredWidth(80);
-        jTableCliente.getColumnModel().getColumn(0).setMaxWidth(80);
-        jTableCliente.getColumnModel().getColumn(1).setPreferredWidth(600);
-        jTableCliente.getColumnModel().getColumn(1).setMaxWidth(600);
-        jTableCliente.getColumnModel().getColumn(0).setMinWidth(80);
-        jTableCliente.getColumnModel().getColumn(1).setMinWidth(600);
-        jTableCliente.getColumnModel().getColumn(2).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(2).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(2).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(3).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(3).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(3).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(4).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(4).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(4).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(5).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(5).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(5).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(6).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(6).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(6).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(7).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(7).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(7).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(8).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(8).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(8).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(9).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(9).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(9).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(10).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(10).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(10).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(11).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(11).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(11).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(12).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(12).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(12).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(13).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(13).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(13).setMinWidth(200);
-        jTableCliente.getColumnModel().getColumn(14).setPreferredWidth(200);
-        jTableCliente.getColumnModel().getColumn(14).setMaxWidth(200);
-        jTableCliente.getColumnModel().getColumn(14).setMinWidth(200);
-
-        jTableCliente.setAutoResizeMode(jTableCliente.AUTO_RESIZE_OFF);
-
-        jTableCliente.getTableHeader().setReorderingAllowed(false);
-    }
-
-    public void preencherTabela3Venda() throws Exception {
-        ClienteTO cliTo = new ClienteTO();
-        ClienteDAO dao = new ClienteDAO();
-        ArrayList dados1 = new ArrayList();
-
-        cliTo = dao.ConsultarIDVenda(Integer.parseInt(txtPesquisa.getText()));
-
-        dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNomeCli(), cliTo.getEnderecoCli(), cliTo.getCidadeCli(), cliTo.getCpfCli(),
-            cliTo.getRgCli(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelularCli(), cliTo.getTelfixoCLi(), cliTo.getEmailCli(),
-            cliTo.getBairoCli(), cliTo.getDataultVisita(), cliTo.getDataCadastro(), cliTo.getCmfotoCli()});
+        dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNome(), cliTo.getEndereco(), cliTo.getCidade(), cliTo.getCpf(),
+            cliTo.getRg(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelular(), cliTo.getTelefone(), cliTo.getEmail(),
+            cliTo.getBairro(), cliTo.getDataultVisita(), cliTo.getDataCadastro(), cliTo.getCmfotoCli()});
 
         String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
 
@@ -654,16 +665,14 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         jTableCliente.getTableHeader().setReorderingAllowed(false);
     }
 
-    public void preencherTabela3() {
-        ClienteTO cliTo = new ClienteTO();
-        ClienteCRTL cliCrtl = new ClienteCRTL();
+    public void preencherTabela(int id) { 
         ArrayList dados1 = new ArrayList();
 
-        cliTo = cliCrtl.consultarID(Integer.parseInt(txtPesquisa.getText()));
+        cliTo = (ClienteTO)pessoasCrtl.Consultar(id,"Cliente");
 
-        dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNomeCli(), cliTo.getEnderecoCli(), cliTo.getCidadeCli(), cliTo.getCpfCli(),
-            cliTo.getRgCli(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelularCli(), cliTo.getTelfixoCLi(), cliTo.getEmailCli(),
-            cliTo.getBairoCli(), cliTo.getDataultVisita(), cliTo.getDataCadastro(), cliTo.getCmfotoCli()});
+        dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNome(), cliTo.getEndereco(), cliTo.getCidade(), cliTo.getCpf(),
+            cliTo.getRg(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelular(), cliTo.getTelefone(), cliTo.getEmail(),
+            cliTo.getBairro(), cliTo.getDataultVisita(), cliTo.getDataCadastro(), cliTo.getCmfotoCli()});
 
         String[] Colunas = new String[]{"Codigo", "Nome do Cliente", "Endereço", "Cidade", "CPF", "RG", "Sexo", "Status", "Celular", "Telefone", "Email", "Bairro", "Dt Ultima Visita", "Dt Cadastro", "Cm Foto"};
 

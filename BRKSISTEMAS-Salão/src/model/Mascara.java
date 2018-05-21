@@ -19,7 +19,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class Mascara {
 
-    public void mascaraCPF(JFormattedTextField mask) {
+    public static void mascaraCPF(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
         } catch (ParseException ex) {
@@ -28,7 +28,7 @@ public class Mascara {
 
     }
 
-    public void mascaraTelCel(JFormattedTextField mask) {
+    public static void mascaraTelCel(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
         } catch (ParseException e) {
@@ -36,7 +36,7 @@ public class Mascara {
         }
     }
 
-    public void mascaraData(JFormattedTextField mask) {
+    public static void mascaraData(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
         } catch (ParseException e) {
@@ -44,7 +44,7 @@ public class Mascara {
         }
     }
 
-    public void mascaraCTPS(JFormattedTextField mask) {
+    public static void mascaraCTPS(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.#####.##-#")));
         } catch (ParseException e) {
@@ -52,7 +52,7 @@ public class Mascara {
         }
     }
 
-    public void mascaraTelefone(JFormattedTextField mask) {
+    public static void mascaraTelefone(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
         } catch (ParseException e) {
@@ -60,7 +60,7 @@ public class Mascara {
         }
     }
 
-    public void mascaraCep(JFormattedTextField mask) {
+    public static void mascaraCep(JFormattedTextField mask) {
         try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#####-###")));
         } catch (ParseException e) {
@@ -68,11 +68,11 @@ public class Mascara {
         }
     }
 
-    public void Maiuscula(JTextField maior) {
+    public static void Maiuscula(JTextField maior) {
         maior.setDocument(new UpperCaseMODEL());
     }
 
-    public void somenteNumero(JFormattedTextField numero, int tamanho) {
+    public static void somenteNumero(JFormattedTextField numero, int tamanho) {
         numero.setDocument(new LimiteDigitosMODEL(tamanho));
     }
 }

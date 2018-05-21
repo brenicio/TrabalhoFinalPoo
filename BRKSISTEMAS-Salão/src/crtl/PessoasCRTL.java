@@ -2,15 +2,7 @@ package crtl;
 
 import bo.ClienteBO;
 import bo.FuncionarioBO;
-import java.text.ParseException;
 import java.util.ArrayList;
-import javax.swing.JFormattedTextField;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
-import model.LimiteDigitosMODEL;
-import model.UpperCaseMODEL;
 import to.ClienteTO;
 import to.FuncionarioTO;
 import to.PessoasTO;
@@ -18,12 +10,10 @@ import to.PessoasTO;
 public class PessoasCRTL {
 
     private PessoasTO pessoasTo;
-    private ArrayList<PessoasTO> pessoas;
-    private FuncionarioBO funcBo;
+    private final FuncionarioBO funcBo;
     private ClienteBO cliBo;
 
     public PessoasCRTL() {
-        pessoas = new ArrayList();
         funcBo = new FuncionarioBO();
         cliBo = new ClienteBO();
     }
@@ -79,12 +69,8 @@ public class PessoasCRTL {
         }
     }
 
-    public PessoasTO ConsultarID(PessoasTO p) {
-        if (p instanceof FuncionarioTO) {
-            return funcBo.ConsultarID(((FuncionarioTO) p).getMatricula());
-        } else {
-            return cliBo.ConsultarID(((ClienteTO) p).getCodCliente());
-        }
+    public PessoasTO Consultar(int id, String tipo) {        
+            return cliBo.Consultar(id);        
     }
 
     public ArrayList<PessoasTO> ConsultarTodos(String tipo) {
@@ -95,6 +81,22 @@ public class PessoasCRTL {
         }
     }
 
+    public ArrayList<PessoasTO> ConsultarTodos(String nome, String tipo) {
+        return cliBo.ConsultarTodos(nome);
+    }
+
+    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda() {
+        return cliBo.ConsultarTodosAtivosClienteVenda();
+    }
+
+    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda(String nome) {
+        return cliBo.ConsultarTodosAtivosClienteVenda(nome);
+    }
+
+    public PessoasTO ConsultarClienteIDVenda(int id) {
+        return cliBo.ConsultarClienteIDVenda(id);
+    }
+
     public void Excluir(PessoasTO p) {
         if (p instanceof FuncionarioTO) {
             funcBo.ExcluirID(((FuncionarioTO) p).getMatricula());
@@ -103,6 +105,12 @@ public class PessoasCRTL {
         }
     }
 
-    
+    public PessoasTO getPessoasTo() {
+        return pessoasTo;
+    }
+
+    public void setPessoasTo(PessoasTO pessoasTo) {
+        this.pessoasTo = pessoasTo;
+    }
 
 }

@@ -88,7 +88,7 @@ public class FuncionarioBO implements PessoasBO {
     }
 
     @Override
-    public PessoasTO ConsultarID(int id){
+    public PessoasTO Consultar(int id){
         PessoasTO p = funcionarioDao.ConsultarID(id);
         return p;
     }

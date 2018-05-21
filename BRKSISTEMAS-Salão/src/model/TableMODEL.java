@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.event.EventListenerList;
 import javax.swing.table.AbstractTableModel;
 
-public class TableMODEL extends AbstractTableModel {
+public final class TableMODEL extends AbstractTableModel {
 
     private ArrayList linhas = null;
     private String[] colunas = null;
@@ -49,18 +49,22 @@ public class TableMODEL extends AbstractTableModel {
        // fireTableRowsDeleted(0, size);
     }
 
+    @Override
     public int getColumnCount() {
         return colunas.length;
     }
 
+    @Override
     public int getRowCount() {
         return linhas.size();
     }
 
+    @Override
     public String getColumnName(int numCol) {
         return colunas[numCol];
     }
 
+    @Override
     public Object getValueAt(int numLin, int numCol) {
         Object[] linha = (Object[]) getLinhas().get(numLin);
         return linha[numCol];

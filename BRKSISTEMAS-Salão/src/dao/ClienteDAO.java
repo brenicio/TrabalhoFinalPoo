@@ -111,8 +111,7 @@ public class ClienteDAO implements PessoasDAO {
         return cli;
     }
 
-    @Override
-    public PessoasTO ConsultarID(int id) {
+    public PessoasTO Consultar(int id) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -217,7 +216,7 @@ public class ClienteDAO implements PessoasDAO {
         }
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosC(String nome) {
+    public ArrayList<PessoasTO> ConsultarTodos(String nome) {
         ArrayList<PessoasTO> p = new ArrayList();
         //*********************************************
         //RECUPERA TODOS OS ALUNOS DO BANCO
@@ -331,7 +330,7 @@ public class ClienteDAO implements PessoasDAO {
         return "";
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosVenda() {
+    public ArrayList<PessoasTO> ConsultarTodosClienteAtivosVenda() {
         ArrayList<PessoasTO> p = new ArrayList();
         Conexao con = new Conexao();
         String SQL = "SELECT * FROM CLIENTE WHERE STATUS='ATIVO'";
@@ -377,7 +376,7 @@ public class ClienteDAO implements PessoasDAO {
         return p;
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosCVenda(String nome) {
+    public ArrayList<PessoasTO> ConsultarTodosClienteAtivosVenda(String nome) {
         ArrayList<PessoasTO> p = new ArrayList();
 
         ResultSet rs;

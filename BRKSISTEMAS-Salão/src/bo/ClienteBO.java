@@ -78,8 +78,8 @@ public class ClienteBO implements PessoasBO {
     }
 
     @Override
-    public PessoasTO ConsultarID(int id){
-        PessoasTO p = clienteDao.ConsultarID(id);
+    public PessoasTO Consultar(int id){
+        PessoasTO p = clienteDao.Consultar(id);
         return p;
     }
 
@@ -89,10 +89,25 @@ public class ClienteBO implements PessoasBO {
         return p;
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosC(String nome){
-        ArrayList<PessoasTO> p = clienteDao.ConsultarTodosC(nome);
+    public ArrayList<PessoasTO> ConsultarTodos(String nome){
+        ArrayList<PessoasTO> p = clienteDao.ConsultarTodos(nome);
         return p;
     }
+    
+    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda(){
+        ArrayList<PessoasTO>p = clienteDao.ConsultarTodosClienteAtivosVenda();
+        return p;
+    }
+    
+    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda(String nome){
+        ArrayList<PessoasTO>p = clienteDao.ConsultarTodosClienteAtivosVenda(nome);
+        return p;
+    }
+    public PessoasTO ConsultarClienteIDVenda(int id) {
+        PessoasTO p = clienteDao.ConsultarClienteIDVenda(id);
+        return p;
+    }
+    
 
     @Override
     public void ExcluirID(long id){

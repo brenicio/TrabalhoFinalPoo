@@ -99,7 +99,7 @@ public class FuncionarioDAO implements PessoasDAO{
     }
 
     @Override
-    public PessoasTO ConsultarID(int id) {
+    public PessoasTO Consultar(int id) {
         Conexao con = new Conexao();
         String SQL;
         FuncionarioTO func = new FuncionarioTO();
@@ -199,40 +199,6 @@ public class FuncionarioDAO implements PessoasDAO{
         JOptionPane.showMessageDialog(null, "Funcionario Excluido com sucesso!!");
     }
 
-//        public String VerificarFuncionario(String rg, String cpf, int matricula) {
-//            Conexao con = new Conexao();
-//            String SQL;
-//            FuncionarioTO funcTo = new FuncionarioTO();
-//            SQL = "SELECT matricula,rgfunc,cpffunc,nomefunc FROM funcionario WHERE rgfunc = '" + rg + "' or cpffunc='" + cpf + "' or matricula = " + matricula + "";
-//            String resultado = "Vazio";
-//            try {
-//                con.conectaBD();
-//                ResultSet rs = con.executaConsulta(SQL);
-//
-//                if (rs.next()) {
-//
-//                    funcTo.setMatricula(rs.getInt("matricula"));
-//                    funcTo.setRg(rs.getString("rgfunc"));
-//                    funcTo.setCpf(rs.getString("cpffunc"));
-//                    funcTo.setNome(rs.getString("nomefunc"));
-//
-//                }
-//
-//                if (rg.equals(funcTo.getRg()) | cpf.equals(funcTo.getCpf())) {
-//                    resultado = "O RG ou CPF informado já pertence a um Funcionario Cadastrado! Verifique os dados informados e tente novamente.";
-//                }
-//                //FuncionarioTO to = funcionarioDao.VerificarClienteNome(clienteTo.getNomeCli());
-//                if (matricula == funcTo.getMatricula()) {
-//                    resultado = "Já existe um funcionario com a matricula: " + matricula + " digite outra matricula!";
-//                }
-//
-//                rs.close();
-//                con.desconectaBD();
-//            } catch (SQLException e) {
-//                System.out.println("Erro: "+e.getMessage());
-//            }
-//            return resultado;
-//        }
     public PessoasTO VerificarFuncionario(String rg, String cpf, int matricula) {
 
         Conexao con = new Conexao();

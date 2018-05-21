@@ -11,7 +11,7 @@ public abstract interface PessoasBO {
     
     public PessoasTO Consultar(String nome);
     
-    public PessoasTO ConsultarID(int id);
+    public PessoasTO Consultar(int id);
     
     public ArrayList<PessoasTO> ConsultarTodos();
     

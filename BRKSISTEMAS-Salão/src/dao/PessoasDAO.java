@@ -14,7 +14,7 @@ public interface PessoasDAO {
     public String Alterar(PessoasTO pessoas);
     public void ExcluirID(long id);
     public PessoasTO Consultar(String nome);
-    public PessoasTO ConsultarID(int id);
+    public PessoasTO Consultar(int id);
     public ArrayList<PessoasTO> ConsultarTodos();
     
 }
