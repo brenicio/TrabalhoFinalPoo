@@ -1,9 +1,8 @@
 package crtl;
 
-import poo.*;
+import bo.ClienteBO;
 import bo.FuncionarioBO;
 import java.text.ParseException;
-
 import java.util.ArrayList;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -12,158 +11,98 @@ import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import model.LimiteDigitosMODEL;
 import model.UpperCaseMODEL;
+import to.ClienteTO;
 import to.FuncionarioTO;
+import to.PessoasTO;
 
 public class PessoasCRTL {
 
-    private PessoasTO pes;
+    private PessoasTO pessoasTo;
     private ArrayList<PessoasTO> pessoas;
-    private
+    private FuncionarioBO funcBo;
+    private ClienteBO cliBo;
 
     public PessoasCRTL() {
-        pes = new PessoasTO();
         pessoas = new ArrayList();
+        funcBo = new FuncionarioBO();
+        cliBo = new ClienteBO();
     }
 
-    public void IncluirFuncionario() {
-        
-    }
+    public String Incluir() {
+        String ret;
+        if (pessoasTo instanceof FuncionarioTO) {
 
-    public void alterarFuncionario() {
-        try {
-            FuncionarioBO funcionarioBo = new FuncionarioBO();
-            String ret = funcionarioBo.alterar(funcionarioTo);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao alterar");
+            ret = funcBo.Incluir(pessoasTo);
+            if (!"".equals(ret)) {
+                return ret;
+            } else {
+                return "limpar";
+            }
 
-        }
+        } else {
 
-    }
-
-    public FuncionarioTO consultar(String nome) {
-
-        try {
-            FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarioTo = funcionarioBo.Consultar(nome);
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar");
-        }
-        return funcionarioTo;
-
-    }
-
-    public FuncionarioTO consultarID(int id) {
-
-        try {
-            FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarioTo = funcionarioBo.ConsultarID(id);
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao consultar");
-        }
-        return funcionarioTo;
-
-    }
-
-    public ArrayList<FuncionarioTO> consultarTodos() {
-
-        try {
-
-            FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarios = funcionarioBo.consultarTodos();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        return funcionarios;
-    }
-
-    public void excluir(int id) {
-        try {
-
-            FuncionarioBO funcBo = new FuncionarioBO();
-            funcBo.excluirID(id);
-            limpaTela();
-        } catch (Exception ex) {
-            System.out.println("Erro ao excluir");
+            ret = cliBo.Incluir(pessoasTo);
+            if (!"".equals(ret)) {
+                return ret;
+            } else {
+                return "limpar";
+            }
         }
     }
 
-    public void mascaraCPF(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public String Alterar() {
+        String ret;
+        if (pessoasTo instanceof FuncionarioTO) {
+
+            ret = funcBo.Incluir(pessoasTo);
+            if (!"".equals(ret)) {
+                return ret;
+            } else {
+                return "limpar";
+            }
+        } else {
+
+            ret = cliBo.Incluir(pessoasTo);
+            if (!"".equals(ret)) {
+                return ret;
+            } else {
+                return "limpar";
+            }
         }
     }
 
-    public void mascaraTelCel(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public PessoasTO Consultar(PessoasTO p) {
+        if (p instanceof FuncionarioTO) {
+            return funcBo.Consultar(p.getNome());
+        } else {
+            return cliBo.Consultar(p.getNome());
         }
     }
 
-    public void mascaraData(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public PessoasTO ConsultarID(PessoasTO p) {
+        if (p instanceof FuncionarioTO) {
+            return funcBo.ConsultarID(((FuncionarioTO) p).getMatricula());
+        } else {
+            return cliBo.ConsultarID(((ClienteTO) p).getCodCliente());
         }
     }
 
-    public void mascaraCTPS(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.#####.##-#")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public ArrayList<PessoasTO> ConsultarTodos(String tipo) {
+        if (tipo.equals("funcionario")) {
+            return funcBo.ConsultarTodos();
+        } else {
+            return cliBo.ConsultarTodos();
         }
     }
 
-    public void mascaraTelefone(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void Excluir(PessoasTO p) {
+        if (p instanceof FuncionarioTO) {
+            funcBo.ExcluirID(((FuncionarioTO) p).getMatricula());
+        } else {
+            cliBo.ExcluirID(((ClienteTO) p).getCodCliente());
         }
     }
 
-    public void mascaraCep(JFormattedTextField mask) {
-        try {
-            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#####-###")));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void Maiuscula(JTextField maior) {
-        maior.setDocument(new UpperCaseMODEL());
-    }
-
-    public void somenteNumero(JFormattedTextField numero, int tamanho) {
-        numero.setDocument(new LimiteDigitosMODEL(tamanho));
-    }
-
-    private void limpaTela() {
-        funcionarioTo.setNome("");
-        funcionarioTo.setEndereco("");
-        funcionarioTo.setTelefone("");
-        funcionarioTo.setMatricula(0);
-        funcionarioTo.setCargo("");
-        funcionarioTo.setCelular("");
-        funcionarioTo.setCep("");
-        funcionarioTo.setCidade("");
-        funcionarioTo.setCpf("");
-        funcionarioTo.setCts("");
-        funcionarioTo.setDatanasc("");
-        funcionarioTo.setEmail("");
-        funcionarioTo.setRg("");
-        funcionarioTo.setSerie("");
-        funcionarioTo.setSetor("");
-        funcionarioTo.setSexo("");
-        funcionarioTo.setTelefoneRecado("");
-
-    }
+    
 
 }

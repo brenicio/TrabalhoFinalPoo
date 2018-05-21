@@ -254,8 +254,8 @@ public class FuncionarioDAO implements PessoasDAO{
             rs.close();
             con.desconectaBD();
             return funcTo;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+        } catch (SQLException e) {
+            System.out.println("Erro: "+e.getMessage());
         }
 
         return funcTo;
