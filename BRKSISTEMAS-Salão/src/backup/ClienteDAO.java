@@ -1,4 +1,14 @@
 
+import dao.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import to.ClienteTO;
+
 public class ClienteDAO {
 
     public ClienteDAO() throws Exception {
@@ -11,8 +21,8 @@ public class ClienteDAO {
             Conexao con = new Conexao();
             String SQL;
             SQL = "INSERT INTO CLIENTE (nome,rg,sexo,cpf,telfixo,telcelular,email,endereco,bairro,cidade,foto,status,dataprivisita,dataultvisita,datacadastro)"
-                    + "VALUES ('" + clienteTo.getNomeCli() + "','" + clienteTo.getRgCli() + "','" + clienteTo.getSexo() + "','" + clienteTo.getCpfCli() + "','" + clienteTo.getTelfixoCLi() + "','" + clienteTo.getCelularCli() + "','" + clienteTo.getEmailCli() + "',"
-                    + "'" + clienteTo.getEnderecoCli() + "','" + clienteTo.getBairoCli() + "','" + clienteTo.getCidadeCli() + "','" + clienteTo.getCmfotoCli() + "','" + clienteTo.getStatusCli() + "','" + clienteTo.getDatapriVisita() + "','" + clienteTo.getDataultVisita() + "','" + clienteTo.getDataCadastro() + "')";
+                    + "VALUES ('" + clienteTo.getNome() + "','" + clienteTo.getRg() + "','" + clienteTo.getSexo() + "','" + clienteTo.getCpf() + "','" + clienteTo.getTelefone() + "','" + clienteTo.getCelular() + "','" + clienteTo.getEmail() + "',"
+                    + "'" + clienteTo.getEndereco() + "','" + clienteTo.getBairro() + "','" + clienteTo.getCidade() + "','" + clienteTo.getCmfotoCli() + "','" + clienteTo.getStatusCli() + "','" + clienteTo.getDatapriVisita() + "','" + clienteTo.getDataultVisita() + "','" + clienteTo.getDataCadastro() + "')";
             con.conectaBD();
             con.executaSQL(SQL);
             con.desconectaBD();
@@ -29,8 +39,8 @@ public class ClienteDAO {
             Conexao con = new Conexao();
             String SQL;
 
-            SQL = "UPDATE CLIENTE SET nome='" + clienteTo.getNomeCli() + "', rg = '" + clienteTo.getRgCli() + "', sexo='" + clienteTo.getSexo() + "', cpf = '" + clienteTo.getCpfCli() + "',telfixo = '" + clienteTo.getTelfixoCLi() + "', telcelular = '" + clienteTo.getCelularCli() + "', email = '" + clienteTo.getEmailCli() + "', "
-                    + "endereco ='" + clienteTo.getEnderecoCli() + "',bairro = '" + clienteTo.getBairoCli() + "',cidade = '" + clienteTo.getCidadeCli() + "',foto = '" + clienteTo.getCmfotoCli() + "',status = '" + clienteTo.getStatusCli() + "', dataultvisita='" + clienteTo.getDataultVisita() + "',datacadastro='" + clienteTo.getDataCadastro() + "' WHERE codcliente=" + clienteTo.getCodCliente() + "";
+            SQL = "UPDATE CLIENTE SET nome='" + clienteTo.getNome() + "', rg = '" + clienteTo.getRg() + "', sexo='" + clienteTo.getSexo() + "', cpf = '" + clienteTo.getCpf() + "',telfixo = '" + clienteTo.getTelefone() + "', telcelular = '" + clienteTo.getCelular() + "', email = '" + clienteTo.getEmail() + "', "
+                    + "endereco ='" + clienteTo.getEndereco() + "',bairro = '" + clienteTo.getBairro() + "',cidade = '" + clienteTo.getCidade() + "',foto = '" + clienteTo.getCmfotoCli() + "',status = '" + clienteTo.getStatusCli() + "', dataultvisita='" + clienteTo.getDataultVisita() + "',datacadastro='" + clienteTo.getDataCadastro() + "' WHERE codcliente=" + clienteTo.getCodCliente() + "";
 
             con.conectaBD();
             con.executaSQL(SQL);
@@ -68,23 +78,7 @@ public class ClienteDAO {
         try {
 
             if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                cli = setCliente(cli, rs);
             }
             return cli;
         } catch (Exception e) {
@@ -107,23 +101,7 @@ public class ClienteDAO {
         try {
 
             if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                cli = setCliente(cli, rs);
             }
             return cli;
         } catch (Exception e) {
@@ -150,24 +128,9 @@ public class ClienteDAO {
         //************************************************************
         while (rs.next()) {
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
+            cli = setCliente(cli, rs);
             cli.setCmfotoCli(rs.getString("foto"));
             cliA.add(cli);
-
         }
         //************************************************************
 
@@ -213,24 +176,8 @@ public class ClienteDAO {
         //************************************************************
         while (rs.next()) {
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
+            cli = setCliente(cli, rs);
             clienteA.add(cli);
-
         }
         rs.close();
         con.desconectaBD();
@@ -248,12 +195,10 @@ public class ClienteDAO {
         try {
 
             if (rs.next()) {
-
                 cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setCpfCli(rs.getString("cpf"));
-
+                cli.setNome(rs.getString("nome"));
+                cli.setRg(rs.getString("rg"));
+                cli.setCpf(rs.getString("cpf"));
             }
             return cli;
         } catch (Exception e) {
@@ -276,12 +221,10 @@ public class ClienteDAO {
         try {
 
             if (rs.next()) {
-
                 cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setCpfCli(rs.getString("cpf"));
-
+                cli.setNome(rs.getString("nome"));
+                cli.setRg(rs.getString("rg"));
+                cli.setCpf(rs.getString("cpf"));
             }
             return cli;
         } catch (Exception e) {
@@ -313,6 +256,7 @@ public class ClienteDAO {
             throw e;
         }
     }
+
     public ArrayList<ClienteTO> consultarTodosVenda() throws Exception {
         ArrayList<ClienteTO> cliA = new ArrayList();
         //*********************************************
@@ -328,24 +272,8 @@ public class ClienteDAO {
         //************************************************************
         while (rs.next()) {
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
-            cli.setCmfotoCli(rs.getString("foto"));
+            cli = setCliente(cli, rs);
             cliA.add(cli);
-
         }
         //************************************************************
 
@@ -354,6 +282,7 @@ public class ClienteDAO {
         con.desconectaBD();
         return cliA;
     }
+
     public ArrayList<ClienteTO> consultarTodosCVenda(String nome) throws Exception {
         ArrayList<ClienteTO> clienteA = new ArrayList();
         //*********************************************
@@ -369,22 +298,7 @@ public class ClienteDAO {
         //************************************************************
         while (rs.next()) {
             ClienteTO cli = new ClienteTO();
-            cli.setCodCliente(rs.getInt("codcliente"));
-            cli.setNomeCli(rs.getString("nome"));
-            cli.setRgCli(rs.getString("rg"));
-            cli.setSexo(rs.getString("sexo"));
-            cli.setCpfCli(rs.getString("cpf"));
-            cli.setTelfixoCLi(rs.getString("telfixo"));
-            cli.setCelularCli(rs.getString("telcelular"));
-            cli.setEmailCli(rs.getString("email"));
-            cli.setEnderecoCli(rs.getString("endereco"));
-            cli.setBairoCli(rs.getString("bairro"));
-            cli.setCidadeCli(rs.getString("cidade"));
-            cli.setStatusCli(rs.getString("status"));
-            cli.setDatapriVisita(rs.getString("dataprivisita"));
-            cli.setDataultVisita(rs.getString("dataultvisita"));
-            cli.setCmfotoCli(rs.getString("foto"));
-            cli.setDataCadastro(rs.getString("datacadastro"));
+            cli = setCliente(cli, rs);
             clienteA.add(cli);
 
         }
@@ -392,6 +306,7 @@ public class ClienteDAO {
         con.desconectaBD();
         return clienteA;
     }
+
     public ClienteTO ConsultarIDVenda(int id) throws Exception {
 
         Conexao con = new Conexao();
@@ -403,23 +318,7 @@ public class ClienteDAO {
         try {
 
             if (rs.next()) {
-
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNomeCli(rs.getString("nome"));
-                cli.setRgCli(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpfCli(rs.getString("cpf"));
-                cli.setTelfixoCLi(rs.getString("telfixo"));
-                cli.setCelularCli(rs.getString("telcelular"));
-                cli.setEmailCli(rs.getString("email"));
-                cli.setEnderecoCli(rs.getString("endereco"));
-                cli.setBairoCli(rs.getString("bairro"));
-                cli.setCidadeCli(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                cli = setCliente(cli, rs);
             }
             return cli;
         } catch (Exception e) {
@@ -430,12 +329,13 @@ public class ClienteDAO {
 
         return cli;
     }
-    public String DesbloquearClientes(){
+
+    public String DesbloquearClientes() {
         try {
             Conexao con = new Conexao();
             String SQL;
 
-            SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "', dataprivisita='"+getDate()+"', status='ATIVO'";
+            SQL = "UPDATE CLIENTE SET dataultvisita='" + getDate() + "', dataprivisita='" + getDate() + "', status='ATIVO'";
 
             con.conectaBD();
             con.executaSQL(SQL);
@@ -447,4 +347,24 @@ public class ClienteDAO {
         return null;
     }
 
+    private ClienteTO setCliente(ClienteTO cli, ResultSet rs) throws SQLException {
+
+        cli.setCodCliente(rs.getInt("codcliente"));
+        cli.setNome(rs.getString("nome"));
+        cli.setRg(rs.getString("rg"));
+        cli.setSexo(rs.getString("sexo"));
+        cli.setCpf(rs.getString("cpf"));
+        cli.setTelefone(rs.getString("telfixo"));
+        cli.setCelular(rs.getString("telcelular"));
+        cli.setEmail(rs.getString("email"));
+        cli.setEndereco(rs.getString("endereco"));
+        cli.setBairro(rs.getString("bairro"));
+        cli.setCidade(rs.getString("cidade"));
+        cli.setStatusCli(rs.getString("status"));
+        cli.setDatapriVisita(rs.getString("dataprivisita"));
+        cli.setDataultVisita(rs.getString("dataultvisita"));
+        cli.setDataCadastro(rs.getString("datacadastro"));
+
+        return cli;
+    }
 }

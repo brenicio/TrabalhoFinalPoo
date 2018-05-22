@@ -1,6 +1,8 @@
+package backup;
 
+import to.PessoasTO;
 
-public class ClienteTO extends PessoaTO{
+public class ClienteTO extends PessoasTO {
 
     private int codCliente;
     private String nomeCli;
@@ -19,10 +21,12 @@ public class ClienteTO extends PessoaTO{
     private String dataultVisita;
     private String dataCadastro;
 
+    @Override
     public String getSexo() {
         return sexo;
     }
 
+    @Override
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
@@ -146,5 +150,4 @@ public class ClienteTO extends PessoaTO{
     public void setCmfotoCli(String cmfotoCli) {
         this.cmfotoCli = cmfotoCli;
     }
-
 }

@@ -1,8 +1,6 @@
-package crtl;
+package backup;
 
 import bo.ClienteBO;
-import bo.FuncionarioBO;
-import bo.ServicoBO;
 import java.text.ParseException;
 import java.util.ArrayList;
 import javax.swing.JFormattedTextField;
@@ -14,7 +12,6 @@ import model.LimiteDigitosMODEL;
 import model.UpperCaseMODEL;
 import model.UpperCaseMODEL2;
 import to.ClienteTO;
-import to.FuncionarioTO;
 
 public class ClienteCRTL {
 
@@ -59,11 +56,11 @@ public class ClienteCRTL {
 
         try {
             ClienteBO clienteBo = new ClienteBO();
-            String ret = clienteBo.incluir(clienteTo);
-            if(!"".equals(ret)){
-                JOptionPane.showMessageDialog(null, ret);                
+            String ret = clienteBo.Incluir(clienteTo);
+            if (!"".equals(ret)) {
+                JOptionPane.showMessageDialog(null, ret);
                 return ret;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
                 return "limpar";
             }
@@ -77,11 +74,11 @@ public class ClienteCRTL {
     public String alterarCliente() {
         try {
             ClienteBO clienteBo = new ClienteBO();
-            String ret = clienteBo.alterar(clienteTo);
-         if(!"".equals(ret)){
-                JOptionPane.showMessageDialog(null, ret);                
+            String ret = clienteBo.Alterar(clienteTo);
+            if (!"".equals(ret)) {
+                JOptionPane.showMessageDialog(null, ret);
                 return ret;
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
                 return "limpar";
             }
@@ -96,7 +93,7 @@ public class ClienteCRTL {
 
         try {
             ClienteBO clienteBo = new ClienteBO();
-            clienteTo = clienteBo.Consultar(nome);
+            clienteTo = (ClienteTO) clienteBo.Consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -123,7 +120,7 @@ public class ClienteCRTL {
         try {
 
             ClienteBO clienteBo = new ClienteBO();
-            clientes = clienteBo.consultarTodos();
+            clientes = clienteBo.ConsultarTodos();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -135,7 +132,7 @@ public class ClienteCRTL {
         try {
 
             ClienteBO clienteBo = new ClienteBO();
-            clientes = clienteBo.consultarTodosC(nome);
+            clientes = clienteBo.ConsultarTodos(nome);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -145,8 +142,8 @@ public class ClienteCRTL {
     public void excluir(int id) {
         try {
             String ret;
-             ClienteBO bo = new ClienteBO();
-            ret = bo.excluirID(id);
+            ClienteBO bo = new ClienteBO();
+            ret = bo.ExcluirID(id);
             if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
@@ -157,50 +154,57 @@ public class ClienteCRTL {
             System.out.println("Erro ao excluir");
         }
     }
-    public void mascaraCPF(JFormattedTextField mask){
-            try{
+
+    public void mascaraCPF(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-         }catch(ParseException e){
-             e.printStackTrace();
-         }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        public void mascaraTelCel(JFormattedTextField mask){
-            try{
+    }
+
+    public void mascaraTelCel(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        
-        public void mascaraData(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraData(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-         public void mascaraTelefone(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraTelefone(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void mascaraCep(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraCep(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#####-###")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void Maiuscula(JTextField maior){
-            maior.setDocument(new UpperCaseMODEL());
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        public void MaiusculaNumero(JTextField maior){
-            maior.setDocument(new UpperCaseMODEL2());
-        }
-        public void somenteNumero(JFormattedTextField numero, int tamanho){
-            numero.setDocument(new LimiteDigitosMODEL(tamanho));
-        }
+    }
+
+    public void Maiuscula(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL());
+    }
+
+    public void MaiusculaNumero(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL2());
+    }
+
+    public void somenteNumero(JFormattedTextField numero, int tamanho) {
+        numero.setDocument(new LimiteDigitosMODEL(tamanho));
+    }
 
 }

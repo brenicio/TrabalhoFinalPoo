@@ -1,6 +1,8 @@
+package backup;
 
+import to.PessoasTO;
 
-public class FuncionarioTO extends PessoaTO{
+public class FuncionarioTO extends PessoasTO {
 
     private int matricula = 0;
     private String nome;
@@ -21,15 +23,12 @@ public class FuncionarioTO extends PessoaTO{
     private String cts;
     private String serie;
 
-    public FuncionarioTO() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-
+    @Override
     public String getSetor() {
         return setor;
     }
 
+    @Override
     public void setSetor(String setor) {
         this.setor = setor;
     }
@@ -42,42 +41,52 @@ public class FuncionarioTO extends PessoaTO{
         this.matricula = matricula;
     }
 
+    @Override
     public String getTelefoneRecado() {
         return telefoneRecado;
     }
 
+    @Override
     public void setTelefoneRecado(String telefoneRecado) {
         this.telefoneRecado = telefoneRecado;
     }
 
+    @Override
     public String getCidade() {
         return cidade;
     }
 
+    @Override
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
+    @Override
     public String getSexo() {
         return sexo;
     }
 
+    @Override
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
+    @Override
     public String getUf() {
         return uf;
     }
 
+    @Override
     public void setUf(String uf) {
         this.uf = uf;
     }
 
+    @Override
     public String getDatanasc() {
         return datanasc;
     }
 
+    @Override
     public void setDatanasc(String datanasc) {
         this.datanasc = datanasc;
     }
@@ -98,66 +107,82 @@ public class FuncionarioTO extends PessoaTO{
         this.serie = serie;
     }
 
+    @Override
     public String getRg() {
         return rg;
     }
 
+    @Override
     public void setRg(String rg) {
         this.rg = rg;
     }
 
+    @Override
     public String getCpf() {
         return cpf;
     }
 
+    @Override
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    @Override
     public String getCelular() {
         return celular;
     }
 
+    @Override
     public void setCelular(String celular) {
         this.celular = celular;
     }
 
+    @Override
     public String getTelefone() {
         return telefone;
     }
 
+    @Override
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
+    @Override
     public String getEmail() {
         return email;
     }
 
+    @Override
     public void setEmail(String email) {
         this.email = email;
     }
 
+    @Override
     public String getEndereco() {
         return endereco;
     }
 
+    @Override
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
+    @Override
     public String getCep() {
         return cep;
     }
 
+    @Override
     public void setCep(String cep) {
         this.cep = cep;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
+    @Override
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -169,5 +194,4 @@ public class FuncionarioTO extends PessoaTO{
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-
 }

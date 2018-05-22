@@ -56,6 +56,4 @@ public class ClienteTO extends PessoasTO {
     public void setDataCadastro(String dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
-
-    
 }

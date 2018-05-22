@@ -1,4 +1,5 @@
 package crtl;
+
 import bo.FuncionarioBO;
 import java.text.ParseException;
 
@@ -13,10 +14,10 @@ import model.UpperCaseMODEL;
 import to.FuncionarioTO;
 
 public class FuncionarioCRTL {
-    
+
     private FuncionarioTO funcionarioTo;
     private FuncionarioTO funcionarioConsultaTO;
-    private ArrayList <FuncionarioTO> funcionarios;
+    private ArrayList<FuncionarioTO> funcionarios;
 
     public FuncionarioTO getFuncionarioConsultaTO() {
         return funcionarioConsultaTO;
@@ -42,143 +43,150 @@ public class FuncionarioCRTL {
         this.funcionarioTo = funcionarioTo;
     }
 
-    public FuncionarioCRTL (){
-        try{
+    public FuncionarioCRTL() {
+        try {
             funcionarioTo = new FuncionarioTO();
             funcionarioConsultaTO = new FuncionarioTO();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Erro");
         }
     }
-    
+
     public String incluirFuncionario() {
-        
-       
-      try {
-           FuncionarioBO funcionarioBo = new FuncionarioBO();
-           String ret = funcionarioBo.incluir(funcionarioTo);
-           if(!"".equals(ret)){
-               return ret;
-           }else if(ret.equals("erro")){
-               return "Erro ao cadastrar!";
-           }else if (ret.equals("")){
-               return ret;
-           }     
-      }catch (Exception ex) {
-           System.out.println("Erro ao incluir!!");
-       }
-       return "";
-    }
-    
-     public void alterarFuncionario() {
+
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            String ret = funcionarioBo.alterar(funcionarioTo);          
+            String ret = funcionarioBo.Incluir(funcionarioTo);
+            if (!"".equals(ret)) {
+                return ret;
+            } else if (ret.equals("erro")) {
+                return "Erro ao cadastrar!";
+            } else if (ret.equals("")) {
+                return ret;
             }
-         catch (Exception ex) {
-         JOptionPane.showMessageDialog(null, "Erro ao alterar");
+        } catch (Exception ex) {
+            System.out.println("Erro ao incluir!!");
+        }
+        return "";
+    }
+
+    public void alterarFuncionario() {
+        try {
+            FuncionarioBO funcionarioBo = new FuncionarioBO();
+            String ret = funcionarioBo.Alterar(funcionarioTo);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao alterar");
 
         }
-        
+
     }
-        public FuncionarioTO consultar(String nome) {
-         
+
+    public FuncionarioTO consultar(String nome) {
+
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-             funcionarioTo = funcionarioBo.Consultar(nome);           
-            
+            funcionarioTo = (FuncionarioTO) funcionarioBo.Consultar(nome);
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
-           return funcionarioTo;
-        
+        return funcionarioTo;
+
     }
-        public FuncionarioTO consultarID(int id) {
-         
+
+    public FuncionarioTO consultarID(int id) {
+
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarioTo = funcionarioBo.ConsultarID(id);           
-            
+            funcionarioTo = (FuncionarioTO) funcionarioBo.Consultar(id);
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
-           return funcionarioTo;
-        
+        return funcionarioTo;
+
     }
-        public ArrayList<FuncionarioTO> consultarTodos() {
-            
+
+    public ArrayList<FuncionarioTO> consultarTodos() {
+
         try {
-            
+
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarios = funcionarioBo.consultarTodos();
+            funcionarios = funcionarioBo.ConsultarTodos();
         } catch (Exception ex) {
-           System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage());
         }
         return funcionarios;
     }
-        public void excluir(int id) {
+
+    public void excluir(int id) {
         try {
-            
+
             FuncionarioBO funcBo = new FuncionarioBO();
-            funcBo.excluirID(id);   
+            funcBo.ExcluirID(id);
             limpaTela();
         } catch (Exception ex) {
             System.out.println("Erro ao excluir");
-        } 
+        }
     }
-       public void mascaraCPF(JFormattedTextField mask){
-            try{
+
+    public void mascaraCPF(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.###.###-##")));
-         }catch(ParseException e){
-             e.printStackTrace();
-         }
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        public void mascaraTelCel(JFormattedTextField mask){
-            try{
+    }
+
+    public void mascaraTelCel(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        
-        public void mascaraData(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraData(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("##/##/####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void mascaraCTPS(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraCTPS(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("###.#####.##-#")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void mascaraTelefone(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraTelefone(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)####-####")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void mascaraCep(JFormattedTextField mask){
-            try{
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void mascaraCep(JFormattedTextField mask) {
+        try {
             mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#####-###")));
-            }catch(ParseException e){
-                e.printStackTrace();
-            }
-         }
-        public void Maiuscula(JTextField maior){
-            maior.setDocument(new UpperCaseMODEL());
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-        public void somenteNumero(JFormattedTextField numero, int tamanho){
-            numero.setDocument(new LimiteDigitosMODEL(tamanho));
-        }
-        
-        
-        private void limpaTela() {
+    }
+
+    public void Maiuscula(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL());
+    }
+
+    public void somenteNumero(JFormattedTextField numero, int tamanho) {
+        numero.setDocument(new LimiteDigitosMODEL(tamanho));
+    }
+
+    private void limpaTela() {
         funcionarioTo.setNome("");
         funcionarioTo.setEndereco("");
         funcionarioTo.setTelefone("");
@@ -196,16 +204,5 @@ public class FuncionarioCRTL {
         funcionarioTo.setSetor("");
         funcionarioTo.setSexo("");
         funcionarioTo.setTelefoneRecado("");
-        
     }
-        
-} 
-    
-    
-   
-
-
-
-
-
-
+}

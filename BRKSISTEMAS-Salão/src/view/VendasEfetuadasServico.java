@@ -640,7 +640,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
                     itens.getServicoTo().setPrecoServico(preco);
                     clienteTo = vendaDao.ConsultarNOMECliente(jTableVenda.getModel().getValueAt(i, 2).toString());
                     itens.getClienteTo().setCodCliente(clienteTo.getCodCliente());
-                    itens.getClienteTo().setNomeCli(jTableVenda.getModel().getValueAt(i, 2).toString());
+                    itens.getClienteTo().setNome(jTableVenda.getModel().getValueAt(i, 2).toString());
 
                     funcionariosA.add(funcionarioTo.getMatricula());
                     servicosA.add(servicoTo.getCodServico());
@@ -777,7 +777,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
         itensVenda.getFuncionarioTo().setNome(cbFuncionario.getSelectedItem().toString());
         itensVenda.getServicoTo().setDescrServico(servTo.getDescrServico());
         itensVenda.getServicoTo().setPrecoServico(servTo.getPrecoServico());
-        itensVenda.getClienteTo().setNomeCli(cliTo.getNomeCli());
+        itensVenda.getClienteTo().setNome(cliTo.getNome());
         dados = itensVenda.retornarArray(itensVenda);
 
         int e = 0;
@@ -793,7 +793,8 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
 
             preco = nf.format(dadosback.get(i).getServicoTo().getPrecoServico());
 
-            dados1.add(new Object[]{dadosback.get(i).getServicoTo().getDescrServico(), preco, dadosback.get(i).getClienteTo().getNomeCli(), dadosback.get(i).getFuncionarioTo().getNome()});
+            dados1.add(new Object[]{dadosback.get(i).getServicoTo().getDescrServico(),
+                preco, dadosback.get(i).getClienteTo().getNome(), dadosback.get(i).getFuncionarioTo().getNome()});
 
             i++;
         }
@@ -813,7 +814,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
                 .getColumn(0).setMinWidth(450);
         jTableVenda.getTableHeader()
                 .setReorderingAllowed(false);
-        jTableVenda.setAutoResizeMode(jTableVenda.AUTO_RESIZE_OFF);
+        jTableVenda.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         jTableVenda.getColumnModel()
                 .getColumn(1).setPreferredWidth(188);
@@ -861,7 +862,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
                 String sv = (jTableVenda.getModel().getValueAt(i, 1).toString()).replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
                 BigDecimal preco = new BigDecimal(sv);
                 itens.getServicoTo().setPrecoServico(preco);
-                itens.getClienteTo().setNomeCli(jTableVenda.getModel().getValueAt(i, 2).toString());
+                itens.getClienteTo().setNome(jTableVenda.getModel().getValueAt(i, 2).toString());
                 itens.getFuncionarioTo().setNome(jTableVenda.getModel().getValueAt(i, 3).toString());
                 dadosnew.add(itens);
                 i++;
@@ -928,7 +929,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
             String sv = (jTableVenda.getModel().getValueAt(i, 1).toString()).replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
             BigDecimal preco = new BigDecimal(sv);
             itens.getServicoTo().setPrecoServico(preco);
-            itens.getClienteTo().setNomeCli(jTableVenda.getModel().getValueAt(i, 2).toString());
+            itens.getClienteTo().setNome(jTableVenda.getModel().getValueAt(i, 2).toString());
             itens.getFuncionarioTo().setNome(jTableVenda.getModel().getValueAt(i, 3).toString());
             dadosnew.add(itens);
             i++;
@@ -964,9 +965,9 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
     public void RecebendoDadosCliente(ClienteTO to) {
         cliTo = new ClienteTO();
         cliTo = to;
-        txtCliente.setText(to.getNomeCli());
+        txtCliente.setText(to.getNome());
     }
-    
+
     private void carregarComboFuncionarios() {
         VendaDAO dao = new VendaDAO();
         try {
@@ -982,6 +983,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
 
     private void GanharFoco(final JComboBox jb) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 jb.requestFocusInWindow();
             }
@@ -990,6 +992,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
 
     public void GanharFoco(final JTextField txt) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 txt.requestFocusInWindow();
             }
