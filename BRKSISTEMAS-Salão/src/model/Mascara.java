@@ -75,4 +75,8 @@ public class Mascara {
     public static void somenteNumero(JFormattedTextField numero, int tamanho) {
         numero.setDocument(new LimiteDigitosMODEL(tamanho));
     }
+
+    public static void MaiusculaNumero(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL2());
+    }
 }
