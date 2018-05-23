@@ -12,8 +12,6 @@ import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
@@ -650,7 +648,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
             ConfirmacaoSenha confirmacao = new ConfirmacaoSenha(this, true);
             confirmacao.setVisible(true);
             if (resposta.equals("Autorizado")) {
-                pessoasCrtl.Excluir(crtl.getClienteTo().getCodCliente());
+                pessoasCrtl.Excluir(cliTo);
                 LimparCampos();
                 btnIncluir.setEnabled(true);
                 btnAlterar.setEnabled(false);
@@ -664,12 +662,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        ConsultarCliente f2 = null;
-        try {
-            f2 = new ConsultarCliente();
-        } catch (Exception ex) {
-            Logger.getLogger(ManterCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ConsultarCliente f2 = new ConsultarCliente();        
         MenuPrincipal.getPainel().add(f2);
         this.dispose();
         f2.setVisible(true);
@@ -741,19 +734,19 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     }
 
     public void recebendo(ClienteTO clienteTo) {
-        crtl.getClienteTo().setCodCliente(clienteTo.getCodCliente());
-        txtBairro.setText(clienteTo.getBairoCli());
-        txtCelular.setText(clienteTo.getCelularCli());
-        txtCidade.setText(clienteTo.getCidadeCli());
-        txtCpf.setText(clienteTo.getCpfCli());
+        cliTo.setCodCliente(clienteTo.getCodCliente());
+        txtBairro.setText(clienteTo.getBairro());
+        txtCelular.setText(clienteTo.getCelular());
+        txtCidade.setText(clienteTo.getCidade());
+        txtCpf.setText(clienteTo.getCpf());
         txtDataCadastro.setText(clienteTo.getDataCadastro());
         // txtDataPriVisita.setText(clienteTo.getDatapriVisita());
         txtDataUltVisita.setText(clienteTo.getDataultVisita());
-        txtEmail.setText(clienteTo.getEmailCli());
-        txtEndereco.setText(clienteTo.getEnderecoCli());
-        txtNome.setText(clienteTo.getNomeCli());
-        txtRg.setText(clienteTo.getRgCli());
-        txtTelefone.setText(clienteTo.getTelfixoCLi());
+        txtEmail.setText(clienteTo.getEmail());
+        txtEndereco.setText(clienteTo.getEndereco());
+        txtNome.setText(clienteTo.getNome());
+        txtRg.setText(clienteTo.getRg());
+        txtTelefone.setText(clienteTo.getTelefone());
         cbSexo.setSelectedItem(clienteTo.getSexo());
         lblStatus.setText(clienteTo.getStatusCli());
         cbStatus.setSelectedItem(clienteTo.getStatusCli());
