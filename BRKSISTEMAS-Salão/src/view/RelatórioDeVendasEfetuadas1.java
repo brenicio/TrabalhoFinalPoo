@@ -5,7 +5,7 @@
  */
 package view;
 
-import crtl.FuncionarioCRTL;
+import crtl.PessoasCRTL;
 import dao.Conexao;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
@@ -33,8 +34,9 @@ import to.FuncionarioTO;
  */
 public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
 
-    FuncionarioCRTL crtl = new FuncionarioCRTL();
+    PessoasCRTL crtl = new PessoasCRTL();
     FuncionarioTO funcTo = new FuncionarioTO();
+    Iterator ito;
 
     /**
      * Creates new form RelatórioDeVendasEfetuadas1
@@ -202,7 +204,6 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
             data1 = new Date(((JCalendar) txtDate1).getText());
             data2 = new Date(((JCalendar) txtDate2).getText());
             String funcionario;
-            Date dataSist = new Date();
             SimpleDateFormat formatador = new SimpleDateFormat("MM/dd/yyyy");
             formatador.format(data1);
             formatador.format(data2);
@@ -226,8 +227,8 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
             //ResultSet rs2 = con.executaConsulta(SQL2);
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             HashMap map = new HashMap();
-            map.put("relatorioV_subreport1", "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioV_subreport1.jasper");
-            String arquivo = "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioV.jasper";
+            map.put("relatorioV_subreport1", "C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioV_subreport1.jasper");
+            String arquivo = "C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioV.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
@@ -243,8 +244,12 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
 
     private void carregarComboFuncionario() {
         ArrayList<String> funcA = new ArrayList();
-        ArrayList<FuncionarioTO> array;
-        array = crtl.consultarTodos();
+        ArrayList<FuncionarioTO> array = new ArrayList();
+        ito = crtl.ConsultarTodos("funcionario").iterator();
+        while(ito.hasNext()){
+            array.add((FuncionarioTO)ito.next());
+        }
+        
         int i = 0;
         while (i < array.size()) {
             funcA.add(array.get(i).getNome());

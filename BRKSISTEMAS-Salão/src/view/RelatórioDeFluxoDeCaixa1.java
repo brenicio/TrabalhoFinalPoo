@@ -15,6 +15,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import model.Mascara;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -33,8 +35,8 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
      */
     public RelatórioDeFluxoDeCaixa1() {
         initComponents();
-        mascaraData(txtDate1);
-        mascaraData(txtDate2);
+        Mascara.mascaraData(txtDate1);
+        Mascara.mascaraData(txtDate2);
     }
 
     /**
@@ -211,13 +213,13 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
             formatador.format(data1);
             formatador.format(data2);
             Conexao con = new Conexao();
-            String SQL = "select * from entradacaixa ec join caixa c on ec.codcaixa=c.codcaixa where c.status like '%Aberto%'"
+            String SQL = "select * from entradacaixa ec join caixa c on ec.codcaixa=c.codcaixa where c.status like '%Fechado%'"
                     + "and ec.dataentradac between '" + formatador.format(data1) + "' and '" + formatador.format(data2) + "'";
             con.conectaBD();
             ResultSet rs = con.executaConsulta(SQL);
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             HashMap map = new HashMap();
-            String arquivo = "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioFluxoEntradaCaixa.jasper";
+            String arquivo = "C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioFluxoEntradaCaixa.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
@@ -225,7 +227,7 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
 
     //caso queira usar o parâmetro  lido anteriormente no sql
             //String SQL = "SELECT codigo, nome, registro from cliente where codigo = "+codigo+" order by codigo";
-        } catch (Exception e) {
+        } catch (JRException e) {
             System.out.println(e);
             JOptionPane.showMessageDialog(null, "Erro ao tentar gerar o relatório.");
         }
@@ -248,7 +250,7 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
             ResultSet rs = con.executaConsulta(SQL);
             JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
             HashMap map = new HashMap();
-            String arquivo = "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioFluxoSaidaCaixa.jasper";
+            String arquivo = "C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioFluxoSaidaCaixa.jasper";
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);

@@ -40,7 +40,7 @@
 				</staticText>
 				<image>
 					<reportElement x="308" y="20" width="266" height="70" uuid="8037d9d2-3dee-4760-ae66-65df6e22c764"/>
-					<imageExpression><![CDATA["C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
+					<imageExpression><![CDATA["C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
 				</image>
 			</frame>
 		</band>

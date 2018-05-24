@@ -41,7 +41,7 @@ join funcionario f on f.matricula=u.matricula;]]>
 			</staticText>
 			<image>
 				<reportElement x="289" y="0" width="266" height="70" uuid="bc089ded-08ca-42cc-9bdc-0dff7bc6e793"/>
-				<imageExpression><![CDATA["C:\\Users\\Brenicio\\SkyDrive\\Projetos\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

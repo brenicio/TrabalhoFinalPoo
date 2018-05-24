@@ -771,8 +771,6 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
     }
 
     public void preencherTabela3() throws Exception {
-        ServicoCRTL servCrtl = new ServicoCRTL();
-        ServicoDAO dao = new ServicoDAO();
         ArrayList<ItensVendaServicoTO> dados = new ArrayList();
         funcTo.setNome(cbFuncionario.getSelectedItem().toString());
         ArrayList dados1 = new ArrayList();

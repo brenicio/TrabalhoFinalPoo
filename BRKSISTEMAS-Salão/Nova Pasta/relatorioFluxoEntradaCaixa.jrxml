@@ -33,19 +33,16 @@
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="abc2f1f3-b833-42a1-9da7-dd35f68ef17e"/>
 				<staticText>
-					<reportElement x="20" y="20" width="159" height="43" forecolor="#FFFFFF" uuid="70ab3559-fbd4-4c59-b558-e5f2b561acf2"/>
-					<textElement>
-						<font size="34" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Relatório]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="be20fe31-8d9c-4eb1-9412-34c805cd9c4c"/>
+					<reportElement x="20" y="39" width="224" height="41" forecolor="#FFFFFF" uuid="be20fe31-8d9c-4eb1-9412-34c805cd9c4c"/>
 					<textElement textAlignment="Center">
-						<font size="14" isBold="true"/>
+						<font size="20" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Entrada Caixa]]></text>
 				</staticText>
+				<image>
+					<reportElement x="295" y="8" width="280" height="72" uuid="96cdd0db-05b3-4fe0-a233-a67d6755fe7c"/>
+					<imageExpression><![CDATA["C:\\Users\\breni\\Desktop\\TrabalhoFinalPoo\\BRKSISTEMAS-Salão\\Nova Pasta\\logo.jpg"]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>
