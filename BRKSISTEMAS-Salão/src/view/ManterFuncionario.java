@@ -5,10 +5,11 @@
  */
 package view;
 
-import crtl.FuncionarioCRTL;
+import crtl.PessoasCRTL;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import model.Mascara;
 import to.FuncionarioTO;
 
 /**
@@ -17,7 +18,8 @@ import to.FuncionarioTO;
  */
 public class ManterFuncionario extends javax.swing.JInternalFrame {
 
-    FuncionarioCRTL funcCrtl = new FuncionarioCRTL();
+    PessoasCRTL funcCrtl = new PessoasCRTL();
+    FuncionarioTO funcTo = new FuncionarioTO();
 
     /**
      * Creates new form ManterFuncionario1
@@ -533,8 +535,7 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o funcionario " + txtNome.getText() + "", title, JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
-            FuncionarioCRTL funcCRTL = new FuncionarioCRTL();
-            funcCRTL.excluir(Integer.parseInt(txtMatricula.getText()));
+            funcCrtl.Excluir(funcTo);
             LimparCampos();
         } else if (resposta == JOptionPane.NO_OPTION) {
 
@@ -546,27 +547,27 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar o funcionario " + txtNome.getText() + "", title, JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
-            FuncionarioCRTL func = new FuncionarioCRTL();
-            func.getFuncionarioTo().setMatricula(Integer.parseInt((txtMatricula.getText())));
-            func.getFuncionarioTo().setNome(txtNome.getText());
-            func.getFuncionarioTo().setCargo(txtCargo.getText());
-            func.getFuncionarioTo().setRg(txtRg.getText());
-            func.getFuncionarioTo().setCpf(txtCpf.getText());
-            func.getFuncionarioTo().setCelular(txtCelular.getText());
-            func.getFuncionarioTo().setTelefone(txtTelefone.getText());
-            func.getFuncionarioTo().setEmail(txtEmail.getText());
-            func.getFuncionarioTo().setEndereco(txtEndereco.getText());
-            func.getFuncionarioTo().setCidade(txtCidade.getText());
-            func.getFuncionarioTo().setCep(txtCep.getText());
-            func.getFuncionarioTo().setSexo(txtSexo.getSelectedItem().toString());
-            func.getFuncionarioTo().setDatanasc(txtDataNasc.getText());
-            func.getFuncionarioTo().setCts(txtCTPS.getText());
-            func.getFuncionarioTo().setSerie(txtSerie.getText());
-            func.getFuncionarioTo().setTelefoneRecado(txtTelefoneRecado.getText());
-            func.getFuncionarioTo().setUf(txtUf.getSelectedItem().toString());
-            func.getFuncionarioTo().setSetor(txtSetor.getText());
+            funcTo.setMatricula(Integer.parseInt((txtMatricula.getText())));
+            funcTo.setNome(txtNome.getText());
+            funcTo.setCargo(txtCargo.getText());
+            funcTo.setRg(txtRg.getText());
+            funcTo.setCpf(txtCpf.getText());
+            funcTo.setCelular(txtCelular.getText());
+            funcTo.setTelefone(txtTelefone.getText());
+            funcTo.setEmail(txtEmail.getText());
+            funcTo.setEndereco(txtEndereco.getText());
+            funcTo.setCidade(txtCidade.getText());
+            funcTo.setCep(txtCep.getText());
+            funcTo.setSexo(txtSexo.getSelectedItem().toString());
+            funcTo.setDatanasc(txtDataNasc.getText());
+            funcTo.setCts(txtCTPS.getText());
+            funcTo.setSerie(txtSerie.getText());
+            funcTo.setTelefoneRecado(txtTelefoneRecado.getText());
+            funcTo.setUf(txtUf.getSelectedItem().toString());
+            funcTo.setSetor(txtSetor.getText());
 
-            func.alterarFuncionario();
+            funcCrtl.setPessoasTo(funcTo);
+            funcCrtl.Alterar();
             LimparCampos();
 
         } else if (resposta == JOptionPane.NO_OPTION) {
@@ -585,37 +586,37 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        FuncionarioCRTL func = new FuncionarioCRTL();
         if (txtMatricula.getText().equals("")) {
-            func.getFuncionarioTo().setMatricula(0);
+            funcTo.setMatricula(0);
         } else {
-            func.getFuncionarioTo().setMatricula(Integer.parseInt((txtMatricula.getText())));
+            funcTo.setMatricula(Integer.parseInt((txtMatricula.getText())));
         }
 
-        func.getFuncionarioTo().setNome(txtNome.getText());
-        func.getFuncionarioTo().setCargo(txtCargo.getText());
-        func.getFuncionarioTo().setRg(txtRg.getText());
+        funcTo.setNome(txtNome.getText());
+        funcTo.setCargo(txtCargo.getText());
+        funcTo.setRg(txtRg.getText());
         if (txtCpf.getText().length() == 14) {
-            func.getFuncionarioTo().setCpf(txtCpf.getText().replace("-", "").replace(" ", "").replace(".", ""));
+            funcTo.setCpf(txtCpf.getText().replace("-", "").replace(" ", "").replace(".", ""));
         } else {
-            func.getFuncionarioTo().setCpf(txtCpf.getText());
+            funcTo.setCpf(txtCpf.getText());
         }
 
-        func.getFuncionarioTo().setCelular(txtCelular.getText());
-        func.getFuncionarioTo().setTelefone(txtTelefone.getText());
-        func.getFuncionarioTo().setEmail(txtEmail.getText());
-        func.getFuncionarioTo().setEndereco(txtEndereco.getText());
-        func.getFuncionarioTo().setCidade(txtCidade.getText());
-        func.getFuncionarioTo().setCep(txtCep.getText());
-        func.getFuncionarioTo().setSexo(txtSexo.getSelectedItem().toString());
-        func.getFuncionarioTo().setDatanasc(txtDataNasc.getText());
-        func.getFuncionarioTo().setCts(txtCTPS.getText());
-        func.getFuncionarioTo().setSerie(txtSerie.getText());
-        func.getFuncionarioTo().setTelefoneRecado(txtTelefoneRecado.getText());
-        func.getFuncionarioTo().setUf(txtUf.getSelectedItem().toString());
-        func.getFuncionarioTo().setSetor(txtSetor.getText());
-
-        String ret = func.incluirFuncionario();
+        funcTo.setCelular(txtCelular.getText());
+        funcTo.setTelefone(txtTelefone.getText());
+        funcTo.setEmail(txtEmail.getText());
+        funcTo.setEndereco(txtEndereco.getText());
+        funcTo.setCidade(txtCidade.getText());
+        funcTo.setCep(txtCep.getText());
+        funcTo.setSexo(txtSexo.getSelectedItem().toString());
+        funcTo.setDatanasc(txtDataNasc.getText());
+        funcTo.setCts(txtCTPS.getText());
+        funcTo.setSerie(txtSerie.getText());
+        funcTo.setTelefoneRecado(txtTelefoneRecado.getText());
+        funcTo.setUf(txtUf.getSelectedItem().toString());
+        funcTo.setSetor(txtSetor.getText());
+        
+        funcCrtl.setPessoasTo(funcTo);
+        String ret = funcCrtl.Incluir();
         if (ret.equals("Matricula não informada!")) {
             JOptionPane.showMessageDialog(null, ret);
             GanharFoco(txtMatricula);
@@ -720,6 +721,7 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
 
         habilitarBotoes();
         btnIncluir.setEnabled(false);
+        funcTo = consulta;
 
     }
 
@@ -747,7 +749,7 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
 
     }
 
-    public void desabilitarBotoes() {
+    private void desabilitarBotoes() {
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
 
@@ -758,27 +760,27 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
         btnExcluir.setEnabled(true);
     }
 
-    public void mascaraCampos() {
-        funcCrtl.mascaraData(txtDataNasc);
-        funcCrtl.mascaraCPF(txtCpf);
-        funcCrtl.mascaraCTPS(txtCTPS);
-        funcCrtl.mascaraTelCel(txtTelefone);
-        funcCrtl.mascaraTelCel(txtTelefoneRecado);
-        funcCrtl.mascaraTelCel(txtCelular);
-        funcCrtl.mascaraCep(txtCep);
+    private void mascaraCampos() {
+        Mascara.mascaraData(txtDataNasc);
+        Mascara.mascaraCPF(txtCpf);
+        Mascara.mascaraCTPS(txtCTPS);
+        Mascara.mascaraTelCel(txtTelefone);
+        Mascara.mascaraTelCel(txtTelefoneRecado);
+        Mascara.mascaraTelCel(txtCelular);
+        Mascara.mascaraCep(txtCep);
     }
 
-    public void Maiuscula() {
-        funcCrtl.Maiuscula(txtNome);
-        funcCrtl.Maiuscula(txtCidade);
-        funcCrtl.Maiuscula(txtSetor);
-        funcCrtl.Maiuscula(txtCargo);
+    private void Maiuscula() {
+        Mascara.Maiuscula(txtNome);
+        Mascara.Maiuscula(txtCidade);
+        Mascara.Maiuscula(txtSetor);
+        Mascara.Maiuscula(txtCargo);
     }
 
-    public void somenteNumeros() {
-        funcCrtl.somenteNumero(txtSerie, 4);
-        funcCrtl.somenteNumero(txtMatricula, 4);
-        funcCrtl.somenteNumero(txtRg, 7);
+    private void somenteNumeros() {
+        Mascara.somenteNumero(txtSerie, 4);
+        Mascara.somenteNumero(txtMatricula, 4);
+        Mascara.somenteNumero(txtRg, 7);
     }
 
     public void GanharFoco(final JTextField txt) {

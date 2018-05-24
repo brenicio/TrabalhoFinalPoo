@@ -145,7 +145,8 @@ public class VendaProdDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            throw e;
+            System.out.println("Erro Venda: "+e.getMessage());
+           return "erro";
         }
 
     }

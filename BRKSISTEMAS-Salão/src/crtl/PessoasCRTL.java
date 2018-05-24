@@ -11,7 +11,7 @@ public class PessoasCRTL {
 
     private PessoasTO pessoasTo;
     private final FuncionarioBO funcBo;
-    private ClienteBO cliBo;
+    private final ClienteBO cliBo;
 
     public PessoasCRTL() {
         funcBo = new FuncionarioBO();
@@ -44,7 +44,7 @@ public class PessoasCRTL {
         String ret;
         if (pessoasTo instanceof FuncionarioTO) {
 
-            ret = funcBo.Incluir(pessoasTo);
+            ret = funcBo.Alterar(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {
@@ -52,7 +52,7 @@ public class PessoasCRTL {
             }
         } else {
 
-            ret = cliBo.Incluir(pessoasTo);
+            ret = cliBo.Alterar(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {

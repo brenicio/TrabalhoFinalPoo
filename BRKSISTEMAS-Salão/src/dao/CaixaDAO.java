@@ -226,9 +226,10 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados CAIXA");
-            throw e;
+            System.out.println("ERRO CAIXA: "+e.getMessage());
+            return "erro";
         }
+        
 
     }
 
@@ -242,7 +243,8 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            throw e;
+            System.out.println("Erro CAIXA: "+e.getMessage());
+            return "erro";
         }
 
     }
@@ -257,7 +259,8 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            throw e;
+            System.out.println("Erro CAIXA: "+e.getMessage());
+            return"erro";
         }
     }
 

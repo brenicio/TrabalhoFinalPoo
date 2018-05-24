@@ -200,19 +200,16 @@ public class ClienteDAO implements PessoasDAO {
 
     @Override
     public void ExcluirID(long ID) {
-        try {
-            //EXCLUI UM ALUNO DO BANCO (COM O ID PASSADO COMO PARÂMETRO)
-            //************************************************************
-            //ABRE CONEXAO COM O BANCO
-            //************************************************************
-            Conexao con = new Conexao();
-            String SQL;
-            con.conectaBD();
-            SQL = "DELETE FROM CLIENTE WHERE CODCLIENTE =" + ID + "";
+        Conexao con = new Conexao();
+        String SQL;
+        con.conectaBD();
+        SQL = "DELETE FROM CLIENTE WHERE CODCLIENTE =" + ID + "";
+
+        try {          
             con.executaSQL(SQL);
             con.desconectaBD();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null,"Não é Possivel EXCLUIR o Cliente! Existem vendas vinculadas.");
         }
     }
 
@@ -321,12 +318,16 @@ public class ClienteDAO implements PessoasDAO {
     }
 
     public String VerificarStatus() {
+        try{
         Conexao con = new Conexao();
         String SQL;
         SQL = "UPDATE CLIENTE SET status = 'INATIVO' WHERE (SELECT CURRENT_DATE - (select to_date(dataultvisita,'DD MM YYYY') as data)) > 29";
         con.conectaBD();
         con.executaSQL(SQL);
         con.desconectaBD();
+        }catch(Exception e){
+            System.out.println("Erro: "+e.getMessage());
+        }
         return "";
     }
 

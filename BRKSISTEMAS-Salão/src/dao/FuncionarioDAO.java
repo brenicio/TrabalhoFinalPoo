@@ -3,11 +3,13 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import to.PessoasTO;
 import to.FuncionarioTO;
 
-public class FuncionarioDAO implements PessoasDAO{
+public class FuncionarioDAO implements PessoasDAO {
 
     @Override
     public String Incluir(PessoasTO p) {
@@ -192,11 +194,18 @@ public class FuncionarioDAO implements PessoasDAO{
     public void ExcluirID(long Id) {
         Conexao con = new Conexao();
         String SQL;
-        con.conectaBD();
         SQL = "DELETE FROM FUNCIONARIO WHERE MATRICULA =" + Id + "";
-        con.executaSQL(SQL);
-        con.desconectaBD();
-        JOptionPane.showMessageDialog(null, "Funcionario Excluido com sucesso!!");
+        System.out.println("Excluir ID funcionario DAO: " + Id);
+        
+        try {
+            con.conectaBD();
+            con.executaSQL(SQL);
+            JOptionPane.showMessageDialog(null, "Funcionario excluido com sucesso!");
+            con.desconectaBD();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Não é possivel remover o funcionario! Existe vinculo de venda ou usuário: " + "\n" + ex.getMessage());
+        }
+
     }
 
     public PessoasTO VerificarFuncionario(String rg, String cpf, int matricula) {
@@ -221,7 +230,7 @@ public class FuncionarioDAO implements PessoasDAO{
             con.desconectaBD();
             return funcTo;
         } catch (SQLException e) {
-            System.out.println("Erro: "+e.getMessage());
+            System.out.println("Erro: " + e.getMessage());
         }
 
         return funcTo;

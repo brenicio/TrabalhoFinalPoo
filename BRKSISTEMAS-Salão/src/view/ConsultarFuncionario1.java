@@ -5,11 +5,12 @@
  */
 package view;
 
-import crtl.FuncionarioCRTL;
+import crtl.PessoasCRTL;
 import model.TableMODEL;
 import java.util.ArrayList;
+import java.util.Iterator;
+import model.Mascara;
 import to.FuncionarioTO;
-import to.UsuarioTO;
 
 /**
  *
@@ -17,35 +18,33 @@ import to.UsuarioTO;
  */
 public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
 
-    ManterFuncionario enviaDados = new ManterFuncionario();
-    ManterUsuario enviaDados2 = new ManterUsuario();
-    public static ManterUsuario usu;
+    ManterFuncionario funcionarios = new ManterFuncionario();
+    ManterUsuario Usuario = new ManterUsuario();
     FuncionarioTO funcTo = new FuncionarioTO();
-    UsuarioTO usuTo = new UsuarioTO();
-    FuncionarioCRTL funcCrtl = new FuncionarioCRTL();
+    PessoasCRTL funcCrtl = new PessoasCRTL();
     String telaSelecionada;
+    Iterator ito;
     public static VendasEfetuadasServico venda = new VendasEfetuadasServico();
-    
+
     /* Creates new form ConsultarFuncionario1
      */
-
     public ConsultarFuncionario1(String tela) {
         telaSelecionada = tela;
         initComponents();
         preencherTabela();
-        
+
         if (telaSelecionada.equalsIgnoreCase("funcionario")) {
-            MenuPrincipal.getPainel().add(enviaDados);
-            enviaDados.setVisible(true);
-        } 
+            MenuPrincipal.getPainel().add(funcionarios);
+            funcionarios.setVisible(true);
+        }
     }
-    public ConsultarFuncionario1(VendasEfetuadasServico parent, String tela){
+
+    public ConsultarFuncionario1(VendasEfetuadasServico parent, String tela) {
         this.venda = parent;
         telaSelecionada = tela;
         initComponents();
-        preencherTabela();        
+        preencherTabela();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,7 +127,7 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
                         .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtPesquisa))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1036, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -150,11 +149,11 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
                     .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        setBounds(450, 130, 434, 316);
+        setBounds(450, 130, 1076, 552);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -178,22 +177,19 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
         funcTo.setDatanasc(jTableFuncionarios.getModel().getValueAt(linha, 15).toString());
         funcTo.setUf(jTableFuncionarios.getModel().getValueAt(linha, 16).toString());
         funcTo.setSetor(jTableFuncionarios.getModel().getValueAt(linha, 17).toString());
-        
-       
 
         if (telaSelecionada.equalsIgnoreCase("usuario")) {
-            enviaDados2.recebendo(funcTo);
+            Usuario.recebendo(funcTo);
             this.dispose();
-            enviaDados2.setVisible(true);
-        }
-        else if(telaSelecionada.equals("venda")){
+            Usuario.setVisible(true);
+        } else if (telaSelecionada.equals("venda")) {
             venda.RecebendoDadosFuncionario(funcTo);
             this.dispose();
             venda.setVisible(true);
-        }else {
-            enviaDados.recebendo(funcTo);
+        } else {
+            funcionarios.recebendo(funcTo);
             this.dispose();
-            enviaDados.setVisible(true);
+            funcionarios.setVisible(true);
         }
 
 
@@ -228,35 +224,82 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
             preencherTabela();
         }
     }//GEN-LAST:event_txtPesquisaKeyPressed
-    public void preencherTabela() {
-        FuncionarioCRTL funcCRTL = new FuncionarioCRTL();
+    private void preencherTabela() {
         ArrayList<FuncionarioTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        dados = funcCRTL.consultarTodos();
-        int i = 0;
-        while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getMatricula(), dados.get(i).getNome(), dados.get(i).getCargo(), dados.get(i).getRg(), dados.get(i).getCpf(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCep(), dados.get(i).getSexo(), dados.get(i).getTelefoneRecado(), dados.get(i).getCts(), dados.get(i).getSerie(), dados.get(i).getDatanasc(), dados.get(i).getUf(), dados.get(i).getSetor()});
-            i++;
 
+        ito = funcCrtl.ConsultarTodos("funcionario").iterator();
+        while (ito.hasNext()) {
+            dados.add((FuncionarioTO) ito.next());
         }
+
+        for (int i = 0; i < dados.size(); i++) {
+            dados1.add(new Object[]{dados.get(i).getMatricula(), dados.get(i).getNome(), dados.get(i).getCargo(), dados.get(i).getRg(), dados.get(i).getCpf(), dados.get(i).getCelular(), dados.get(i).getTelefone(), dados.get(i).getEmail(), dados.get(i).getEndereco(), dados.get(i).getCidade(), dados.get(i).getCep(), dados.get(i).getSexo(), dados.get(i).getTelefoneRecado(), dados.get(i).getCts(), dados.get(i).getSerie(), dados.get(i).getDatanasc(), dados.get(i).getUf(), dados.get(i).getSetor()});
+        }
+
         String[] Colunas = new String[]{"Matricula", "Nome", "Cargo", "RG", "CPF", "Celular", "Telefone", "Email", "Endereço",
             "Cidade", "Cep", "Sexo", "TelefoneRecado", "CTPS", "Serie", "DataNasc", "UF", "Setor"};
 
         TableMODEL modelo = new TableMODEL(dados1, Colunas);
         jTableFuncionarios.setModel(modelo);
+
         jTableFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(0).setMaxWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(1).setMaxWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(0).setMinWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(1).setMinWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(2).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(2).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setMinWidth(200);
+
+        
         jTableFuncionarios.getTableHeader().setReorderingAllowed(false);
         jTableFuncionarios.setAutoResizeMode(jTableFuncionarios.AUTO_RESIZE_OFF);
     }
 
     public void preencherTabela2() {
-
-        FuncionarioTO funcTo = new FuncionarioTO();
-        FuncionarioCRTL funcCRTL = new FuncionarioCRTL();
+        funcTo.setMatricula(Integer.parseInt(txtPesquisa.getText()));
         if (cbOpcao.getSelectedIndex() == 0) {
-            funcTo = funcCRTL.consultar(txtPesquisa.getText());
+            funcTo = (FuncionarioTO) funcCrtl.Consultar(funcTo);
         } else {
-            funcTo = funcCRTL.consultarID(Integer.parseInt(txtPesquisa.getText()));
+            funcTo = (FuncionarioTO) funcCrtl.Consultar(Integer.parseInt(txtPesquisa.getText()), "funcionario");
         }
         ArrayList dados1 = new ArrayList();
 
@@ -268,18 +311,64 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
 
         TableMODEL modelo = new TableMODEL(dados1, Colunas);
         jTableFuncionarios.setModel(modelo);
+        
         jTableFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(0).setMaxWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(1).setMaxWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(0).setMinWidth(80);
+        jTableFuncionarios.getColumnModel().getColumn(1).setMinWidth(600);
+        jTableFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(2).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(2).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(3).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(4).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(5).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(6).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(7).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(8).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(9).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(10).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(11).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(12).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(13).setMinWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setPreferredWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setMaxWidth(200);
+        jTableFuncionarios.getColumnModel().getColumn(14).setMinWidth(200);
+        
         jTableFuncionarios.getTableHeader().setReorderingAllowed(false);
         jTableFuncionarios.setAutoResizeMode(jTableFuncionarios.AUTO_RESIZE_OFF);
 
     }
 
     public void Maiuscula() {
-        funcCrtl.Maiuscula(txtPesquisa);
+        Mascara.Maiuscula(txtPesquisa);
     }
 
     public void somenteNumeros() {
-        funcCrtl.somenteNumero(txtPesquisa, 4);
+        Mascara.somenteNumero(txtPesquisa, 4);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JMenuItem;
@@ -30,7 +28,6 @@ import javax.swing.ListSelectionModel;
 import model.TableMODEL;
 import to.ClienteTO;
 import to.FuncionarioTO;
-import to.ItensVendaProdutoTO;
 import to.ItensVendaServicoTO;
 import to.ProdutoTO;
 import to.ServicoTO;
@@ -40,18 +37,22 @@ import to.ServicoTO;
  * @author kamila
  */
 public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
-
+//-----------------------------------------------------------//
+    //TO'S
     FuncionarioTO funcTo = new FuncionarioTO();
     ClienteTO cliTo = new ClienteTO();
     ServicoTO servTo = new ServicoTO();
     ProdutoTO prodTo = new ProdutoTO();
-
-    private Object escritorio1;
+    //TO'S
+//-----------------------------------------------------------//
+    //CRTL
     VendaCRTL crtl = new VendaCRTL();
     ProdutoCRTL prodcrtl = new ProdutoCRTL();
     CaixaCRTL caixacrtl = new CaixaCRTL();
+    //CRTL'S
+//-----------------------------------------------------------//
+    //ARRAYLIST'S
     ArrayList<ItensVendaServicoTO> dadosback = new ArrayList();
-    ProdutoTO produtoTo = new ProdutoTO();
     ArrayList itensServ = new ArrayList();
     ArrayList funcionarios = new ArrayList();
     ArrayList clientes = new ArrayList();
@@ -59,23 +60,26 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
     ArrayList precoUnitario = new ArrayList();
     ArrayList precos = new ArrayList();
     ArrayList quant = new ArrayList();
-    int codUsuarioLogado;
-    //BigDecimais
+    //ARRAYLIST'S
+//-----------------------------------------------------------//
+    //BIGDECIMAIS
     BigDecimal precoUnit;
     BigDecimal valorTotal = new BigDecimal(0.0);
     BigDecimal vendaTotal = new BigDecimal(0.0);
+    BigDecimal desconto = new BigDecimal(0.0);
+    //BIGDECIMAIS
+//-----------------------------------------------------------//
+    //INTEIROS
+    int codUsuarioLogado;
     int quantidadeTotal;
     int codUsu;
-    BigDecimal desconto = new BigDecimal(0.0);
+    //INTEIROS
+//-----------------------------------------------------------//
+    //DAO
     VendaDAO vendaDao = new VendaDAO();
+    //DAO
+//-----------------------------------------------------------//
 
-    public BigDecimal getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(BigDecimal desconto) {
-        this.desconto = desconto;
-    }
 
     /**
      * Creates new form VendasEfetuadass
@@ -88,7 +92,6 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
         txtCliente.setEditable(false);
         codUsu = codUsuario;
         GanharFoco(cbFuncionario);
-//        menuP.vs = MenuPrincipal.getPainel().getSelectedFrame();
     }
 
     public VendasEfetuadasServico() {
@@ -1030,6 +1033,15 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
         ServicoTO servTo2 = new ServicoTO();
         cliTo = cliTo2;
         servTo = servTo2;
+    }
+    
+    
+    public BigDecimal getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = desconto;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
