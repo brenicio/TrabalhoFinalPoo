@@ -1,5 +1,7 @@
 package to;
+
 public class MarcaTO {
+
     String nomeMarca;
     int codMarca;
 

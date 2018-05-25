@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  * @author Brenicio
  */
 public class VendaTO {
+
     private int codvenda;
     private int codusuario;
     private int codFuncionario;
@@ -138,6 +139,5 @@ public class VendaTO {
     public void setStatusven(String statusven) {
         this.statusven = statusven;
     }
-    
-    
+
 }

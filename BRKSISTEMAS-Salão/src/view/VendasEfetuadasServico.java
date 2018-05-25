@@ -39,6 +39,7 @@ import to.ServicoTO;
 public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
 //-----------------------------------------------------------//
     //TO'S
+
     FuncionarioTO funcTo = new FuncionarioTO();
     ClienteTO cliTo = new ClienteTO();
     ServicoTO servTo = new ServicoTO();
@@ -79,7 +80,6 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
     VendaDAO vendaDao = new VendaDAO();
     //DAO
 //-----------------------------------------------------------//
-
 
     /**
      * Creates new form VendasEfetuadass
@@ -527,7 +527,6 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
 
     }//GEN-LAST:event_btnClienteActionPerformed
 
@@ -1032,8 +1031,7 @@ public class VendasEfetuadasServico extends javax.swing.JInternalFrame {
         cliTo = cliTo2;
         servTo = servTo2;
     }
-    
-    
+
     public BigDecimal getDesconto() {
         return desconto;
     }

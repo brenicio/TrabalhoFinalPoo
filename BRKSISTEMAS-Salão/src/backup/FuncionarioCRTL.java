@@ -56,7 +56,7 @@ public class FuncionarioCRTL {
 
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            String ret = funcionarioBo.Incluir(funcionarioTo);
+            String ret = funcionarioBo.incluir(funcionarioTo);
             if (!"".equals(ret)) {
                 return ret;
             } else if (ret.equals("erro")) {
@@ -73,7 +73,7 @@ public class FuncionarioCRTL {
     public void alterarFuncionario() {
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            String ret = funcionarioBo.Alterar(funcionarioTo);
+            String ret = funcionarioBo.alterar(funcionarioTo);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar");
 
@@ -85,7 +85,7 @@ public class FuncionarioCRTL {
 
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarioTo = (FuncionarioTO) funcionarioBo.Consultar(nome);
+            funcionarioTo = (FuncionarioTO) funcionarioBo.consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -98,7 +98,7 @@ public class FuncionarioCRTL {
 
         try {
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarioTo = (FuncionarioTO) funcionarioBo.Consultar(id);
+            funcionarioTo = (FuncionarioTO) funcionarioBo.consultar(id);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -112,7 +112,7 @@ public class FuncionarioCRTL {
         try {
 
             FuncionarioBO funcionarioBo = new FuncionarioBO();
-            funcionarios = funcionarioBo.ConsultarTodos();
+//            funcionarios = funcionarioBo.ConsultarTodos();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -121,9 +121,8 @@ public class FuncionarioCRTL {
 
     public void excluir(int id) {
         try {
-
             FuncionarioBO funcBo = new FuncionarioBO();
-            funcBo.ExcluirID(id);
+            funcBo.excluirID(id);
             limpaTela();
         } catch (Exception ex) {
             System.out.println("Erro ao excluir");

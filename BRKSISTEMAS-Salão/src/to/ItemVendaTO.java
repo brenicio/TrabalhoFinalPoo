@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  * @author Brenicio
  */
 public class ItemVendaTO {
+
     private int codServico;
     private int codvenda;
     private int codFuncionario;
@@ -42,9 +43,8 @@ public class ItemVendaTO {
     public void setPrecoUnit(BigDecimal precoUnit) {
         this.precoUnit = precoUnit;
     }
-    
-   // private int qtde;
 
+    // private int qtde;
     public int getCodFuncionario() {
         return codFuncionario;
     }
@@ -52,8 +52,6 @@ public class ItemVendaTO {
     public void setCodFuncionario(int codFuncionario) {
         this.codFuncionario = codFuncionario;
     }
-
-   
 
     public int getCodvenda() {
         return codvenda;
@@ -71,5 +69,4 @@ public class ItemVendaTO {
         this.codvenda = codvenda;
     }
 
-    
 }

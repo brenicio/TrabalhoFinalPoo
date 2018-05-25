@@ -45,7 +45,7 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
         initComponents();
         carregarComboFuncionario();
         cbFuncionario.setSelectedItem(null);
-        
+
     }
 
     /**
@@ -208,20 +208,19 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
             formatador.format(data1);
             formatador.format(data2);
             Conexao con = new Conexao();
-            if(cbFuncionario.getSelectedItem() == null){
+            if (cbFuncionario.getSelectedItem() == null) {
                 funcionario = "";
-            }else{
+            } else {
                 funcionario = cbFuncionario.getSelectedItem().toString();
             }
-            String SQL ="select v.codvenda, v.descricaoven, v.dataven, v.totalven, v.observacoes, fp.descpagamento, fp.tipopagamento, u.nomeusuario, TO_CHAR(CAST(v.totalven as DOUBLE PRECISION),'9999999D99') as totaltemp, f.nomefunc from venda v "
-		+"join formapagamento fp on fp.codformapagamento=v.codformapagamento "
-		+"join usuario u on v.codusuario=u.codusuario "
-		+"join funcionario f on f.matricula=u.matricula "
-		+ "where v.dataven between '"+ formatador.format(data1)+"' and '"+formatador.format(data2)+"'"
-                +"and f.nomefunc like '%"+funcionario+"%';";
-            
-            
-           // JOptionPane.showMessageDialog(null, SQL);
+            String SQL = "select v.codvenda, v.descricaoven, v.dataven, v.totalven, v.observacoes, fp.descpagamento, fp.tipopagamento, u.nomeusuario, TO_CHAR(CAST(v.totalven as DOUBLE PRECISION),'9999999D99') as totaltemp, f.nomefunc from venda v "
+                    + "join formapagamento fp on fp.codformapagamento=v.codformapagamento "
+                    + "join usuario u on v.codusuario=u.codusuario "
+                    + "join funcionario f on f.matricula=u.matricula "
+                    + "where v.dataven between '" + formatador.format(data1) + "' and '" + formatador.format(data2) + "'"
+                    + "and f.nomefunc like '%" + funcionario + "%';";
+
+            // JOptionPane.showMessageDialog(null, SQL);
             con.conectaBD();
             ResultSet rs = con.executaConsulta(SQL);
             //ResultSet rs2 = con.executaConsulta(SQL2);
@@ -245,11 +244,11 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
     private void carregarComboFuncionario() {
         ArrayList<String> funcA = new ArrayList();
         ArrayList<FuncionarioTO> array = new ArrayList();
-        ito = crtl.ConsultarTodos("funcionario").iterator();
-        while(ito.hasNext()){
-            array.add((FuncionarioTO)ito.next());
+        ito = crtl.consultarTodos("funcionario").iterator();
+        while (ito.hasNext()) {
+            array.add((FuncionarioTO) ito.next());
         }
-        
+
         int i = 0;
         while (i < array.size()) {
             funcA.add(array.get(i).getNome());
@@ -257,7 +256,6 @@ public class RelatórioDeVendasEfetuadas1 extends javax.swing.JInternalFrame {
         }
         cbFuncionario.setModel(new DefaultComboBoxModel(funcA.toArray()));
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cbFuncionario;

@@ -20,7 +20,6 @@ public class MarcaDAO {
         } catch (Exception e) {
             throw e;
         }
-
     }
 
     public String alterar(MarcaTO marcaTo) throws Exception {
@@ -28,7 +27,7 @@ public class MarcaDAO {
             Conexao teste = new Conexao();
             String SQL;
 
-            SQL = "UPDATE marca SET nomemarca='" + marcaTo.getNomeMarca() + "' WHERE codmarca="+marcaTo.getCodMarca()+"";
+            SQL = "UPDATE marca SET nomemarca='" + marcaTo.getNomeMarca() + "' WHERE codmarca=" + marcaTo.getCodMarca() + "";
             teste.conectaBD();
             teste.executaSQL(SQL);
             teste.desconectaBD();
@@ -38,7 +37,7 @@ public class MarcaDAO {
         }
     }
 
-    public MarcaTO Consultar(String nome) throws Exception {
+    public MarcaTO consultar(String nome) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -47,12 +46,9 @@ public class MarcaDAO {
         teste.conectaBD();
         ResultSet rs = teste.executaConsulta(SQL);
         try {
-
             if (rs.next()) {
-
                 marca.setNomeMarca(rs.getString("nomemarca"));
                 marca.setCodMarca(rs.getInt("codmarca"));
-
             }
             return marca;
         } catch (Exception e) {
@@ -64,7 +60,7 @@ public class MarcaDAO {
         return marca;
     }
 
-    public MarcaTO ConsultarID(int id) throws Exception {
+    public MarcaTO consultarID(int id) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -117,7 +113,8 @@ public class MarcaDAO {
         con.desconectaBD();
         return marcaA;
     }
-     public ArrayList<MarcaTO> consultarTodosM(String nome) throws Exception {
+
+    public ArrayList<MarcaTO> consultarTodosM(String nome) throws Exception {
         ArrayList<MarcaTO> marcaA = new ArrayList();
         //*********************************************
         //RECUPERA TODOS OS ALUNOS DO BANCO
@@ -125,7 +122,7 @@ public class MarcaDAO {
         ResultSet rs;
         Conexao con = new Conexao();
         con.conectaBD();
-        String SQL = "SELECT * FROM MARCA WHERE nomemarca LIKE  '%"+nome+"%'";
+        String SQL = "SELECT * FROM MARCA WHERE nomemarca LIKE  '%" + nome + "%'";
         rs = con.executaConsulta(SQL);
         //***********************************************
         //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
@@ -145,7 +142,7 @@ public class MarcaDAO {
         return marcaA;
     }
 
-    public MarcaTO VerificarMarca(String nome) throws Exception {
+    public MarcaTO verificarMarca(String nome) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -159,7 +156,6 @@ public class MarcaDAO {
 
                 marca.setCodMarca(rs.getInt("codmarca"));
                 marca.setNomeMarca(rs.getString("nomemarca"));
-
             }
             return marca;
         } catch (Exception e) {
@@ -182,7 +178,6 @@ public class MarcaDAO {
         SQL = "DELETE FROM MARCA WHERE CODMARCA =" + ID + "";
         con.executaSQL(SQL);
         con.desconectaBD();
-return "";
+        return "";
     }
-
 }

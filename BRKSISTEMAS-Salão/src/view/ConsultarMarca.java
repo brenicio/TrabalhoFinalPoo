@@ -15,7 +15,7 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
         preencherTabela();
         MenuPrincipal.getPainel().add(enviaDados);
         enviaDados.setVisible(true);
-       // enviaDados.toBack();
+        // enviaDados.toBack();
 
 //        MenuPrincipal.getPainel().add(enviaDados);
 //        enviaDados.setVisible(true);
@@ -150,16 +150,16 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
-        if(cbOpcao.getSelectedIndex()==0){
-           preencherTabela2(); 
-        }else{
+        if (cbOpcao.getSelectedIndex() == 0) {
+            preencherTabela2();
+        } else {
             preencherTabela3();
         }
-        
+
         if (txtPesquisa.getText().equalsIgnoreCase("")) {
             preencherTabela();
         }
-        
+
     }//GEN-LAST:event_txtPesquisaKeyReleased
 
     private void txtPesquisaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyTyped
@@ -167,9 +167,9 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisaKeyTyped
 
     private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseClicked
-        if(cbOpcao.getSelectedIndex()==0){
+        if (cbOpcao.getSelectedIndex() == 0) {
             Maiuscula();
-        }else{
+        } else {
             somenteNumero();
         }
     }//GEN-LAST:event_txtPesquisaMouseClicked
@@ -195,7 +195,7 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
 
     public void preencherTabela2() {
         MarcaTO marcTo = new MarcaTO();
-        MarcaCRTL marcCrtl = new MarcaCRTL();        
+        MarcaCRTL marcCrtl = new MarcaCRTL();
         ArrayList<MarcaTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
 
@@ -236,12 +236,13 @@ public class ConsultarMarca extends javax.swing.JInternalFrame {
 
     }
 
-   public void Maiuscula(){
-       crtl.Maiuscula(txtPesquisa);
-   }
-   public void somenteNumero(){
-       crtl.somenteNumero(txtPesquisa, 4);
-   }
+    public void Maiuscula() {
+        crtl.maiuscula(txtPesquisa);
+    }
+
+    public void somenteNumero() {
+        crtl.somenteNumero(txtPesquisa, 4);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

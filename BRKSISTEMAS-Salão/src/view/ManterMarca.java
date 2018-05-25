@@ -212,7 +212,7 @@ public class ManterMarca extends javax.swing.JInternalFrame {
     }
 
     private void Maiuscula() {
-        crtl.Maiuscula(txtDescricao);
+        crtl.maiuscula(txtDescricao);
     }
 
     private void desabitilarBotoes() {
@@ -230,7 +230,6 @@ public class ManterMarca extends javax.swing.JInternalFrame {
         txtDescricao.setText(to.getNomeMarca());
         habilitarBotoes();
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

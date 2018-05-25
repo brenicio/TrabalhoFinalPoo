@@ -12,8 +12,8 @@ public class LoginBO {
         loginDao = new LoginDAO();
     }
 
-    public UsuarioTO Logar(LoginTO logar) throws Exception {
-        UsuarioTO usuarioTo = loginDao.Logar(logar);
+    public UsuarioTO logar(LoginTO logar) throws Exception {
+        UsuarioTO usuarioTo = loginDao.logar(logar);
         return usuarioTo;
 
     }
@@ -24,7 +24,6 @@ public class LoginBO {
         }
         if ("".equals(loginTo.getSenha())) {
             return "A Senha não foi informada!";
-
         }
         return "";
 

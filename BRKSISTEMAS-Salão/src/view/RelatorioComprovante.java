@@ -16,12 +16,12 @@ public class RelatorioComprovante {
     public void EmitirCupom(int codentradacaixa) {
         try {
             Conexao con = new Conexao();
-            String SQL = "select c.nome,c.cpf, v.totalven,s.descricao from cliente c \n" +
-                    "join venda v on v.codcliente=c.codcliente \n" +
-                    "join itenvenda iv on iv.codvenda=v.codvenda\n" +
-                    "join servico s on s.codservico=iv.codservico\n" +
-                    "join entradacaixa ec on v.codvenda=ec.codvenda\n" +
-                    "where ec.codentradacaixa="+codentradacaixa+";";
+            String SQL = "select c.nome,c.cpf, v.totalven,s.descricao from cliente c \n"
+                    + "join venda v on v.codcliente=c.codcliente \n"
+                    + "join itenvenda iv on iv.codvenda=v.codvenda\n"
+                    + "join servico s on s.codservico=iv.codservico\n"
+                    + "join entradacaixa ec on v.codvenda=ec.codvenda\n"
+                    + "where ec.codentradacaixa=" + codentradacaixa + ";";
             JOptionPane.showMessageDialog(null, SQL);
             con.conectaBD();
             ResultSet rs = con.executaConsulta(SQL);

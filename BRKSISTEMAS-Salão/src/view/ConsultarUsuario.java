@@ -1,4 +1,5 @@
 package view;
+
 import crtl.UsuarioCRTL;
 import model.TableMODEL;
 import java.util.ArrayList;
@@ -9,9 +10,11 @@ import to.UsuarioTO;
  * @author kamila
  */
 public class ConsultarUsuario extends javax.swing.JInternalFrame {
-ManterUsuario enviaDados = new ManterUsuario();
-UsuarioTO usuTo = new UsuarioTO();
-UsuarioCRTL usuCrtl = new UsuarioCRTL();
+
+    ManterUsuario enviaDados = new ManterUsuario();
+    UsuarioTO usuTo = new UsuarioTO();
+    UsuarioCRTL usuCrtl = new UsuarioCRTL();
+
     public ConsultarUsuario() {
         initComponents();
         MenuPrincipal.getPainel().add(enviaDados);
@@ -135,11 +138,11 @@ UsuarioCRTL usuCrtl = new UsuarioCRTL();
         usuTo.setMatriculaFunc(Integer.parseInt(jTableUsuarios.getModel().getValueAt(linha, 1).toString()));
         usuTo.setNomeUsuario(jTableUsuarios.getModel().getValueAt(linha, 2).toString());
         usuTo.setTipoUsuario(jTableUsuarios.getModel().getValueAt(linha, 3).toString());
-        
-        enviaDados.recebendoUsuario(usuTo);  
+
+        enviaDados.recebendoUsuario(usuTo);
         this.dispose();
         enviaDados.setVisible(true);
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -149,18 +152,18 @@ UsuarioCRTL usuCrtl = new UsuarioCRTL();
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         preencherTabela();
     }//GEN-LAST:event_jButton1ActionPerformed
-public void preencherTabela() {
+    public void preencherTabela() {
         UsuarioCRTL usuCRTL = new UsuarioCRTL();
         ArrayList<UsuarioTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
         dados = usuCRTL.consultarTodos();
         int i = 0;
         while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodUsuario(),dados.get(i).getMatriculaFunc(), dados.get(i).getNomeUsuario(), dados.get(i).getTipoUsuario()});
+            dados1.add(new Object[]{dados.get(i).getCodUsuario(), dados.get(i).getMatriculaFunc(), dados.get(i).getNomeUsuario(), dados.get(i).getTipoUsuario()});
             i++;
 
         }
-        String[] Colunas = new String[]{"CodUsuario","Matricula", "Nome", "TipoUsuario"};
+        String[] Colunas = new String[]{"CodUsuario", "Matricula", "Nome", "TipoUsuario"};
 
         TableMODEL modelo = new TableMODEL(dados1, Colunas);
         jTableUsuarios.setModel(modelo);

@@ -20,7 +20,6 @@ public class PagamentoDAO {
         } catch (Exception e) {
             throw e;
         }
-
     }
 
     public String alterar(PagamentoTO pagamentoTo) throws Exception {
@@ -33,7 +32,7 @@ public class PagamentoDAO {
             teste.executaSQL(SQL);
             teste.desconectaBD();
             return "";
-            
+
         } catch (Exception e) {
             throw e;
         }
@@ -46,28 +45,25 @@ public class PagamentoDAO {
         PagamentoTO pagamento = new PagamentoTO();
         SQL = "SELECT * FROM formapagamento WHERE descpagamento LIKE '%" + nome + "%'";
         con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                pagamento.setDescpagamento(rs.getString("descpagamento"));
-                pagamento.setCodformapagamento(rs.getInt("codformapagamento"));
-                pagamento.setTipopagamento(rs.getString("tipopagamento"));
-                pagamento.setQtdparcela(rs.getInt("qtdparcela"));
-
+        try (ResultSet rs = con.executaConsulta(SQL)) {
+            try {
+                if (rs.next()) {
+                    pagamento.setDescpagamento(rs.getString("descpagamento"));
+                    pagamento.setCodformapagamento(rs.getInt("codformapagamento"));
+                    pagamento.setTipopagamento(rs.getString("tipopagamento"));
+                    pagamento.setQtdparcela(rs.getInt("qtdparcela"));
+                }
+                return pagamento;
+            } catch (Exception e) {
+                System.out.println("Falha ao executar o sql e a pegar os dados");
             }
-            return pagamento;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
         }
-        rs.close();
         con.desconectaBD();
 
         return pagamento;
     }
 
-    public PagamentoTO ConsultarID(int id) throws Exception {
+    public PagamentoTO consultarID(int id) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -155,13 +151,13 @@ public class PagamentoDAO {
         return pagamentoA;
     }
 
-    public PagamentoTO VerificarPagamento(PagamentoTO pagTo) throws Exception {
+    public PagamentoTO verificarPagamento(PagamentoTO pagTo) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
         PagamentoTO pagamento = new PagamentoTO();
 
-        SQL = "SELECT * FROM formapagamento WHERE descpagamento = '" +pagTo.getDescpagamento() + "' and tipopagamento='" + pagTo.getTipopagamento() + "' and qtdparcela=" + pagTo.getQtdparcela() + "";
+        SQL = "SELECT * FROM formapagamento WHERE descpagamento = '" + pagTo.getDescpagamento() + "' and tipopagamento='" + pagTo.getTipopagamento() + "' and qtdparcela=" + pagTo.getQtdparcela() + "";
         teste.conectaBD();
         ResultSet rs = teste.executaConsulta(SQL);
         try {
@@ -195,5 +191,4 @@ public class PagamentoDAO {
         con.desconectaBD();
         return "";
     }
-
 }

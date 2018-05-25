@@ -10,45 +10,44 @@ public class FuncionarioBO implements PessoasBO {
     private final FuncionarioDAO funcionarioDao;
     private FuncionarioTO funcionarioTo;
 
-    public FuncionarioBO(){
+    public FuncionarioBO() {
         funcionarioDao = new FuncionarioDAO();
         funcionarioTo = new FuncionarioTO();
 
     }
 
     @Override
-    public String Incluir(PessoasTO pessoasTo){        
+    public String incluir(PessoasTO pessoasTo) {
         String ret = consisteDados(pessoasTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = VerificaFuncionario(pessoasTo);
+        ret = verificaFuncionario(pessoasTo);
         if (!ret.equals("")) {
 
             return ret;
         }
 
-        ret = funcionarioDao.Incluir(pessoasTo);
+        ret = funcionarioDao.incluir(pessoasTo);
         return ret;
     }
 
-    
     @Override
-    public String Alterar(PessoasTO pessoaTo){
+    public String alterar(PessoasTO pessoaTo) {
         String ret = consisteDados((FuncionarioTO) pessoaTo);
         if (!ret.equals("")) {
             return ret;
         }
 
-        ret = funcionarioDao.Alterar((FuncionarioTO) pessoaTo);
+        ret = funcionarioDao.alterar((FuncionarioTO) pessoaTo);
         return ret;
     }
 
-    private String VerificaFuncionario(PessoasTO p){
-        FuncionarioTO funcTo = (FuncionarioTO)p;
-        
-        funcionarioTo = (FuncionarioTO)funcionarioDao.VerificarFuncionario(funcTo.getRg(), funcTo.getCpf(), funcTo.getMatricula());
+    private String verificaFuncionario(PessoasTO p) {
+        FuncionarioTO funcTo = (FuncionarioTO) p;
+
+        funcionarioTo = (FuncionarioTO) funcionarioDao.verificarFuncionario(funcTo.getRg(), funcTo.getCpf(), funcTo.getMatricula());
         if (funcTo.getRg().equals(funcionarioTo.getRg()) | funcTo.getCpf().equals(funcionarioTo.getCpf())) {
             return "O RG ou CPF informado já pertence a um Funcionario Cadastrado! Verifique os dados informados e tente novamente.";
         }
@@ -60,7 +59,7 @@ public class FuncionarioBO implements PessoasBO {
     }
 
     private String consisteDados(PessoasTO p) {
-          funcionarioTo = (FuncionarioTO)p;
+        funcionarioTo = (FuncionarioTO) p;
         if (funcionarioTo.getMatricula() == 0) {
             return "Matricula não informada!";
         }
@@ -82,25 +81,25 @@ public class FuncionarioBO implements PessoasBO {
     }
 
     @Override
-    public PessoasTO Consultar(String nome){        
-        PessoasTO p = funcionarioDao.Consultar(nome);
+    public PessoasTO consultar(String nome) {
+        PessoasTO p = funcionarioDao.consultar(nome);
         return p;
     }
 
     @Override
-    public PessoasTO Consultar(int id){
-        PessoasTO p = funcionarioDao.Consultar(id);
+    public PessoasTO consultar(int id) {
+        PessoasTO p = funcionarioDao.consultar(id);
         return p;
     }
 
     @Override
-    public ArrayList<PessoasTO> ConsultarTodos(){
-        ArrayList<PessoasTO> p = funcionarioDao.ConsultarTodos();
+    public ArrayList<PessoasTO> consultarTodos() {
+        ArrayList<PessoasTO> p = funcionarioDao.consultarTodos();
         return p;
     }
 
     @Override
-    public void ExcluirID(long id){
-        funcionarioDao.ExcluirID(id);
+    public void excluirID(long id) {
+        funcionarioDao.excluirID(id);
     }
 }

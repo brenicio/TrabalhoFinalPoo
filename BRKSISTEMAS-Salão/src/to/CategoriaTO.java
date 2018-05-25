@@ -1,5 +1,7 @@
 package to;
+
 public class CategoriaTO {
+
     String nomeCategoria;
     int codCategoria;
 

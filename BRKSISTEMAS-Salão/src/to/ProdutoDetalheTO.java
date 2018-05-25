@@ -7,6 +7,7 @@ import java.math.BigDecimal;
  * @author Brenicio
  */
 public class ProdutoDetalheTO {
+
     private String descricaoprod = "";
     private String cliente = "";
     private BigDecimal valorvenda = new BigDecimal(0.0);
@@ -52,5 +53,5 @@ public class ProdutoDetalheTO {
     public void setQtdeven(int qtdeven) {
         this.qtdeven = qtdeven;
     }
-    
+
 }

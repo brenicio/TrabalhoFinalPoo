@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import dao.ClienteDAO;
@@ -14,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author Brenicio
  */
 public class DesbloquearClientes extends javax.swing.JInternalFrame {
-    
+
     ClienteDAO dao;
-   
+
     /**
      * Creates new form DesbloquearClientes
      */
@@ -82,10 +81,9 @@ public class DesbloquearClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnDesbloquearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesbloquearActionPerformed
-        dao.DesbloquearClientes();
-        JOptionPane.showMessageDialog(null,"Todos os clientes foram ativados com sucesso!");
+        dao.desbloquearClientes();
+        JOptionPane.showMessageDialog(null, "Todos os clientes foram ativados com sucesso!");
     }//GEN-LAST:event_btnDesbloquearActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDesbloquear;

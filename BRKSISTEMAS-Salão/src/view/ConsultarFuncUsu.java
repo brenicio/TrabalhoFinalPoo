@@ -16,13 +16,15 @@ import to.UsuarioTO;
  * @author Brenicio
  */
 public class ConsultarFuncUsu extends javax.swing.JDialog {
-ManterFuncionario enviaDados = new ManterFuncionario();
+
+    ManterFuncionario enviaDados = new ManterFuncionario();
     ManterUsuario enviaDados2 = new ManterUsuario();
     public static ManterUsuario usu;
     FuncionarioTO funcTo = new FuncionarioTO();
     UsuarioTO usuTo = new UsuarioTO();
     FuncionarioCRTL funcCrtl = new FuncionarioCRTL();
     String telaSelecionada;
+
     /**
      * Creates new form ConsultarFuncUsu
      */
@@ -181,15 +183,14 @@ ManterFuncionario enviaDados = new ManterFuncionario();
         funcTo.setUf(jTableFuncionarios.getModel().getValueAt(linha, 16).toString());
         funcTo.setSetor(jTableFuncionarios.getModel().getValueAt(linha, 17).toString());
 
-      //  if (telaSelecionada.equalsIgnoreCase("usuario")) {
-           usu.recebendo(funcTo);
-           this.dispose();
-            //this.dispose();
-          //  enviaDados2.setVisible(true);
-     //   } else {
-           
-      //  }
+        //  if (telaSelecionada.equalsIgnoreCase("usuario")) {
+        usu.recebendo(funcTo);
+        this.dispose();
+        //this.dispose();
+        //  enviaDados2.setVisible(true);
+        //   } else {
 
+        //  }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -259,6 +260,7 @@ ManterFuncionario enviaDados = new ManterFuncionario();
     public void somenteNumeros() {
         funcCrtl.somenteNumero(txtPesquisa, 4);
     }
+
     /**
      * @param args the command line arguments
      */

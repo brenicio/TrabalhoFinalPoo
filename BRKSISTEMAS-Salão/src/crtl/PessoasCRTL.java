@@ -18,11 +18,11 @@ public class PessoasCRTL {
         cliBo = new ClienteBO();
     }
 
-    public String Incluir() {
+    public String incluir() {
         String ret;
         if (pessoasTo instanceof FuncionarioTO) {
 
-            ret = funcBo.Incluir(pessoasTo);
+            ret = funcBo.incluir(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {
@@ -31,7 +31,7 @@ public class PessoasCRTL {
 
         } else {
 
-            ret = cliBo.Incluir(pessoasTo);
+            ret = cliBo.incluir(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {
@@ -40,19 +40,18 @@ public class PessoasCRTL {
         }
     }
 
-    public String Alterar() {
+    public String alterar() {
         String ret;
         if (pessoasTo instanceof FuncionarioTO) {
 
-            ret = funcBo.Alterar(pessoasTo);
+            ret = funcBo.alterar(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {
                 return "limpar";
             }
         } else {
-
-            ret = cliBo.Alterar(pessoasTo);
+            ret = cliBo.alterar(pessoasTo);
             if (!"".equals(ret)) {
                 return ret;
             } else {
@@ -61,47 +60,47 @@ public class PessoasCRTL {
         }
     }
 
-    public PessoasTO Consultar(PessoasTO p) {
+    public PessoasTO consultar(PessoasTO p) {
         if (p instanceof FuncionarioTO) {
-            return funcBo.Consultar(p.getNome());
+            return funcBo.consultar(p.getNome());
         } else {
-            return cliBo.Consultar(p.getNome());
+            return cliBo.consultar(p.getNome());
         }
     }
 
-    public PessoasTO Consultar(int id, String tipo) {        
-            return cliBo.Consultar(id);        
+    public PessoasTO consultar(int id, String tipo) {
+        return cliBo.consultar(id);
     }
 
-    public ArrayList<PessoasTO> ConsultarTodos(String tipo) {
+    public ArrayList<PessoasTO> consultarTodos(String tipo) {
         if (tipo.equals("funcionario")) {
-            return funcBo.ConsultarTodos();
+            return funcBo.consultarTodos();
         } else {
-            return cliBo.ConsultarTodos();
+            return cliBo.consultarTodos();
         }
     }
 
-    public ArrayList<PessoasTO> ConsultarTodos(String nome, String tipo) {
+    public ArrayList<PessoasTO> consultarTodos(String nome, String tipo) {
         return cliBo.ConsultarTodos(nome);
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda() {
+    public ArrayList<PessoasTO> consultarTodosAtivosClienteVenda() {
         return cliBo.ConsultarTodosAtivosClienteVenda();
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosAtivosClienteVenda(String nome) {
+    public ArrayList<PessoasTO> consultarTodosAtivosClienteVenda(String nome) {
         return cliBo.ConsultarTodosAtivosClienteVenda(nome);
     }
 
-    public PessoasTO ConsultarClienteIDVenda(int id) {
-        return cliBo.ConsultarClienteIDVenda(id);
+    public PessoasTO consultarClienteIDVenda(int id) {
+        return cliBo.consultarClienteIDVenda(id);
     }
 
-    public void Excluir(PessoasTO p) {
+    public void excluir(PessoasTO p) {
         if (p instanceof FuncionarioTO) {
-            funcBo.ExcluirID(((FuncionarioTO) p).getMatricula());
+            funcBo.excluirID(((FuncionarioTO) p).getMatricula());
         } else {
-            cliBo.ExcluirID(((ClienteTO) p).getCodCliente());
+            cliBo.excluirID(((ClienteTO) p).getCodCliente());
         }
     }
 
@@ -112,5 +111,4 @@ public class PessoasCRTL {
     public void setPessoasTo(PessoasTO pessoasTo) {
         this.pessoasTo = pessoasTo;
     }
-
 }

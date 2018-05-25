@@ -71,7 +71,6 @@ public class FuncionarioAlterar extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jTableFuncionariosMousePressed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFuncionarios;

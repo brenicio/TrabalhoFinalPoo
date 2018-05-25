@@ -33,11 +33,10 @@ public class VendaBO {
         String ret = "";
 
         ret = vendaDao.incluirItemVenda(itemTo);
-
         return ret;
 
     }
-    
+
     public String incluirItemVendaProd(ItemVendaTO itemTo) throws Exception {
 
 //        prodTo = produtoDao.VerificarProduto(produtoTo.getDescrProd());
@@ -46,7 +45,5 @@ public class VendaBO {
         ret = vendaDao.incluirItemVendaProd(itemTo);
 
         return ret;
-
     }
-
 }

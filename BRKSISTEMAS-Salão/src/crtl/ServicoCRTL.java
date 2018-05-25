@@ -85,7 +85,6 @@ public class ServicoCRTL {
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar");
-
         }
         return "";
     }
@@ -94,7 +93,7 @@ public class ServicoCRTL {
 
         try {
             ServicoBO servicoBo = new ServicoBO();
-            servicoTo = servicoBo.Consultar(nome);
+            servicoTo = servicoBo.consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -107,8 +106,7 @@ public class ServicoCRTL {
 
         try {
             ServicoBO servicoBo = new ServicoBO();
-            servicoTo = servicoBo.ConsultarID(id);
-
+            servicoTo = servicoBo.consultarID(id);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
@@ -131,7 +129,6 @@ public class ServicoCRTL {
     public ArrayList<ServicoTO> consultarTodosC(String nome) {
 
         try {
-
             ServicoBO servicoBo = new ServicoBO();
             servicos = servicoBo.consultarTodosC(nome);
         } catch (Exception ex) {
@@ -150,7 +147,6 @@ public class ServicoCRTL {
             } else {
                 JOptionPane.showMessageDialog(null, "Serviço excluido com sucesso!");
             }
-
         } catch (Exception ex) {
             System.out.println("Erro ao excluir");
         }
@@ -196,7 +192,7 @@ public class ServicoCRTL {
         }
     }
 
-    public void Maiuscula(JTextField maior) {
+    public void maiuscula(JTextField maior) {
         maior.setDocument(new UpperCaseMODEL());
     }
 

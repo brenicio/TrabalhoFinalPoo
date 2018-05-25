@@ -1,5 +1,3 @@
-
-
 package to;
 
 import java.math.BigDecimal;
@@ -9,6 +7,7 @@ import java.math.BigDecimal;
  * @author Brenicio
  */
 public class ServicoDetalheTO {
+
     private String descricaoserv = "";
     private String cliente = "";
     private String nomefunc = "";
@@ -54,5 +53,5 @@ public class ServicoDetalheTO {
         this.totalven = totalven;
     }
     private BigDecimal totalven = new BigDecimal(0.0);
-    
+
 }

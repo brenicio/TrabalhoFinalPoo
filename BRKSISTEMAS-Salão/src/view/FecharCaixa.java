@@ -34,6 +34,7 @@ public class FecharCaixa extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FecharCaixa
+     *
      * @param caixa
      */
     public FecharCaixa(Caixa1 caixa) {
@@ -44,8 +45,8 @@ public class FecharCaixa extends javax.swing.JInternalFrame {
         formataPreco(txtSaldoTotal);
         ValorTotal();
         DesabilitaTextField();
-        
-        if(!"".equals(txtSaldoTotal.getText())){
+
+        if (!"".equals(txtSaldoTotal.getText())) {
             btnFechar.setEnabled(true);
         }
     }
@@ -242,20 +243,20 @@ public class FecharCaixa extends javax.swing.JInternalFrame {
         crtl.getCaixaTo().setStatus("Fechado");
         crtl.alterarCaixa();
         this.dispose();
-        
+
 //        JOptionPane.showMessageDialog(null, saldototal);
 //        JOptionPane.showMessageDialog(null, valorFalta);
         LimparCampos();
         caixa.Atualizar();
-        
-        if(txtSaldoTotal.getText().equals("")){
+
+        if (txtSaldoTotal.getText().equals("")) {
             btnFechar.setEnabled(false);
         }
 
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void txtFinalCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFinalCaixaMouseExited
-       if (!"".equals(txtFinalCaixa.getText())) {
+        if (!"".equals(txtFinalCaixa.getText())) {
             String sv = txtFinalCaixa.getText();
             String vsf = sv.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
             BigDecimal valor = new BigDecimal(vsf);
@@ -286,7 +287,6 @@ public class FecharCaixa extends javax.swing.JInternalFrame {
 
     private void txtSaldoTotalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSaldoTotalMouseExited
 
-
     }//GEN-LAST:event_txtSaldoTotalMouseExited
 
     private void txtFaltandoCaixaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFaltandoCaixaMouseExited
@@ -301,45 +301,42 @@ public class FecharCaixa extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtFaltandoCaixaMouseExited
 
     private void txtFinalCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFinalCaixaActionPerformed
-        
+
         //txtFaltandoCaixa.setVisible(true);
-
-
     }//GEN-LAST:event_txtFinalCaixaActionPerformed
 
     private void txtFinalCaixaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinalCaixaKeyPressed
 
-
     }//GEN-LAST:event_txtFinalCaixaKeyPressed
 
     private void txtFinalCaixaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFinalCaixaKeyReleased
-       if(!"".equals(txtFinalCaixa.getText())){
-        String sv = txtFinalCaixa.getText();
-        String vsf = sv.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
-        BigDecimal valor = new BigDecimal(vsf);
-        String sv2 = txtSaldoTotal.getText();
-        String vsf2 = sv2.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
-        saldototal = new BigDecimal(vsf2);
-        faltando = (valor.subtract(saldototal)).doubleValue();
+        if (!"".equals(txtFinalCaixa.getText())) {
+            String sv = txtFinalCaixa.getText();
+            String vsf = sv.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
+            BigDecimal valor = new BigDecimal(vsf);
+            String sv2 = txtSaldoTotal.getText();
+            String vsf2 = sv2.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
+            saldototal = new BigDecimal(vsf2);
+            faltando = (valor.subtract(saldototal)).doubleValue();
 
-        NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-        String valorFormatado = nf.format(faltando);
+            NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
+            String valorFormatado = nf.format(faltando);
 
-        if (faltando >= 0) {
-            txtFaltandoCaixa.setVisible(false);
-            lblFaltando.setVisible(false);
-        } else if(faltando <0){
-            lblFaltando.setVisible(true);
-            txtFaltandoCaixa.setVisible(true);
-            txtFaltandoCaixa.setEditable(false);
-            txtFaltandoCaixa.setText(valorFormatado);
-            String falt = txtFaltandoCaixa.getText();
-            String falt2 = falt.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
-            valorFalta = new BigDecimal(falt2);
+            if (faltando >= 0) {
+                txtFaltandoCaixa.setVisible(false);
+                lblFaltando.setVisible(false);
+            } else if (faltando < 0) {
+                lblFaltando.setVisible(true);
+                txtFaltandoCaixa.setVisible(true);
+                txtFaltandoCaixa.setEditable(false);
+                txtFaltandoCaixa.setText(valorFormatado);
+                String falt = txtFaltandoCaixa.getText();
+                String falt2 = falt.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
+                valorFalta = new BigDecimal(falt2);
+            }
+        } else {
+            txtFaltandoCaixa.setText("");
         }
-       }else{
-           txtFaltandoCaixa.setText("");
-       }
     }//GEN-LAST:event_txtFinalCaixaKeyReleased
 
     private String getDate() {

@@ -9,12 +9,16 @@ import to.PessoasTO;
 import java.util.ArrayList;
 
 public interface PessoasDAO {
-    
-    public String Incluir(PessoasTO pessoas);
-    public String Alterar(PessoasTO pessoas);
-    public void ExcluirID(long id);
-    public PessoasTO Consultar(String nome);
-    public PessoasTO Consultar(int id);
-    public ArrayList<PessoasTO> ConsultarTodos();
-    
+
+    public String incluir(PessoasTO pessoas);
+
+    public String alterar(PessoasTO pessoas);
+
+    public void excluirID(long id);
+
+    public PessoasTO consultar(String nome);
+
+    public PessoasTO consultar(int id);
+
+    public ArrayList<PessoasTO> consultarTodos();
 }

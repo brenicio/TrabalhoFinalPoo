@@ -209,7 +209,6 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
             enviaDados.setVisible(true);
         }
 
-
     }//GEN-LAST:event_btnSelecionarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -253,13 +252,13 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyReleased
         if (telaSelecionada.equals("venda")) {
             if (cbOpcao.getSelectedIndex() == 0) {
-                
+
                 try {
                     preencherTabelaVenda(txtPesquisa.getText());
                 } catch (Exception ex) {
                     Logger.getLogger(ConsultarCliente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             } else if (cbOpcao.getSelectedIndex() == 1 && !"".equals(txtPesquisa.getText())) {
                 try {
                     preencherTabelaVenda(Integer.parseInt(txtPesquisa.getText()));
@@ -316,7 +315,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        ito = pessoasCrtl.ConsultarTodos("Cliente").iterator();
+        ito = pessoasCrtl.consultarTodos("Cliente").iterator();
         while (ito.hasNext()) {
             dados.add((ClienteTO) ito.next());
         }
@@ -388,7 +387,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     private void preencherTabelaVenda() {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        ito = pessoasCrtl.ConsultarTodosAtivosClienteVenda().iterator();
+        ito = pessoasCrtl.consultarTodosAtivosClienteVenda().iterator();
 
         while (ito.hasNext()) {
             dados.add((ClienteTO) ito.next());
@@ -461,7 +460,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
 
-        ito = pessoasCrtl.ConsultarTodos(texto, "Cliente").iterator();
+        ito = pessoasCrtl.consultarTodos(texto, "Cliente").iterator();
 
         while (ito.hasNext()) {
             dados.add((ClienteTO) ito.next());
@@ -532,7 +531,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         ArrayList<ClienteTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
 
-        ito = pessoasCrtl.ConsultarTodosAtivosClienteVenda(txtPesquisa.getText()).iterator();
+        ito = pessoasCrtl.consultarTodosAtivosClienteVenda(txtPesquisa.getText()).iterator();
         while (ito.hasNext()) {
             dados.add((ClienteTO) ito.next());
         }
@@ -603,7 +602,7 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
     public void preencherTabelaVenda(int id) {
         ArrayList dados1 = new ArrayList();
 
-        cliTo = (ClienteTO) pessoasCrtl.ConsultarClienteIDVenda(id);
+        cliTo = (ClienteTO) pessoasCrtl.consultarClienteIDVenda(id);
 
         dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNome(), cliTo.getEndereco(), cliTo.getCidade(), cliTo.getCpf(),
             cliTo.getRg(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelular(), cliTo.getTelefone(), cliTo.getEmail(),
@@ -665,10 +664,10 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
         jTableCliente.getTableHeader().setReorderingAllowed(false);
     }
 
-    public void preencherTabela(int id) { 
+    public void preencherTabela(int id) {
         ArrayList dados1 = new ArrayList();
 
-        cliTo = (ClienteTO)pessoasCrtl.Consultar(id,"Cliente");
+        cliTo = (ClienteTO) pessoasCrtl.consultar(id, "Cliente");
 
         dados1.add(new Object[]{cliTo.getCodCliente(), cliTo.getNome(), cliTo.getEndereco(), cliTo.getCidade(), cliTo.getCpf(),
             cliTo.getRg(), cliTo.getSexo(), cliTo.getStatusCli(), cliTo.getCelular(), cliTo.getTelefone(), cliTo.getEmail(),
@@ -729,7 +728,6 @@ public class ConsultarCliente extends javax.swing.JInternalFrame {
 
         jTableCliente.getTableHeader().setReorderingAllowed(false);
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

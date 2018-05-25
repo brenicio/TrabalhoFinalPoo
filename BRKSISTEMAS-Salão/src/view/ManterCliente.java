@@ -520,57 +520,57 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        
-            int resp = JOptionPane.showConfirmDialog(null, "Deseja Incluir o Cliente: " + txtNome.getText() + "?", title, JOptionPane.YES_NO_OPTION);
-            if (resp == JOptionPane.YES_OPTION) {
-                ConfirmacaoSenha confirmacao = new ConfirmacaoSenha(this, true);
-                confirmacao.setVisible(true);
-                if (this.resposta.equals("Autorizado")) {
-                    cliTo.setBairro(txtBairro.getText());
-                    if (txtCelular.getText().replace("(  )", "").replace("-", "").length() == 8) {
-                        cliTo.setCelular(txtCelular.getText().replace("(  )", "").replace("-", ""));
-                    } else {
-                        cliTo.setCelular(txtCelular.getText());
-                    }
 
-                    cliTo.setCidade(txtCidade.getText());
-                    cliTo.setCmfotoCli(cmfoto);
-                    cliTo.setCpf(txtCpf.getText());
-                    cliTo.setDataCadastro(txtDataCadastro.getText());
-                    cliTo.setDataultVisita(txtDataCadastro.getText());
-                    cliTo.setEmail(txtEmail.getText());
-                    cliTo.setEndereco(txtEndereco.getText());
-                    cliTo.setNome(txtNome.getText());
-                    cliTo.setRg(txtRg.getText());
-                    cliTo.setSexo(cbSexo.getSelectedItem().toString());
-                    cliTo.setStatusCli(lblStatus.getText());
-                    if (txtTelefone.getText().replace("(  )", "").replace("-", "").length() == 8) {
-                        cliTo.setTelefone(txtTelefone.getText().replace("(  )", "").replace("-", ""));
-
-                    } else {
-                        cliTo.setTelefone(txtTelefone.getText());
-                    }
-                    //crtl.getClienteTo().setTelfixoCLi(txtTelefone.getText());
-                    cliTo.setCmfotoCli(cmfoto);
-                    //JOptionPane.showMessageDialog(null, cmfoto);
-                    pessoasCrtl.setPessoasTo(cliTo);
-                    limpar = pessoasCrtl.Incluir();
-                    if (limpar.equals("limpar")) {
-                        LimparCampos();
-                    }
-                    if (limpar.equals("Nome não informado")) {
-                        GanharFoco(txtNome);
-                    }
-                    if (limpar.equals("RG não informado")) {
-                        GanharFoco(txtRg);
-                    }
-                    if (limpar.equals("CPF não informado")) {
-                        GanharFoco(txtCpf);
-                    }
-                    // GanharFoco(txtNome);
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja Incluir o Cliente: " + txtNome.getText() + "?", title, JOptionPane.YES_NO_OPTION);
+        if (resp == JOptionPane.YES_OPTION) {
+            ConfirmacaoSenha confirmacao = new ConfirmacaoSenha(this, true);
+            confirmacao.setVisible(true);
+            if (this.resposta.equals("Autorizado")) {
+                cliTo.setBairro(txtBairro.getText());
+                if (txtCelular.getText().replace("(  )", "").replace("-", "").length() == 8) {
+                    cliTo.setCelular(txtCelular.getText().replace("(  )", "").replace("-", ""));
+                } else {
+                    cliTo.setCelular(txtCelular.getText());
                 }
 
-            } 
+                cliTo.setCidade(txtCidade.getText());
+                cliTo.setCmfotoCli(cmfoto);
+                cliTo.setCpf(txtCpf.getText());
+                cliTo.setDataCadastro(txtDataCadastro.getText());
+                cliTo.setDataultVisita(txtDataCadastro.getText());
+                cliTo.setEmail(txtEmail.getText());
+                cliTo.setEndereco(txtEndereco.getText());
+                cliTo.setNome(txtNome.getText());
+                cliTo.setRg(txtRg.getText());
+                cliTo.setSexo(cbSexo.getSelectedItem().toString());
+                cliTo.setStatusCli(lblStatus.getText());
+                if (txtTelefone.getText().replace("(  )", "").replace("-", "").length() == 8) {
+                    cliTo.setTelefone(txtTelefone.getText().replace("(  )", "").replace("-", ""));
+
+                } else {
+                    cliTo.setTelefone(txtTelefone.getText());
+                }
+                //crtl.getClienteTo().setTelfixoCLi(txtTelefone.getText());
+                cliTo.setCmfotoCli(cmfoto);
+                //JOptionPane.showMessageDialog(null, cmfoto);
+                pessoasCrtl.setPessoasTo(cliTo);
+                limpar = pessoasCrtl.incluir();
+                if (limpar.equals("limpar")) {
+                    LimparCampos();
+                }
+                if (limpar.equals("Nome não informado")) {
+                    GanharFoco(txtNome);
+                }
+                if (limpar.equals("RG não informado")) {
+                    GanharFoco(txtRg);
+                }
+                if (limpar.equals("CPF não informado")) {
+                    GanharFoco(txtCpf);
+                }
+                // GanharFoco(txtNome);
+            }
+
+        }
 //            else if (resposta == JOptionPane.NO_OPTION) {
 //
 //            }
@@ -613,7 +613,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
                 }
                 cliTo.setCmfotoCli(cmfoto);
                 pessoasCrtl.setPessoasTo(cliTo);
-                limpar = pessoasCrtl.Alterar();
+                limpar = pessoasCrtl.alterar();
 
                 if (limpar.equals("limpar")) {
                     LimparCampos();
@@ -648,7 +648,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
             ConfirmacaoSenha confirmacao = new ConfirmacaoSenha(this, true);
             confirmacao.setVisible(true);
             if (resposta.equals("Autorizado")) {
-                pessoasCrtl.Excluir(cliTo);
+                pessoasCrtl.excluir(cliTo);
                 LimparCampos();
                 btnIncluir.setEnabled(true);
                 btnAlterar.setEnabled(false);
@@ -662,7 +662,7 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        ConsultarCliente f2 = new ConsultarCliente();        
+        ConsultarCliente f2 = new ConsultarCliente();
         MenuPrincipal.getPainel().add(f2);
         this.dispose();
         f2.setVisible(true);
@@ -824,7 +824,6 @@ public class ManterCliente extends javax.swing.JInternalFrame {
     public void ConfirmacaoExcluir(String resp) {
         resposta = resp;
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

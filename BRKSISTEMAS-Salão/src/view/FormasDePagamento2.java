@@ -1,4 +1,4 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -432,9 +432,9 @@ public class FormasDePagamento2 extends javax.swing.JInternalFrame {
             caixaTo = caixa.consultar("Aberto");
             EntradaCaixaTO entrada = new EntradaCaixaTO();
 
-           // JOptionPane.showMessageDialog(null, "saindo do consultar o caixa!");
-           // JOptionPane.showMessageDialog(null, "Entrando em consultar id venda!");
-          //  JOptionPane.showMessageDialog(null, "Saindo de consultar id venda!");
+            // JOptionPane.showMessageDialog(null, "saindo do consultar o caixa!");
+            // JOptionPane.showMessageDialog(null, "Entrando em consultar id venda!");
+            //  JOptionPane.showMessageDialog(null, "Saindo de consultar id venda!");
             BuscarItensVenda();
             int i = 0;
 
@@ -456,7 +456,7 @@ public class FormasDePagamento2 extends javax.swing.JInternalFrame {
                 Logger.getLogger(FormasDePagamento2.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-           // JOptionPane.showMessageDialog(null, "Entrando itens venda!");
+            // JOptionPane.showMessageDialog(null, "Entrando itens venda!");
             while (i < prod.size()) {
                 crtl.getItemTo().setCodproduto(Integer.parseInt(prod.get(i).toString()));
                 crtl.getItemTo().setQtde(Integer.parseInt(quant.get(i).toString()));
@@ -468,7 +468,7 @@ public class FormasDePagamento2 extends javax.swing.JInternalFrame {
                 i++;
             }
 
-          //  JOptionPane.showMessageDialog(null, "saindo de itens venda!");
+            //  JOptionPane.showMessageDialog(null, "saindo de itens venda!");
             //JOptionPane.showMessageDialog(null, "Entrando subtração de quantidade");
             int e1 = 0;
             while (e1 < prod.size()) {
@@ -481,9 +481,9 @@ public class FormasDePagamento2 extends javax.swing.JInternalFrame {
                 }
                 e1++;
             }
-           // JOptionPane.showMessageDialog(null, "Saindo de subtração de quantidade");
+            // JOptionPane.showMessageDialog(null, "Saindo de subtração de quantidade");
 
-           // JOptionPane.showMessageDialog(null, "Entrando adicionar dinheiro no caixa!");
+            // JOptionPane.showMessageDialog(null, "Entrando adicionar dinheiro no caixa!");
             entrada.setCodCaixa(caixaTo.getCodCaixa());
             entrada.setCodUsuario(2);
             entrada.setCodVenda(vendaTo.getCodvenda());
@@ -493,9 +493,9 @@ public class FormasDePagamento2 extends javax.swing.JInternalFrame {
             entrada.setTipoMovimentacao("Venda");
             entrada.setValor(vendaTotal);
 
-            caixaDao.AdicionarDinheiro(entrada);
+            caixaDao.adicionarDinheiro(entrada);
 
-           // JOptionPane.showMessageDialog(null, "Saindo de adicionar dinheiro no caixa!");
+            // JOptionPane.showMessageDialog(null, "Saindo de adicionar dinheiro no caixa!");
             //AVISA SE TEM ALGUM PRODUTO DEPOIS DA VENDA COM QUANTIDADE = 0
             // JOptionPane.showMessageDialog(null, "Entrando em verificar produto = 0");
             int t = 0;

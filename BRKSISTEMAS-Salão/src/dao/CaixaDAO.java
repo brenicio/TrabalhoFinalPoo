@@ -28,7 +28,6 @@ public class CaixaDAO {
         } catch (Exception e) {
             throw e;
         }
-
     }
 
     public String alterar(CaixaTO caixaTo) throws Exception {
@@ -56,7 +55,6 @@ public class CaixaDAO {
             con.executaSQL(SQL);
             con.desconectaBD();
             return "";
-
         } catch (Exception e) {
             throw e;
         }
@@ -66,7 +64,7 @@ public class CaixaDAO {
         try {
             CaixaTO caixaTo = new CaixaTO();
             CaixaDAO caixaDao = new CaixaDAO();
-            caixaTo = caixaDao.Consultar("Aberto");
+            caixaTo = caixaDao.consultar("Aberto");
             Conexao con = new Conexao();
             String SQL;
 
@@ -81,7 +79,7 @@ public class CaixaDAO {
         }
     }
 
-    public CaixaTO Consultar(String nome) throws Exception {
+    public CaixaTO consultar(String nome) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -90,9 +88,7 @@ public class CaixaDAO {
         con.conectaBD();
         ResultSet rs = con.executaConsulta(SQL);
         try {
-
             if (rs.next()) {
-
                 caixa.setDtabertura(rs.getString("dtabertura"));
                 caixa.setDtfechamento(rs.getString("dtfechamento"));
                 caixa.setHrabertura(rs.getString("hrabertura"));
@@ -102,7 +98,6 @@ public class CaixaDAO {
                 caixa.setStatus(rs.getString("status"));
                 caixa.setCodCaixa(rs.getInt("codcaixa"));
                 caixa.setObservacao(rs.getString("observacao"));
-
             }
             return caixa;
         } catch (Exception e) {
@@ -110,43 +105,37 @@ public class CaixaDAO {
         }
         rs.close();
         con.desconectaBD();
-
         return caixa;
     }
 
-    public CaixaTO ConsultarID(int id) throws Exception {
+    public CaixaTO consultarID(int id) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
         CaixaTO caixa = new CaixaTO();
         SQL = "SELECT * FROM caixa WHERE codcaixa = " + id + "";
         teste.conectaBD();
-        ResultSet rs = teste.executaConsulta(SQL);
-        try {
-
-            if (rs.next()) {
-
-                caixa.setDtabertura(rs.getString("dtabertura"));
-                caixa.setDtfechamento(rs.getString("dtfechamento"));
-                caixa.setHrabertura(rs.getString("hrabertura"));
-                caixa.setHrfechamento(rs.getString("hrfechamento"));
-                caixa.setValfinal(rs.getBigDecimal("valfinal"));
-                caixa.setValinicial(rs.getBigDecimal("valinicial"));
-                caixa.setStatus(rs.getString("status"));
-
+        try (ResultSet rs = teste.executaConsulta(SQL)) {
+            try {
+                if (rs.next()) {
+                    caixa.setDtabertura(rs.getString("dtabertura"));
+                    caixa.setDtfechamento(rs.getString("dtfechamento"));
+                    caixa.setHrabertura(rs.getString("hrabertura"));
+                    caixa.setHrfechamento(rs.getString("hrfechamento"));
+                    caixa.setValfinal(rs.getBigDecimal("valfinal"));
+                    caixa.setValinicial(rs.getBigDecimal("valinicial"));
+                    caixa.setStatus(rs.getString("status"));
+                }
+                return caixa;
+            } catch (Exception e) {
+                System.out.println("Falha ao executar o sql e a pegar os dados");
             }
-            return caixa;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
         }
-        rs.close();
         teste.desconectaBD();
-
         return caixa;
     }
 
-    public ArrayList<ProdutoDetalheTO> ProdutoDetalhe(int codcliente) throws Exception {
-
+    public ArrayList<ProdutoDetalheTO> produtoDetalhe(int codcliente) throws Exception {
         Conexao teste = new Conexao();
         String SQL;
         ArrayList<ProdutoDetalheTO> prodA = new ArrayList();
@@ -161,7 +150,6 @@ public class CaixaDAO {
         ResultSet rs = teste.executaConsulta(SQL);
 
         try {
-
             while (rs.next()) {
                 ProdutoDetalheTO prodD = new ProdutoDetalheTO();
                 prodD.setDescricaoprod(rs.getString("descricaoprod"));
@@ -178,7 +166,7 @@ public class CaixaDAO {
         return prodA;
     }
 
-    public ArrayList<ServicoDetalheTO> ServicoDetalhe(int codcliente) throws Exception {
+    public ArrayList<ServicoDetalheTO> servicoDetalhe(int codcliente) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -211,11 +199,10 @@ public class CaixaDAO {
         }
         rs.close();
         teste.desconectaBD();
-
         return servA;
     }
 
-    public String AdicionarDinheiro(EntradaCaixaTO entradaTo) {
+    public String adicionarDinheiro(EntradaCaixaTO entradaTo) {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -226,14 +213,12 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            System.out.println("ERRO CAIXA: "+e.getMessage());
+            System.out.println("ERRO CAIXA: " + e.getMessage());
             return "erro";
         }
-        
-
     }
 
-    public String AdicionarDinheiro2(EntradaCaixaTO entradaTo) {
+    public String adicionarDinheiro2(EntradaCaixaTO entradaTo) {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -243,13 +228,13 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            System.out.println("Erro CAIXA: "+e.getMessage());
+            System.out.println("Erro CAIXA: " + e.getMessage());
             return "erro";
         }
 
     }
 
-    public String RetirarDinheiro(SaidaCaixaTO saidaTo) {
+    public String retirarDinheiro(SaidaCaixaTO saidaTo) {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -259,8 +244,8 @@ public class CaixaDAO {
             con.desconectaBD();
             return "";
         } catch (Exception e) {
-            System.out.println("Erro CAIXA: "+e.getMessage());
-            return"erro";
+            System.out.println("Erro CAIXA: " + e.getMessage());
+            return "erro";
         }
     }
 
@@ -375,12 +360,11 @@ public class CaixaDAO {
 
         } catch (Exception e) {
             System.out.println(e);
-
         }
         return saidaA;
     }
 
-    public CaixaTO ValorTotal() throws Exception {
+    public CaixaTO valorTotal() throws Exception {
         Conexao con = new Conexao();
         CaixaTO caixa = new CaixaTO();
         String SQL;
@@ -402,7 +386,7 @@ public class CaixaDAO {
         return caixa;
     }
 
-    public CaixaTO ValorTotalSomenteCaixa() throws Exception {
+    public CaixaTO valorTotalSomenteCaixa() throws Exception {
         Conexao con = new Conexao();
         CaixaTO caixa = new CaixaTO();
         String SQL;
@@ -423,7 +407,7 @@ public class CaixaDAO {
         return caixa;
     }
 
-    public CaixaTO ValorTotalEntrada() throws Exception {
+    public CaixaTO valorTotalEntrada() throws Exception {
         Conexao con = new Conexao();
         CaixaTO caixa = new CaixaTO();
         String SQL;
@@ -484,5 +468,4 @@ public class CaixaDAO {
             throw e;
         }
     }
-
 }

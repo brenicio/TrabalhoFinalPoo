@@ -243,7 +243,7 @@ public class ManterServico extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_txtCodigoKeyReleased
     public void Maiuscula(JTextField txt) {
-        crtl.Maiuscula(txt);
+        crtl.maiuscula(txt);
     }
 
     public void LimparCampos() {

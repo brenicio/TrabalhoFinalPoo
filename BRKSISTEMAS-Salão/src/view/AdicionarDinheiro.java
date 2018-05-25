@@ -28,10 +28,11 @@ public class AdicionarDinheiro extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AdicionarDinheiro
+     *
      * @param parent
      */
     public AdicionarDinheiro(Caixa1 parent) {
-        this.c=parent;
+        this.c = parent;
         initComponents();
         somenteNumeros();
     }
@@ -151,13 +152,12 @@ public class AdicionarDinheiro extends javax.swing.JInternalFrame {
             crtl.getEntradaTo().setHora(getTime());
             crtl.getEntradaTo().setTipoMovimentacao("Suprimento de Caixa");
             crtl.getEntradaTo().setValor(valorAdicionar);
-            crtl.AdicionarDinheiro2();
+            crtl.adicionarDinheiroDAO();
             LimparCampos();
             c.preencherTabela();
         } else {
-          JOptionPane.showMessageDialog(null,"O caixa não está aberto! Abra o caixa para que possa adicionar dinheiro.");
+            JOptionPane.showMessageDialog(null, "O caixa não está aberto! Abra o caixa para que possa adicionar dinheiro.");
         }
-
 
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
@@ -184,7 +184,7 @@ public class AdicionarDinheiro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_formInternalFrameDeactivated
 
     private void txtAdicionarDinheiroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAdicionarDinheiroFocusLost
-         if (!"".equals(txtAdicionarDinheiro.getText())) {
+        if (!"".equals(txtAdicionarDinheiro.getText())) {
             String sv = txtAdicionarDinheiro.getText();
             String vsf = sv.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
             BigDecimal valor = new BigDecimal(vsf);

@@ -56,7 +56,7 @@ public class FormasDePagamento1 extends javax.swing.JInternalFrame {
     VendaDAO vendaDao = new VendaDAO();
     int codUsuario;
 
-     // int codUsuarioLogado;
+    // int codUsuarioLogado;
     /**
      * Creates new form FormasDePagamento1
      *
@@ -81,10 +81,8 @@ public class FormasDePagamento1 extends javax.swing.JInternalFrame {
         BuscarItensVenda();
         initComponents();
         txtFp.setEditable(false);
-        
+
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -444,7 +442,7 @@ public class FormasDePagamento1 extends javax.swing.JInternalFrame {
             crtl.incluirVenda();
 
             //Atualizar a data da ultima visita
-            cliDao.AtualizarDataVisita(Integer.parseInt(clientes.get(0).toString()));
+            cliDao.atualizarDataVisita(Integer.parseInt(clientes.get(0).toString()));
 
             try {
                 vendaTo = vendaDao.ConsultarID();
@@ -461,7 +459,7 @@ public class FormasDePagamento1 extends javax.swing.JInternalFrame {
                 crtl.getItemTo().setCodServico(Integer.parseInt(servicos.get(i).toString()));
                 // JOptionPane.showMessageDialog(null,"codigo do serviço: "+ Integer.parseInt(servicos.get(i).toString()));
                 crtl.getItemTo().setCodvenda(vendaTo.getCodvenda());
-               // JOptionPane.showMessageDialog(null, "codigo da venda: "+vendaTo.getCodvenda());
+                // JOptionPane.showMessageDialog(null, "codigo da venda: "+vendaTo.getCodvenda());
                 // JOptionPane.showMessageDialog(null,"codigo do funcionario:  " + Integer.parseInt(funcionarios.get(i).toString()));
                 crtl.getItemTo().setCodFuncionario(Integer.parseInt(funcionarios.get(i).toString()));
 
@@ -480,7 +478,7 @@ public class FormasDePagamento1 extends javax.swing.JInternalFrame {
             entrada.setDescricao(descricaoven);
             entrada.setTipoMovimentacao("Venda");
             entrada.setValor(vendaTotal);
-            caixaDao.AdicionarDinheiro(entrada);
+            caixaDao.adicionarDinheiro(entrada);
 
             vendas.Cancelar();
             vendas.toFront();

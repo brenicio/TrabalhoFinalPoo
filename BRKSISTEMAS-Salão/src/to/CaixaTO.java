@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class CaixaTO {
+
     private int codCaixa;
     private String dtfechamento;
     private String hrfechamento;
@@ -15,7 +16,7 @@ public class CaixaTO {
     private BigDecimal valfinal;
     private BigDecimal saldoTotal = null;
     private BigDecimal faltando;
-    private String observacao="";
+    private String observacao = "";
 
     public String getObservacao() {
         return observacao;
@@ -41,7 +42,6 @@ public class CaixaTO {
         this.saldoTotal = saldoTotal;
     }
 
-    
     public int getCodCaixa() {
         return codCaixa;
     }
@@ -49,7 +49,6 @@ public class CaixaTO {
     public void setCodCaixa(int codCaixa) {
         this.codCaixa = codCaixa;
     }
-    
 
     public String getStatus() {
         return status;
@@ -107,4 +106,4 @@ public class CaixaTO {
         this.valfinal = valfinal;
     }
 
-    }
+}

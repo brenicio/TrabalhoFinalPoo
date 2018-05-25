@@ -31,6 +31,7 @@ public class RetirarDinheiro extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form AdicionarDinheiro
+     *
      * @param parent
      */
     public RetirarDinheiro(Caixa1 parent) {
@@ -128,13 +129,13 @@ public class RetirarDinheiro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        CaixaTO caixaTo = new CaixaTO(); 
+        CaixaTO caixaTo = new CaixaTO();
         CaixaTO to = new CaixaTO();
         to = crtl.consultar("Aberto");
-        
+
         CaixaDAO dao = new CaixaDAO();
         try {
-            caixaTo = dao.ValorTotalEntrada();
+            caixaTo = dao.valorTotalEntrada();
         } catch (Exception ex) {
             Logger.getLogger(RetirarDinheiro.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,14 +164,13 @@ public class RetirarDinheiro extends javax.swing.JInternalFrame {
             crtl.getSaidaTo().setHorasaidac(getTime());
             crtl.getSaidaTo().setTipoMovimentacao("Sangria de Caixa");
             crtl.getSaidaTo().setValor(valorRetirar);
-            crtl.RetirarDinheiro();
+            crtl.retirarDinheiro();
             LimparCampos();
             caixa.preencherTabela();
 
         } else {
             JOptionPane.showMessageDialog(null, "O caixa não está aberto! Abra o caixa para que possa  retirar dinheiro.");
         }
-
 
     }//GEN-LAST:event_btnRetirarActionPerformed
 
@@ -193,7 +193,7 @@ public class RetirarDinheiro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtRetirarDinheiroMouseExited
 
     private void txtRetirarDinheiroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtRetirarDinheiroFocusLost
-         if (!"".equals(txtRetirarDinheiro.getText())) {
+        if (!"".equals(txtRetirarDinheiro.getText())) {
             String sv = txtRetirarDinheiro.getText();
             String vsf = sv.replace("R$", "").replace(" ", "").replace(".", "").replace(",", ".");
             BigDecimal valor = new BigDecimal(vsf);

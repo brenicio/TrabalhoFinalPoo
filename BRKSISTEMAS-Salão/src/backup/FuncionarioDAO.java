@@ -53,7 +53,7 @@ public class FuncionarioDAO {
         }
     }
 
-    public FuncionarioTO Consultar(String nome) throws Exception {
+    public FuncionarioTO consultar(String nome) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -83,7 +83,6 @@ public class FuncionarioDAO {
                 func.setCts(rs.getString("ctsfunc"));
                 func.setSerie(rs.getString("seriefunc"));
                 func.setSetor(rs.getString("setor"));
-
             }
             return func;
         } catch (Exception e) {
@@ -95,7 +94,7 @@ public class FuncionarioDAO {
         return func;
     }
 
-    public FuncionarioTO ConsultarID(int id) throws Exception {
+    public FuncionarioTO consultarID(int id) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -104,9 +103,7 @@ public class FuncionarioDAO {
         teste.conectaBD();
         ResultSet rs = teste.executaConsulta(SQL);
         try {
-
             if (rs.next()) {
-
                 func.setMatricula(rs.getInt("matricula"));
                 func.setNome(rs.getString("nomefunc"));
                 func.setCargo(rs.getString("cargofunc"));
@@ -125,7 +122,6 @@ public class FuncionarioDAO {
                 func.setCts(rs.getString("ctsfunc"));
                 func.setSerie(rs.getString("seriefunc"));
                 func.setSetor(rs.getString("setor"));
-
             }
             return func;
         } catch (Exception e) {
@@ -171,7 +167,6 @@ public class FuncionarioDAO {
             func.setSerie(rs.getString("seriefunc"));
             func.setSetor(rs.getString("setor"));
             funcA.add(func);
-
         }
         //************************************************************
 
@@ -196,7 +191,7 @@ public class FuncionarioDAO {
         JOptionPane.showMessageDialog(null, "Funcionario Excluido com sucesso!!");
     }
 
-    public FuncionarioTO VerificarFuncionario(String rg, String cpf, int matricula) throws Exception {
+    public FuncionarioTO verificarFuncionario(String rg, String cpf, int matricula) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -205,14 +200,11 @@ public class FuncionarioDAO {
         con.conectaBD();
         ResultSet rs = con.executaConsulta(SQL);
         try {
-
             if (rs.next()) {
-
                 funcTo.setMatricula(rs.getInt("matricula"));
                 funcTo.setRg(rs.getString("rgfunc"));
                 funcTo.setCpf(rs.getString("cpffunc"));
                 funcTo.setNome(rs.getString("nomefunc"));
-
             }
             return funcTo;
         } catch (Exception e) {
@@ -220,8 +212,6 @@ public class FuncionarioDAO {
         }
         rs.close();
         con.desconectaBD();
-
         return funcTo;
     }
-
 }

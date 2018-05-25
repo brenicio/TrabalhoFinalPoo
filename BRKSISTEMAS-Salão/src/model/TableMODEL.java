@@ -46,7 +46,7 @@ public final class TableMODEL extends AbstractTableModel {
     public void limpaTabela() {
         int size = getRowCount();
         getLinhas().clear();
-       // fireTableRowsDeleted(0, size);
+        // fireTableRowsDeleted(0, size);
     }
 
     @Override

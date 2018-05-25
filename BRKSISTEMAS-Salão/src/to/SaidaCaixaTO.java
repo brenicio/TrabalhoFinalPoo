@@ -3,6 +3,7 @@ package to;
 import java.math.BigDecimal;
 
 public class SaidaCaixaTO {
+
     private int codSaidaCaixa;
     private int codCaixa;
     private String descricao;
@@ -29,7 +30,6 @@ public class SaidaCaixaTO {
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
     }
-    
 
     public int getCodSaidaCaixa() {
         return codSaidaCaixa;
@@ -94,5 +94,5 @@ public class SaidaCaixaTO {
     public void setCodUsuario(int codUsuario) {
         this.codUsuario = codUsuario;
     }
-    
+
 }

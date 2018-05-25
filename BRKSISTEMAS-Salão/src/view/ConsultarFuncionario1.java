@@ -192,7 +192,6 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
             funcionarios.setVisible(true);
         }
 
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTableFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionariosMouseClicked
@@ -228,7 +227,7 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
         ArrayList<FuncionarioTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
 
-        ito = funcCrtl.ConsultarTodos("funcionario").iterator();
+        ito = funcCrtl.consultarTodos("funcionario").iterator();
         while (ito.hasNext()) {
             dados.add((FuncionarioTO) ito.next());
         }
@@ -289,7 +288,6 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
         jTableFuncionarios.getColumnModel().getColumn(14).setMaxWidth(200);
         jTableFuncionarios.getColumnModel().getColumn(14).setMinWidth(200);
 
-        
         jTableFuncionarios.getTableHeader().setReorderingAllowed(false);
         jTableFuncionarios.setAutoResizeMode(jTableFuncionarios.AUTO_RESIZE_OFF);
     }
@@ -297,9 +295,9 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
     public void preencherTabela2() {
         funcTo.setMatricula(Integer.parseInt(txtPesquisa.getText()));
         if (cbOpcao.getSelectedIndex() == 0) {
-            funcTo = (FuncionarioTO) funcCrtl.Consultar(funcTo);
+            funcTo = (FuncionarioTO) funcCrtl.consultar(funcTo);
         } else {
-            funcTo = (FuncionarioTO) funcCrtl.Consultar(Integer.parseInt(txtPesquisa.getText()), "funcionario");
+            funcTo = (FuncionarioTO) funcCrtl.consultar(Integer.parseInt(txtPesquisa.getText()), "funcionario");
         }
         ArrayList dados1 = new ArrayList();
 
@@ -311,7 +309,7 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
 
         TableMODEL modelo = new TableMODEL(dados1, Colunas);
         jTableFuncionarios.setModel(modelo);
-        
+
         jTableFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
         jTableFuncionarios.getColumnModel().getColumn(0).setMaxWidth(80);
         jTableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(600);
@@ -357,7 +355,7 @@ public class ConsultarFuncionario1 extends javax.swing.JInternalFrame {
         jTableFuncionarios.getColumnModel().getColumn(14).setPreferredWidth(200);
         jTableFuncionarios.getColumnModel().getColumn(14).setMaxWidth(200);
         jTableFuncionarios.getColumnModel().getColumn(14).setMinWidth(200);
-        
+
         jTableFuncionarios.getTableHeader().setReorderingAllowed(false);
         jTableFuncionarios.setAutoResizeMode(jTableFuncionarios.AUTO_RESIZE_OFF);
 

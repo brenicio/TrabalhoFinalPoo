@@ -370,10 +370,9 @@ public class ManterProduto extends javax.swing.JInternalFrame {
             btnIncluir.setEnabled(true);
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
-            
+
         } else if (resposta == JOptionPane.NO_OPTION) {
         }
-
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -615,14 +614,16 @@ public class ManterProduto extends javax.swing.JInternalFrame {
     public void somenteNumero(JTextField txt) {
         crtl.somenteNumero(txt, 50);
     }
-    public void somenteNumero2(JTextField txt){
+
+    public void somenteNumero2(JTextField txt) {
         crtl.somenteNumero2(txt, 50);
     }
 
     public void Maiuscula(JTextField txt) {
         crtl.Maiuscula(txt);
     }
-    public void LimparCampos(){
+
+    public void LimparCampos() {
         txtCodigo.setText("");
         txtDescricao.setText("");
         txtLucro.setText("");
@@ -635,7 +636,6 @@ public class ManterProduto extends javax.swing.JInternalFrame {
 //    public void MascaraValor(JFormattedTextField txt) {
 //        crtl.mascaraValor(txt);
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnConsultar;
     private javax.swing.JButton btnAlterar;

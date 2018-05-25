@@ -136,7 +136,7 @@ public class LoginFinal extends javax.swing.JDialog {
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         crtl.getLoginTo().setLogin(txtLogin.getText());
         crtl.getLoginTo().setSenha(txtSenha.getText());
-        usuTo = crtl.Logar();
+        usuTo = crtl.logar();
 
         if (txtLogin.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "O campo Login está vazio!");
@@ -182,6 +182,7 @@ public class LoginFinal extends javax.swing.JDialog {
             }
         });
     }
+
     /**
      * @param args the command line arguments
      */

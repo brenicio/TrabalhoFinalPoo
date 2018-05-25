@@ -172,7 +172,7 @@ public class ConsultarFormaPag extends javax.swing.JDialog {
         crtl.getPagamentoTo().setCodformapagamento(Integer.parseInt(jTableFpagamento.getModel().getValueAt(linha, 0).toString()));
         crtl.getPagamentoTo().setTipopagamento(jTableFpagamento.getValueAt(linha, 2).toString());
         crtl.getPagamentoTo().setQtdparcela(Integer.parseInt(jTableFpagamento.getValueAt(linha, 3).toString()));
-        
+
         if (tela.equals("vendaProd")) {
             fpProd.recebendo(crtl.getPagamentoTo());
             this.dispose();

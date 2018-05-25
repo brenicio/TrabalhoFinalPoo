@@ -197,9 +197,7 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        
-        
-        
+
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente alterar o usuário " + txtUsuario.getText() + "", title, JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
             crtl.getUsuarioTo().setMatriculaFunc(codFunc);
@@ -262,7 +260,6 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
         }
         LimparCampos();
 
-
     }//GEN-LAST:event_btnExcluirActionPerformed
     public void recebendo(FuncionarioTO funcTo) {
         txtFuncionario.setText(funcTo.getNome());
@@ -297,13 +294,13 @@ public class ManterUsuario extends javax.swing.JInternalFrame {
     }
 
     public void Maiuscula() {
-        crtl.Maiuscula(txtUsuario);
+        crtl.maiuscula(txtUsuario);
     }
-    
-    private void LimparCampos(){
+
+    private void LimparCampos() {
         txtFuncionario.setText("");
         txtSenha.setText("");
-        txtUsuario.setText("");        
+        txtUsuario.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

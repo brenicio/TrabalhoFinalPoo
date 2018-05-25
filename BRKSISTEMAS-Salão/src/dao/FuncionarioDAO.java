@@ -3,8 +3,6 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import to.PessoasTO;
 import to.FuncionarioTO;
@@ -12,7 +10,7 @@ import to.FuncionarioTO;
 public class FuncionarioDAO implements PessoasDAO {
 
     @Override
-    public String Incluir(PessoasTO p) {
+    public String incluir(PessoasTO p) {
         FuncionarioTO funcionarioTo;
         funcionarioTo = (FuncionarioTO) p;
         Conexao con = new Conexao();
@@ -36,7 +34,7 @@ public class FuncionarioDAO implements PessoasDAO {
     }
 
     @Override
-    public String Alterar(PessoasTO p) {
+    public String alterar(PessoasTO p) {
         FuncionarioTO funcionarioTo;
         funcionarioTo = (FuncionarioTO) p;
         Conexao con = new Conexao();
@@ -59,7 +57,7 @@ public class FuncionarioDAO implements PessoasDAO {
     }
 
     @Override
-    public PessoasTO Consultar(String nome) {
+    public PessoasTO consultar(String nome) {
         Conexao con = new Conexao();
         String SQL;
         FuncionarioTO func = new FuncionarioTO();
@@ -101,7 +99,7 @@ public class FuncionarioDAO implements PessoasDAO {
     }
 
     @Override
-    public PessoasTO Consultar(int id) {
+    public PessoasTO consultar(int id) {
         Conexao con = new Conexao();
         String SQL;
         FuncionarioTO func = new FuncionarioTO();
@@ -141,7 +139,7 @@ public class FuncionarioDAO implements PessoasDAO {
     }
 
     @Override
-    public ArrayList<PessoasTO> ConsultarTodos() {
+    public ArrayList<PessoasTO> consultarTodos() {
         ArrayList<PessoasTO> pessoas = new ArrayList();
 
         try {
@@ -191,12 +189,12 @@ public class FuncionarioDAO implements PessoasDAO {
     }
 
     @Override
-    public void ExcluirID(long Id) {
+    public void excluirID(long Id) {
         Conexao con = new Conexao();
         String SQL;
         SQL = "DELETE FROM FUNCIONARIO WHERE MATRICULA =" + Id + "";
         System.out.println("Excluir ID funcionario DAO: " + Id);
-        
+
         try {
             con.conectaBD();
             con.executaSQL(SQL);
@@ -208,7 +206,7 @@ public class FuncionarioDAO implements PessoasDAO {
 
     }
 
-    public PessoasTO VerificarFuncionario(String rg, String cpf, int matricula) {
+    public PessoasTO verificarFuncionario(String rg, String cpf, int matricula) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -219,12 +217,10 @@ public class FuncionarioDAO implements PessoasDAO {
         try {
 
             if (rs.next()) {
-
                 funcTo.setMatricula(rs.getInt("matricula"));
                 funcTo.setRg(rs.getString("rgfunc"));
                 funcTo.setCpf(rs.getString("cpffunc"));
                 funcTo.setNome(rs.getString("nomefunc"));
-
             }
             rs.close();
             con.desconectaBD();
@@ -232,8 +228,6 @@ public class FuncionarioDAO implements PessoasDAO {
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());
         }
-
         return funcTo;
     }
-
 }

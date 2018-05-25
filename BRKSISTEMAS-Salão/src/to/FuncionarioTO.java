@@ -1,13 +1,11 @@
 package to;
+
 public class FuncionarioTO extends PessoasTO {
 
     private int matricula = 0;
     private String cargo;
     private String cts;
     private String serie;
-
-    
-
 
     public int getMatricula() {
         return matricula;

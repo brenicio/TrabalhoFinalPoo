@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package view;
 
 import javax.swing.JOptionPane;
@@ -14,8 +13,10 @@ import javax.swing.JPasswordField;
  * @author Brenicio
  */
 public class ConfirmacaoSenha extends javax.swing.JDialog {
+
     ManterCliente cliente = new ManterCliente();
     public static ManterCliente clientes;
+
     /**
      * Creates new form ConfirmacaoSenha
      */
@@ -101,13 +102,13 @@ public class ConfirmacaoSenha extends javax.swing.JDialog {
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         String senha = "paulo123";
-        String resp="";
-        if(txtSenha.getText().equals(senha)){
+        String resp = "";
+        if (txtSenha.getText().equals(senha)) {
             resp = "Autorizado";
             clientes.ConfirmacaoExcluir(resp);
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null,"Senha de Liberação incorreta! Tente novamente.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha de Liberação incorreta! Tente novamente.");
             txtSenha.setText("");
             GanharFoco(txtSenha);
         }
@@ -124,6 +125,7 @@ public class ConfirmacaoSenha extends javax.swing.JDialog {
             }
         });
     }
+
     /**
      * @param args the command line arguments
      */

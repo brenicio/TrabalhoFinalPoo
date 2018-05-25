@@ -3,19 +3,20 @@ package to;
 import java.math.BigDecimal;
 
 public class EntradaCaixaTO {
-   private int codEntradaCaixa;
-   private int codCaixa;
-   private int codVenda;
-   private String descricao;
-   private String dataEntracaC;
-   private String hora;
-   private String nomeUsuario;
-   private BigDecimal valor=null;
-   private int codUsuario;
-   private String tipoMovimentacao;
-   private BigDecimal totalVenda= new BigDecimal(0.0);
-   private String nomeCliente;
-   private int codcliente;
+
+    private int codEntradaCaixa;
+    private int codCaixa;
+    private int codVenda;
+    private String descricao;
+    private String dataEntracaC;
+    private String hora;
+    private String nomeUsuario;
+    private BigDecimal valor = null;
+    private int codUsuario;
+    private String tipoMovimentacao;
+    private BigDecimal totalVenda = new BigDecimal(0.0);
+    private String nomeCliente;
+    private int codcliente;
 
     public int getCodcliente() {
         return codcliente;
@@ -32,7 +33,6 @@ public class EntradaCaixaTO {
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
     }
-   
 
     public String getNomeUsuario() {
         return nomeUsuario;

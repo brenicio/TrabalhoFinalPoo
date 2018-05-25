@@ -221,7 +221,7 @@ public class ConsultarServico extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txtPesquisaFocusGained
     public void Maiuscula(JFormattedTextField txt) {
-        crtl.Maiuscula(txt);
+        crtl.maiuscula(txt);
     }
 
     public void LimparCampos() {
@@ -265,7 +265,7 @@ public class ConsultarServico extends javax.swing.JInternalFrame {
         jTableServico.getColumnModel().getColumn(1).setMinWidth(463);
 
         jTableServico.setAutoResizeMode(jTableServico.AUTO_RESIZE_OFF);
-       // jTableServico.getColumnModel().getColumn(0).setPreferredWidth(0);
+        // jTableServico.getColumnModel().getColumn(0).setPreferredWidth(0);
         // jTableServico.getColumnModel().getColumn(0).setMinWidth(0);
         // jTableServico.getColumnModel().getColumn(0).setMaxWidth(0);
         //  jTableServico.getColumnModel().getColumn(1).setPreferredWidth(0);
@@ -326,7 +326,6 @@ public class ConsultarServico extends javax.swing.JInternalFrame {
         jTableServico.setAutoResizeMode(jTableServico.AUTO_RESIZE_OFF);
         jTableServico.getTableHeader().setReorderingAllowed(false);
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

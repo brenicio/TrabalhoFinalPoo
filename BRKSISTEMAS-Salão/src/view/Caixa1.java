@@ -465,7 +465,6 @@ public class Caixa1 extends javax.swing.JInternalFrame {
 
     private void jTableCaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCaixaMouseClicked
 
-
     }//GEN-LAST:event_jTableCaixaMouseClicked
 
     private void btnComprovanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprovanteActionPerformed
@@ -587,8 +586,8 @@ public class Caixa1 extends javax.swing.JInternalFrame {
         //JOptionPane.showMessageDialog(null, jTableCaixa.getModel().getValueAt(i, 3).toString());
 
         int codcliente = Integer.parseInt(jTableCaixa.getModel().getValueAt(i, 6).toString());
-        prodA = crtl.ProdutoDetalhe(codcliente);
-        servA = crtl.ServicoDetalhe(codcliente);
+        prodA = crtl.produtoDetalhe(codcliente);
+        servA = crtl.servicoDetalhe(codcliente);
         Double totalProd = 0.0;
         Double totalServ = 0.0;
         ArrayList dados = new ArrayList();
@@ -597,7 +596,7 @@ public class Caixa1 extends javax.swing.JInternalFrame {
         while (t < prodA.size()) {
             String valor = "";
             NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-                //BigDecimal total = new BigDecimal(0.0);
+            //BigDecimal total = new BigDecimal(0.0);
             //totalProd = totalProd + (total.add(prodA.get(t).getTotalvenda())).doubleValue();
             valor = nf.format(prodA.get(t).getValorvenda().doubleValue());
             dados.add(new Object[]{prodA.get(t).getDescricaoprod(), valor, prodA.get(t).getQtdeven(), prodA.get(t).getCliente()});
@@ -608,7 +607,7 @@ public class Caixa1 extends javax.swing.JInternalFrame {
             String valor = "";
             NumberFormat nf = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
             valor = nf.format(servA.get(t).getValorvenda().doubleValue());
-               // BigDecimal total = new BigDecimal(0.0);
+            // BigDecimal total = new BigDecimal(0.0);
             // totalServ = totalServ + (total.add(servA.get(t).getTotalven())).doubleValue();
             dados2.add(new Object[]{servA.get(t).getDescricaoserv(), valor, servA.get(t).getNomefunc(), servA.get(t).getCliente()});
             t++;

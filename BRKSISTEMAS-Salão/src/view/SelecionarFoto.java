@@ -49,7 +49,6 @@ public class SelecionarFoto extends javax.swing.JInternalFrame {
         setBounds(200, 10, 821, 464);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser FileChooser;
     // End of variables declaration//GEN-END:variables

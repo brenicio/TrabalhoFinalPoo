@@ -13,7 +13,7 @@ import to.ClienteTO;
 public class ClienteDAO implements PessoasDAO {
 
     @Override
-    public String Incluir(PessoasTO p) {
+    public String incluir(PessoasTO p) {
         ClienteTO clienteTo;
         clienteTo = (ClienteTO) p;
         try {
@@ -35,7 +35,7 @@ public class ClienteDAO implements PessoasDAO {
     }
 
     @Override
-    public String Alterar(PessoasTO p) {
+    public String alterar(PessoasTO p) {
         ClienteTO clienteTo;
         clienteTo = (ClienteTO) p;
         try {
@@ -54,7 +54,7 @@ public class ClienteDAO implements PessoasDAO {
         return "";
     }
 
-    public String AtualizarDataVisita(int codCliente) {
+    public String atualizarDataVisita(int codCliente) {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -71,7 +71,7 @@ public class ClienteDAO implements PessoasDAO {
     }
 
     @Override
-    public PessoasTO Consultar(String nome) {
+    public PessoasTO consultar(String nome) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -111,7 +111,8 @@ public class ClienteDAO implements PessoasDAO {
         return cli;
     }
 
-    public PessoasTO Consultar(int id) {
+    @Override
+    public PessoasTO consultar(int id) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -120,28 +121,27 @@ public class ClienteDAO implements PessoasDAO {
         try {
 
             con.conectaBD();
-            ResultSet rs = con.executaConsulta(SQL);
+            try (ResultSet rs = con.executaConsulta(SQL)) {
+                if (rs.next()) {
 
-            if (rs.next()) {
+                    cli.setCodCliente(rs.getInt("codcliente"));
+                    cli.setNome(rs.getString("nome"));
+                    cli.setRg(rs.getString("rg"));
+                    cli.setSexo(rs.getString("sexo"));
+                    cli.setCpf(rs.getString("cpf"));
+                    cli.setTelefone(rs.getString("telfixo"));
+                    cli.setCelular(rs.getString("telcelular"));
+                    cli.setEmail(rs.getString("email"));
+                    cli.setEndereco(rs.getString("endereco"));
+                    cli.setBairro(rs.getString("bairro"));
+                    cli.setCidade(rs.getString("cidade"));
+                    cli.setStatusCli(rs.getString("status"));
+                    cli.setDatapriVisita(rs.getString("dataprivisita"));
+                    cli.setDataultVisita(rs.getString("dataultvisita"));
+                    cli.setDataCadastro(rs.getString("datacadastro"));
 
-                cli.setCodCliente(rs.getInt("codcliente"));
-                cli.setNome(rs.getString("nome"));
-                cli.setRg(rs.getString("rg"));
-                cli.setSexo(rs.getString("sexo"));
-                cli.setCpf(rs.getString("cpf"));
-                cli.setTelefone(rs.getString("telfixo"));
-                cli.setCelular(rs.getString("telcelular"));
-                cli.setEmail(rs.getString("email"));
-                cli.setEndereco(rs.getString("endereco"));
-                cli.setBairro(rs.getString("bairro"));
-                cli.setCidade(rs.getString("cidade"));
-                cli.setStatusCli(rs.getString("status"));
-                cli.setDatapriVisita(rs.getString("dataprivisita"));
-                cli.setDataultVisita(rs.getString("dataultvisita"));
-                cli.setDataCadastro(rs.getString("datacadastro"));
-
+                }
             }
-            rs.close();
             con.desconectaBD();
 
         } catch (SQLException e) {
@@ -152,7 +152,7 @@ public class ClienteDAO implements PessoasDAO {
     }
 
     @Override
-    public ArrayList<PessoasTO> ConsultarTodos() {
+    public ArrayList<PessoasTO> consultarTodos() {
         ArrayList<PessoasTO> p = new ArrayList();
         //*********************************************
         //RECUPERA TODOS OS ALUNOS DO BANCO
@@ -199,21 +199,21 @@ public class ClienteDAO implements PessoasDAO {
     }
 
     @Override
-    public void ExcluirID(long ID) {
+    public void excluirID(long ID) {
         Conexao con = new Conexao();
         String SQL;
         con.conectaBD();
         SQL = "DELETE FROM CLIENTE WHERE CODCLIENTE =" + ID + "";
 
-        try {          
+        try {
             con.executaSQL(SQL);
             con.desconectaBD();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Não é Possivel EXCLUIR o Cliente! Existem vendas vinculadas.");
+            JOptionPane.showMessageDialog(null, "Não é Possivel EXCLUIR o Cliente! Existem vendas vinculadas.");
         }
     }
 
-    public ArrayList<PessoasTO> ConsultarTodos(String nome) {
+    public ArrayList<PessoasTO> consultarTodos(String nome) {
         ArrayList<PessoasTO> p = new ArrayList();
         //*********************************************
         //RECUPERA TODOS OS ALUNOS DO BANCO
@@ -256,7 +256,7 @@ public class ClienteDAO implements PessoasDAO {
         return p;
     }
 
-    public PessoasTO VerificarCliente(String rg, String cpf) {
+    public PessoasTO verificarCliente(String rg, String cpf) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -284,7 +284,7 @@ public class ClienteDAO implements PessoasDAO {
         return cli;
     }
 
-    public PessoasTO VerificarClienteNome(String nome) {
+    public PessoasTO verificarClienteNome(String nome) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -317,21 +317,21 @@ public class ClienteDAO implements PessoasDAO {
         return dateFormat.format(date);
     }
 
-    public String VerificarStatus() {
-        try{
-        Conexao con = new Conexao();
-        String SQL;
-        SQL = "UPDATE CLIENTE SET status = 'INATIVO' WHERE (SELECT CURRENT_DATE - (select to_date(dataultvisita,'DD MM YYYY') as data)) > 29";
-        con.conectaBD();
-        con.executaSQL(SQL);
-        con.desconectaBD();
-        }catch(Exception e){
-            System.out.println("Erro: "+e.getMessage());
+    public String verificarStatus() {
+        try {
+            Conexao con = new Conexao();
+            String SQL;
+            SQL = "UPDATE CLIENTE SET status = 'INATIVO' WHERE (SELECT CURRENT_DATE - (select to_date(dataultvisita,'DD MM YYYY') as data)) > 29";
+            con.conectaBD();
+            con.executaSQL(SQL);
+            con.desconectaBD();
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
         }
         return "";
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosClienteAtivosVenda() {
+    public ArrayList<PessoasTO> consultarTodosClienteAtivosVenda() {
         ArrayList<PessoasTO> p = new ArrayList();
         Conexao con = new Conexao();
         String SQL = "SELECT * FROM CLIENTE WHERE STATUS='ATIVO'";
@@ -377,7 +377,7 @@ public class ClienteDAO implements PessoasDAO {
         return p;
     }
 
-    public ArrayList<PessoasTO> ConsultarTodosClienteAtivosVenda(String nome) {
+    public ArrayList<PessoasTO> consultarTodosClienteAtivosVenda(String nome) {
         ArrayList<PessoasTO> p = new ArrayList();
 
         ResultSet rs;
@@ -409,7 +409,6 @@ public class ClienteDAO implements PessoasDAO {
                 cli.setCmfotoCli(rs.getString("foto"));
                 cli.setDataCadastro(rs.getString("datacadastro"));
                 p.add(cli);
-
             }
             rs.close();
             con.desconectaBD();
@@ -419,7 +418,7 @@ public class ClienteDAO implements PessoasDAO {
         return p;
     }
 
-    public PessoasTO ConsultarClienteIDVenda(int id) {
+    public PessoasTO consultarClienteIDVenda(int id) {
 
         Conexao con = new Conexao();
         String SQL;
@@ -457,7 +456,7 @@ public class ClienteDAO implements PessoasDAO {
         return cli;
     }
 
-    public String DesbloquearClientes() {
+    public String desbloquearClientes() {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -473,5 +472,4 @@ public class ClienteDAO implements PessoasDAO {
         }
         return "";
     }
-
 }

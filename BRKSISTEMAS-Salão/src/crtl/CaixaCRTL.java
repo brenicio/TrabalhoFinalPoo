@@ -125,7 +125,6 @@ public class CaixaCRTL {
         } catch (Exception ex) {
             System.out.println("Erro ao incluir!!");
         }
-
         return "";
     }
 
@@ -133,72 +132,66 @@ public class CaixaCRTL {
         try {
             CaixaBO caixaBo = new CaixaBO();
             String ret = caixaBo.alterar(caixaTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "caixa fechado com sucesso!");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao fechar o caixa!");
-
         }
-
     }
 
     public void alterarSaidaCaixa() throws Exception {
 
         CaixaBO caixaBo = new CaixaBO();
         String ret = caixaBo.alterarSaidaCaixa(saidaTo);
-        if (ret != "") {
+        if (!"".equals(ret)) {
             JOptionPane.showMessageDialog(null, ret);
         }
+    }
 
-    }
-    
-    public void alterarObs(CaixaTO caixaTo) throws Exception{
-        try{
-        CaixaBO caixaBo = new CaixaBO();
-        String ret = caixaBo.alterarObs(caixaTo);
-        
-        if(ret !=""){
-            JOptionPane.showMessageDialog(null, ret);
+    public void alterarObs(CaixaTO caixaTo) throws Exception {
+        try {
+            CaixaBO caixaBo = new CaixaBO();
+            String ret = caixaBo.alterarObs(caixaTo);
+
+            if (!"".equals(ret)) {
+                JOptionPane.showMessageDialog(null, ret);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
         }
-        }catch(Exception ex){
-        System.out.println(ex.getMessage());
-    }
-        
     }
 
     public CaixaTO consultar(String nome) {
 
         try {
             CaixaBO caixaBo = new CaixaBO();
-            caixaTo = caixaBo.Consultar(nome);
+            caixaTo = caixaBo.consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return caixaTo;
-
     }
 
     public CaixaTO consultarID(int id) {
 
         try {
             CaixaBO caixaBo = new CaixaBO();
-            caixaTo = caixaBo.ConsultarID(id);
+            caixaTo = caixaBo.consultarID(id);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return caixaTo;
-
     }
 
     public CaixaTO valorTotal() {
         try {
             CaixaBO caixaBo = new CaixaBO();
-            caixaTo = caixaBo.ValorTotal();
+            caixaTo = caixaBo.valorTotal();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao calcular o valor total!");
         }
@@ -207,11 +200,11 @@ public class CaixaCRTL {
 
     public CaixaTO ValorTotalSomenteCaixa() throws Exception {
         CaixaBO caixaBo = new CaixaBO();
-        caixaTo = caixaBo.ValorTotalSomenteCaixa();
+        caixaTo = caixaBo.valorTotalSomenteCaixa();
         return caixaTo;
     }
 
-    public void Maiuscula(JTextField maior) {
+    public void maiuscula(JTextField maior) {
         maior.setDocument(new UpperCaseMODEL());
     }
 
@@ -219,11 +212,11 @@ public class CaixaCRTL {
         numero.setDocument(new LimiteDigitosMODEL(tamanho));
     }
 
-    public String AdicionarDinheiro() {
+    public String adicionarDinheiro() {
         try {
             CaixaBO caixaBo = new CaixaBO();
-            String ret = caixaBo.AdicionarDinheiro(entradaTo);
-            if (ret != "") {
+            String ret = caixaBo.adicionarDinheiro(entradaTo);
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Dinheiro adicionado com sucesso!");
@@ -232,15 +225,14 @@ public class CaixaCRTL {
         } catch (Exception ex) {
             System.out.println("Erro ao adicionar!!");
         }
-
         return "";
     }
-    
-    public String AdicionarDinheiro2() {
+
+    public String adicionarDinheiroDAO() {
         try {
             CaixaDAO dao = new CaixaDAO();
-            String ret = dao.AdicionarDinheiro2(entradaTo);
-            if (ret != "") {
+            String ret = dao.adicionarDinheiro2(entradaTo);
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Dinheiro adicionado com sucesso!");
@@ -249,14 +241,13 @@ public class CaixaCRTL {
         } catch (Exception ex) {
             System.out.println("Erro ao adicionar!!");
         }
-
         return "";
     }
 
-    public String RetirarDinheiro() {
+    public String retirarDinheiro() {
         try {
             CaixaBO caixaBo = new CaixaBO();
-            String ret = caixaBo.RetirarDinheiro(saidaTo);
+            String ret = caixaBo.retirarDinheiro(saidaTo);
             if (ret != "") {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
@@ -266,7 +257,6 @@ public class CaixaCRTL {
         } catch (Exception ex) {
             System.out.println("Erro ao retirar!!");
         }
-
         return "";
     }
 
@@ -277,7 +267,6 @@ public class CaixaCRTL {
     public ArrayList<EntradaCaixaTO> consultarTodosEntrada() {
 
         try {
-
             CaixaBO caixaBo = new CaixaBO();
             entradas = caixaBo.consultarTodosEntrada();
         } catch (Exception ex) {
@@ -285,10 +274,10 @@ public class CaixaCRTL {
         }
         return entradas;
     }
+
     public ArrayList<EntradaCaixaTO> consultarTodosCli() {
 
         try {
-
             CaixaBO caixaBo = new CaixaBO();
             entradas = caixaBo.consultarTodosCli();
         } catch (Exception ex) {
@@ -296,23 +285,23 @@ public class CaixaCRTL {
         }
         return entradas;
     }
-    public ArrayList<ProdutoDetalheTO> ProdutoDetalhe(int codcliente) {
+
+    public ArrayList<ProdutoDetalheTO> produtoDetalhe(int codcliente) {
 
         try {
-
             CaixaBO caixaBo = new CaixaBO();
-            prodD = caixaBo.ProdutoDetalhe(codcliente);
+            prodD = caixaBo.produtoDetalhe(codcliente);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         return prodD;
     }
-    public ArrayList<ServicoDetalheTO> ServicoDetalhe(int codcliente) {
+
+    public ArrayList<ServicoDetalheTO> servicoDetalhe(int codcliente) {
 
         try {
-
             CaixaBO caixaBo = new CaixaBO();
-            servD = caixaBo.ServicoDetalhe(codcliente);
+            servD = caixaBo.servicoDetalhe(codcliente);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -322,7 +311,6 @@ public class CaixaCRTL {
     public ArrayList<SaidaCaixaTO> consultarTodosSaida() {
 
         try {
-
             CaixaBO caixaBo = new CaixaBO();
             saidas = caixaBo.consultarTodosSaida();
         } catch (Exception ex) {
@@ -330,6 +318,7 @@ public class CaixaCRTL {
         }
         return saidas;
     }
+
     public void somenteNumero2(JTextField numero, int tamanho) {
         numero.setDocument(new LimiteDigitosMODEL2(tamanho));
     }

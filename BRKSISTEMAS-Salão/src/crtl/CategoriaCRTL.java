@@ -9,8 +9,8 @@ import model.LimiteDigitosMODEL;
 import model.UpperCaseMODEL;
 import to.CategoriaTO;
 
-
 public class CategoriaCRTL {
+
     private CategoriaTO categoriaTo;
     private CategoriaTO categoriaConsultaTo;
     private ArrayList<CategoriaTO> categorias;
@@ -39,8 +39,6 @@ public class CategoriaCRTL {
         this.categorias = categorias;
     }
 
-    
-
     public CategoriaCRTL() {
         try {
             categoriaTo = new CategoriaTO();
@@ -49,11 +47,12 @@ public class CategoriaCRTL {
             System.out.println("Erro");
         }
     }
- public String incluirCategoria() {
+
+    public String incluirCategoria() {
         try {
             CategoriaBO categoriaBo = new CategoriaBO();
             String ret = categoriaBo.incluir(categoriaTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Categoria incluida com sucesso!");
@@ -70,7 +69,7 @@ public class CategoriaCRTL {
         try {
             CategoriaBO categoriaBo = new CategoriaBO();
             String ret = categoriaBo.alterar(categoriaTo);
-             if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Categoria alterada com sucesso!");
@@ -86,8 +85,7 @@ public class CategoriaCRTL {
 
         try {
             CategoriaBO categoriaBo = new CategoriaBO();
-            categoriaTo = categoriaBo.Consultar(nome);
-
+            categoriaTo = categoriaBo.consultar(nome);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
@@ -99,18 +97,17 @@ public class CategoriaCRTL {
 
         try {
             CategoriaBO categoriaBo = new CategoriaBO();
-            categoriaTo = categoriaBo.ConsultarID(id);
-
+            categoriaTo = categoriaBo.consultarID(id);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return categoriaTo;
 
     }
+
     public ArrayList<CategoriaTO> consultarTodos() {
 
         try {
-
             CategoriaBO categoriaBo = new CategoriaBO();
             categorias = categoriaBo.consultarTodos();
         } catch (Exception ex) {
@@ -118,10 +115,10 @@ public class CategoriaCRTL {
         }
         return categorias;
     }
+
     public ArrayList<CategoriaTO> consultarTodosM(String nome) {
 
         try {
-
             CategoriaBO categoriaBo = new CategoriaBO();
             categorias = categoriaBo.consultarTodosM(nome);
         } catch (Exception ex) {
@@ -132,10 +129,9 @@ public class CategoriaCRTL {
 
     public void excluir(int id) {
         try {
-
             CategoriaBO categoriaBo = new CategoriaBO();
-           String ret =  categoriaBo.excluirID(id);
-            if (ret != "") {
+            String ret = categoriaBo.excluirID(id);
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Categoria excluida com sucesso!");
@@ -144,12 +140,13 @@ public class CategoriaCRTL {
             System.out.println("Erro ao excluir");
         }
     }
-    
-    public void Maiuscula(JTextField maior){
-            maior.setDocument(new UpperCaseMODEL());
-        }
-    public void somenteNumero(JFormattedTextField numero, int tamanho){
-            numero.setDocument(new LimiteDigitosMODEL(tamanho));
-        }
-    
+
+    public void maiuscula(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL());
+    }
+
+    public void somenteNumero(JFormattedTextField numero, int tamanho) {
+        numero.setDocument(new LimiteDigitosMODEL(tamanho));
+    }
+
 }

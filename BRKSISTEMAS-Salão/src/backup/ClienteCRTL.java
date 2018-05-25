@@ -12,6 +12,7 @@ import model.LimiteDigitosMODEL;
 import model.UpperCaseMODEL;
 import model.UpperCaseMODEL2;
 import to.ClienteTO;
+import to.PessoasTO;
 
 public class ClienteCRTL {
 
@@ -56,7 +57,7 @@ public class ClienteCRTL {
 
         try {
             ClienteBO clienteBo = new ClienteBO();
-            String ret = clienteBo.Incluir(clienteTo);
+            String ret = clienteBo.incluir(clienteTo);
             if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
                 return ret;
@@ -64,7 +65,6 @@ public class ClienteCRTL {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
                 return "limpar";
             }
-
         } catch (Exception ex) {
             System.out.println("Erro ao incluir!!");
         }
@@ -74,7 +74,7 @@ public class ClienteCRTL {
     public String alterarCliente() {
         try {
             ClienteBO clienteBo = new ClienteBO();
-            String ret = clienteBo.Alterar(clienteTo);
+            String ret = clienteBo.alterar(clienteTo);
             if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
                 return ret;
@@ -82,7 +82,6 @@ public class ClienteCRTL {
                 JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
                 return "limpar";
             }
-
         } catch (Exception ex) {
             System.out.println("Erro ao alterar!!");
         }
@@ -93,21 +92,18 @@ public class ClienteCRTL {
 
         try {
             ClienteBO clienteBo = new ClienteBO();
-            clienteTo = (ClienteTO) clienteBo.Consultar(nome);
-
+            clienteTo = (ClienteTO) clienteBo.consultar(nome);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return clienteTo;
-
     }
 
     public ClienteTO consultarID(int id) {
 
         try {
             ClienteBO clienteBo = new ClienteBO();
-            clienteTo = clienteBo.ConsultarID(id);
-
+            clienteTo = (ClienteTO) clienteBo.consultar(id);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
@@ -120,7 +116,7 @@ public class ClienteCRTL {
         try {
 
             ClienteBO clienteBo = new ClienteBO();
-            clientes = clienteBo.ConsultarTodos();
+//            clientes = (ClienteTO) clienteBo.ConsultarTodos();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -132,7 +128,7 @@ public class ClienteCRTL {
         try {
 
             ClienteBO clienteBo = new ClienteBO();
-            clientes = clienteBo.ConsultarTodos(nome);
+//            clientes = (ClienteTO) clienteBo.ConsultarTodos(nome);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -141,9 +137,15 @@ public class ClienteCRTL {
 
     public void excluir(int id) {
         try {
-            String ret;
+            String ret = "Existe usuario";
             ClienteBO bo = new ClienteBO();
-            ret = bo.ExcluirID(id);
+            bo.excluirID(id);
+            PessoasTO p = bo.consultar(id);
+
+            if (p != null) {
+                ret = "";
+            }
+
             if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
@@ -195,11 +197,11 @@ public class ClienteCRTL {
         }
     }
 
-    public void Maiuscula(JTextField maior) {
+    public void maiuscula(JTextField maior) {
         maior.setDocument(new UpperCaseMODEL());
     }
 
-    public void MaiusculaNumero(JTextField maior) {
+    public void maiusculaNumero(JTextField maior) {
         maior.setDocument(new UpperCaseMODEL2());
     }
 

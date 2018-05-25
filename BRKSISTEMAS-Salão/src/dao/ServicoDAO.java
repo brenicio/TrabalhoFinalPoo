@@ -127,15 +127,15 @@ public class ServicoDAO {
         //************************************************************
         //ABRE CONEXAO COM O BANCO
         //************************************************************
-        try{
-        Conexao con = new Conexao();
-        String SQL;
-        con.conectaBD();
-        SQL = "DELETE FROM SERVICO WHERE CODSERVICO =" + ID + "";
-        con.executaSQL(SQL);
-        con.desconectaBD();
-        }catch(Exception ex){
-            JOptionPane.showMessageDialog(null,ex.getMessage());
+        try {
+            Conexao con = new Conexao();
+            String SQL;
+            con.conectaBD();
+            SQL = "DELETE FROM SERVICO WHERE CODSERVICO =" + ID + "";
+            con.executaSQL(SQL);
+            con.desconectaBD();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
             return ex.getMessage();
         }
         return "";
@@ -166,6 +166,7 @@ public class ServicoDAO {
         con.desconectaBD();
         return servicoA;
     }
+
     public ServicoTO VerificarServicos(String descricao) throws Exception {
 
         Conexao con = new Conexao();

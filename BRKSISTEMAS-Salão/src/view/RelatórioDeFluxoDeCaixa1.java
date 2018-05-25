@@ -225,7 +225,7 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
             jrviewer.setVisible(true);
 
-    //caso queira usar o parâmetro  lido anteriormente no sql
+            //caso queira usar o parâmetro  lido anteriormente no sql
             //String SQL = "SELECT codigo, nome, registro from cliente where codigo = "+codigo+" order by codigo";
         } catch (JRException e) {
             System.out.println(e);
@@ -256,7 +256,7 @@ public class RelatórioDeFluxoDeCaixa1 extends javax.swing.JInternalFrame {
             JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
             jrviewer.setVisible(true);
 
-    //caso queira usar o parâmetro  lido anteriormente no sql
+            //caso queira usar o parâmetro  lido anteriormente no sql
             //String SQL = "SELECT codigo, nome, registro from cliente where codigo = "+codigo+" order by codigo";
         } catch (Exception e) {
             System.out.println(e);

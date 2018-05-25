@@ -1,4 +1,3 @@
-
 package bo;
 
 import dao.CategoriaDAO;
@@ -7,7 +6,7 @@ import javax.swing.JOptionPane;
 import to.CategoriaTO;
 
 public class CategoriaBO {
-    
+
     private final CategoriaDAO categoriaDao;
     CategoriaTO catTo;
 
@@ -28,7 +27,7 @@ public class CategoriaBO {
     }
 
     public String alterar(CategoriaTO categoriaTo) throws Exception {
-        catTo = categoriaDao.VerificarCategoria(categoriaTo.getNomeCategoria());
+        catTo = categoriaDao.verificarCategoria(categoriaTo.getNomeCategoria());
         String ret = consisteDados(categoriaTo);
         if (!ret.equals("")) {
             return ret;
@@ -43,22 +42,21 @@ public class CategoriaBO {
 //        if (catTo.getNomeCategoria().equals(catTo.getNomeCategoria())) {
 //            return "A categoria informada já existe!";
 //        }
-
         if (categoriaTo.getNomeCategoria().equals("")) {
             return "Nome da categoria não informado!";
         }
         return "";
     }
 
-    public CategoriaTO Consultar(String nome) throws Exception {
+    public CategoriaTO consultar(String nome) throws Exception {
 
-        CategoriaTO categoriaTo = categoriaDao.Consultar(nome);
+        CategoriaTO categoriaTo = categoriaDao.consultar(nome);
         return categoriaTo;
     }
 
-    public CategoriaTO ConsultarID(int id) throws Exception {
+    public CategoriaTO consultarID(int id) throws Exception {
 
-        CategoriaTO categoriaTo = categoriaDao.ConsultarID(id);
+        CategoriaTO categoriaTo = categoriaDao.consultarID(id);
         return categoriaTo;
     }
 

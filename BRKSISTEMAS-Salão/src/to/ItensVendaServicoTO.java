@@ -18,12 +18,10 @@ public class ItensVendaServicoTO {
     public void setProdutoTO(ProdutoTO produtoTO) {
         this.produtoTO = produtoTO;
     }
-    
-    
 
     public FuncionarioTO getFuncionarioTo() {
         return funcionarioTo;
-       
+
     }
 
     public void setFuncionarioTo(FuncionarioTO funcionarioTo) {
@@ -45,8 +43,7 @@ public class ItensVendaServicoTO {
     public void setClienteTo(ClienteTO clienteTo) {
         this.clienteTo = clienteTo;
     }
-    
-    
+
     public ArrayList<ItensVendaServicoTO> retornarArray(ItensVendaServicoTO itens) {
         ArrayList<ItensVendaServicoTO> itensA = new ArrayList();
         itensA.add(itens);

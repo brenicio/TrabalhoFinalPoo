@@ -5,15 +5,15 @@ import to.PessoasTO;
 
 public abstract interface PessoasBO {
 
-    public String Incluir(PessoasTO pessoaTo);
-    
-    public String Alterar(PessoasTO pessoaTo);
-    
-    public PessoasTO Consultar(String nome);
-    
-    public PessoasTO Consultar(int id);
-    
-    public ArrayList<PessoasTO> ConsultarTodos();
-    
-    public void ExcluirID(long id);
+    public String incluir(PessoasTO pessoaTo);
+
+    public String alterar(PessoasTO pessoaTo);
+
+    public PessoasTO consultar(String nome);
+
+    public PessoasTO consultar(int id);
+
+    public ArrayList<PessoasTO> consultarTodos();
+
+    public void excluirID(long id);
 }

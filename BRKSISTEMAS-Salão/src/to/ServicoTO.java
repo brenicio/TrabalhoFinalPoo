@@ -3,6 +3,7 @@ package to;
 import java.math.BigDecimal;
 
 public class ServicoTO {
+
     private int codServico;
     private String descrServico;
     private BigDecimal precoServico;
@@ -39,5 +40,5 @@ public class ServicoTO {
     public void setDescrServico(String descrServico) {
         this.descrServico = descrServico;
     }
-    
+
 }

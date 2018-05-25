@@ -1,13 +1,7 @@
 package crtl;
 
 import bo.LoginBO;
-import bo.UsuarioBO;
-import java.util.ArrayList;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import model.LimiteDigitosMODEL;
-import model.UpperCaseMODEL;
 import to.LoginTO;
 import to.UsuarioTO;
 
@@ -23,7 +17,6 @@ public class LoginCRTL {
     public void setUsuarioTo(UsuarioTO usuarioTo) {
         this.usuarioTo = usuarioTo;
     }
-    
 
     public LoginTO getLoginTo() {
         return loginTo;
@@ -41,21 +34,19 @@ public class LoginCRTL {
             System.out.println("Erro");
         }
     }
-    public UsuarioTO Logar(){
+
+    public UsuarioTO logar() {
 
         try {
             LoginBO loginBo = new LoginBO();
-            usuarioTo = loginBo.Logar(loginTo);
-            
-            if(usuarioTo != null){
-               // JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
+            usuarioTo = loginBo.logar(loginTo);
+            if (usuarioTo != null) {
+                // JOptionPane.showMessageDialog(null, "Seja Bem Vindo!");
                 return usuarioTo;
             }
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao Logar no Sistema! Usuário ou Senha incorretos.");
         }
-        
         return usuarioTo;
     }
 }

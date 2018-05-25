@@ -3,19 +3,20 @@ package to;
 import java.math.BigDecimal;
 
 public class ProdutoTO {
+
     private int codMarca = 0;
-    private int codBarra= 0;
-    private int codProd= 0;
+    private int codBarra = 0;
+    private int codProd = 0;
     private int codCategoria = 0;
     private String categoria;
     private String nomeMarca;
     private String descrProd;
     private String cmFoto;
-  //  private int qtdeEstoque=0;
-    private double valorCusto= 0;
-    private double valorVenda= 0;
-    private int qtdeProd= 0;
-    private double lucroProd= 0;
+    //  private int qtdeEstoque=0;
+    private double valorCusto = 0;
+    private double valorVenda = 0;
+    private int qtdeProd = 0;
+    private double lucroProd = 0;
     private BigDecimal valortotal;
     private int quantidadetotal;
 
@@ -54,16 +55,14 @@ public class ProdutoTO {
     public void setNomeMarca(String nomeMarca) {
         this.nomeMarca = nomeMarca;
     }
-    
+
     public int getCodMarca() {
         return codMarca;
     }
-   
 
     public void setCodMarca(int codMarca) {
         this.codMarca = codMarca;
     }
-    
 
     public int getCodProd() {
         return codProd;
@@ -72,7 +71,6 @@ public class ProdutoTO {
     public void setCodProd(int codProd) {
         this.codProd = codProd;
     }
-    
 
     public String getCategoria() {
         return categoria;
@@ -81,7 +79,6 @@ public class ProdutoTO {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-   
 
     public int getCodBarra() {
         return codBarra;
@@ -138,5 +135,5 @@ public class ProdutoTO {
     public void setLucroProd(double lucroProd) {
         this.lucroProd = lucroProd;
     }
-        
+
 }

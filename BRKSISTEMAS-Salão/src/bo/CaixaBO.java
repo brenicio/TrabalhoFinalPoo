@@ -24,9 +24,7 @@ public class CaixaBO {
         if (!ret.equals("")) {
             return ret;
         }
-
         ret = caixaDao.incluir(caixaTo);
-
         return ret;
 
     }
@@ -72,7 +70,6 @@ public class CaixaBO {
     private String consisteDados2(SaidaCaixaTO saidaTo) {
         if (saidaTo.getValor() == null) {
             return "Valor não informado!";
-
         }
         return "";
     }
@@ -80,50 +77,48 @@ public class CaixaBO {
     private String consisteDados3(EntradaCaixaTO entradaTo) {
         if (entradaTo.getValor() == null) {
             return "Valor não informado!";
-
         }
         return "";
     }
 
-    public CaixaTO Consultar(String nome) throws Exception {
+    public CaixaTO consultar(String nome) throws Exception {
 
-        CaixaTO caixaTo = caixaDao.Consultar(nome);
+        CaixaTO caixaTo = caixaDao.consultar(nome);
         return caixaTo;
     }
 
-    public CaixaTO ConsultarID(int id) throws Exception {
+    public CaixaTO consultarID(int id) throws Exception {
 
-        CaixaTO caixaTo = caixaDao.ConsultarID(id);
+        CaixaTO caixaTo = caixaDao.consultarID(id);
         return caixaTo;
     }
 
-    public CaixaTO ValorTotal() throws Exception {
-        CaixaTO caixaTo = caixaDao.ValorTotal();
+    public CaixaTO valorTotal() throws Exception {
+        CaixaTO caixaTo = caixaDao.valorTotal();
         return caixaTo;
     }
 
-    public CaixaTO ValorTotalSomenteCaixa() throws Exception {
-        CaixaTO caixaTo = caixaDao.ValorTotalSomenteCaixa();
+    public CaixaTO valorTotalSomenteCaixa() throws Exception {
+        CaixaTO caixaTo = caixaDao.valorTotalSomenteCaixa();
         return caixaTo;
     }
 
-    public String AdicionarDinheiro(EntradaCaixaTO entradaTo) throws Exception {
+    public String adicionarDinheiro(EntradaCaixaTO entradaTo) throws Exception {
         String ret = consisteDados3(entradaTo);
 
         if (!ret.equals("")) {
             return ret;
         }
-        ret = caixaDao.AdicionarDinheiro(entradaTo);
+        ret = caixaDao.adicionarDinheiro(entradaTo);
         return ret;
-
     }
 
-    public String RetirarDinheiro(SaidaCaixaTO saidaTo) throws Exception {
+    public String retirarDinheiro(SaidaCaixaTO saidaTo) throws Exception {
         String ret = consisteDados2(saidaTo);
         if (!ret.equals("")) {
             return ret;
         }
-        ret = caixaDao.RetirarDinheiro(saidaTo);
+        ret = caixaDao.retirarDinheiro(saidaTo);
         return ret;
     }
 
@@ -145,13 +140,13 @@ public class CaixaBO {
         return saidas;
     }
 
-    public ArrayList<ProdutoDetalheTO> ProdutoDetalhe(int codcliente) throws Exception {
-        ArrayList prod = caixaDao.ProdutoDetalhe(codcliente);
+    public ArrayList<ProdutoDetalheTO> produtoDetalhe(int codcliente) throws Exception {
+        ArrayList prod = caixaDao.produtoDetalhe(codcliente);
         return prod;
     }
 
-    public ArrayList<ServicoDetalheTO> ServicoDetalhe(int codcliente) throws Exception {
-        ArrayList serv = caixaDao.ServicoDetalhe(codcliente);
+    public ArrayList<ServicoDetalheTO> servicoDetalhe(int codcliente) throws Exception {
+        ArrayList serv = caixaDao.servicoDetalhe(codcliente);
         return serv;
     }
 }

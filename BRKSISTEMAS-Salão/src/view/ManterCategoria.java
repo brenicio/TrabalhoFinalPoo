@@ -213,7 +213,7 @@ public class ManterCategoria extends javax.swing.JInternalFrame {
     }
 
     private void Maiuscula() {
-        crtl.Maiuscula(txtDescricao);
+        crtl.maiuscula(txtDescricao);
     }
 
     private void desabitilarBotoes() {
@@ -231,7 +231,6 @@ public class ManterCategoria extends javax.swing.JInternalFrame {
         txtDescricao.setText(to.getNomeCategoria());
         habilitarBotoes();
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

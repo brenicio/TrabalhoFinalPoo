@@ -1,4 +1,5 @@
 package crtl;
+
 import bo.ProdutoBO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -9,7 +10,9 @@ import model.UpperCaseMODEL2;
 import to.CategoriaTO;
 import to.MarcaTO;
 import to.ProdutoTO;
+
 public class ProdutoCRTL {
+
     private ProdutoTO produtoTo;
     private ProdutoTO produtoConsultaTO;
     private ArrayList<ProdutoTO> produtos;
@@ -49,7 +52,6 @@ public class ProdutoCRTL {
     public void setCatTo(CategoriaTO catTo) {
         this.catTo = catTo;
     }
-    
 
     public ProdutoTO getProdutoTo() {
         return produtoTo;
@@ -74,6 +76,7 @@ public class ProdutoCRTL {
     public void setProdutos(ArrayList<ProdutoTO> produtos) {
         this.produtos = produtos;
     }
+
     public ProdutoCRTL() {
         try {
             produtoTo = new ProdutoTO();
@@ -83,12 +86,12 @@ public class ProdutoCRTL {
             System.out.println("Erro");
         }
     }
-    
+
     public String incluirProduto() {
         try {
             ProdutoBO produtoBo = new ProdutoBO();
             String ret = produtoBo.incluir(produtoTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Produto incluido com sucesso!");
@@ -100,11 +103,12 @@ public class ProdutoCRTL {
 
         return "";
     }
+
     public void alterarProduto() {
         try {
             ProdutoBO produtoBo = new ProdutoBO();
             String ret = produtoBo.alterar(produtoTo);
-             if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Produto alterado com sucesso!");
@@ -115,11 +119,12 @@ public class ProdutoCRTL {
         }
 
     }
+
     public ProdutoTO consultar(String nome) {
 
         try {
             ProdutoBO produtoBo = new ProdutoBO();
-            produtoTo = produtoBo.Consultar(nome);
+            produtoTo = produtoBo.consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -127,11 +132,12 @@ public class ProdutoCRTL {
         return produtoTo;
 
     }
+
     public ProdutoTO consultarID(int id) {
 
         try {
             ProdutoBO produtoBo = new ProdutoBO();
-            produtoTo = produtoBo.ConsultarID(id);
+            produtoTo = produtoBo.consultarID(id);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -139,28 +145,30 @@ public class ProdutoCRTL {
         return produtoTo;
 
     }
-    public MarcaTO consultarNOME(String nome){
-        try{
+
+    public MarcaTO consultarNOME(String nome) {
+        try {
             ProdutoBO produtoBo = new ProdutoBO();
-            marcaTo = produtoBo.ConsultarNOME(nome);
-        }catch(Exception ex){
+            marcaTo = produtoBo.consultarNome(nome);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return marcaTo;
     }
-    public CategoriaTO consultarNOME2(String nome){
-        try{
+
+    public CategoriaTO consultarNOME2(String nome) {
+        try {
             ProdutoBO produtoBo = new ProdutoBO();
-            catTo = produtoBo.ConsultarNOME2(nome);
-        }catch(Exception ex){
+            catTo = produtoBo.consultarNome2(nome);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return catTo;
     }
+
     public ArrayList<ProdutoTO> consultarTodos() {
 
         try {
-
             ProdutoBO produtoBo = new ProdutoBO();
             produtos = produtoBo.consultarTodos();
         } catch (Exception ex) {
@@ -168,11 +176,10 @@ public class ProdutoCRTL {
         }
         return produtos;
     }
-    
+
     public ArrayList<String> consultarMarcas() {
 
         try {
-
             ProdutoBO produtoBo = new ProdutoBO();
             marcas = produtoBo.consultarMarcas();
         } catch (Exception ex) {
@@ -180,10 +187,10 @@ public class ProdutoCRTL {
         }
         return marcas;
     }
+
     public ArrayList<String> consultarCategorias() {
 
         try {
-
             ProdutoBO produtoBo = new ProdutoBO();
             categorias = produtoBo.consultarCategorias();
         } catch (Exception ex) {
@@ -191,10 +198,10 @@ public class ProdutoCRTL {
         }
         return categorias;
     }
+
     public ArrayList<ProdutoTO> consultarTodosP(String nome) {
 
         try {
-
             ProdutoBO produtoBo = new ProdutoBO();
             produtos = produtoBo.consultarTodosP(nome);
         } catch (Exception ex) {
@@ -202,12 +209,12 @@ public class ProdutoCRTL {
         }
         return produtos;
     }
+
     public void excluir(int id) {
         try {
-
             ProdutoBO produtoBo = new ProdutoBO();
-           String ret =  produtoBo.excluirID(id);
-            if (ret != "") {
+            String ret = produtoBo.excluirID(id);
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
@@ -216,6 +223,7 @@ public class ProdutoCRTL {
             System.out.println("Erro ao excluir");
         }
     }
+
 //    public void mascaraValor(JFormattedTextField mask){
 //            try{
 //            mask.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("#,###.##")));
@@ -223,14 +231,15 @@ public class ProdutoCRTL {
 //                e.printStackTrace();
 //            }
 //         }
-    public void Maiuscula(JTextField maior){
-            maior.setDocument(new UpperCaseMODEL2());
-        }
-    public void somenteNumero(JTextField numero, int tamanho){
-            numero.setDocument(new LimiteDigitosMODEL(tamanho));
-        }
-    public void somenteNumero2(JTextField numero, int tamanho){
-            numero.setDocument(new LimiteDigitosMODEL2(tamanho));
-        }
-    
+    public void Maiuscula(JTextField maior) {
+        maior.setDocument(new UpperCaseMODEL2());
+    }
+
+    public void somenteNumero(JTextField numero, int tamanho) {
+        numero.setDocument(new LimiteDigitosMODEL(tamanho));
+    }
+
+    public void somenteNumero2(JTextField numero, int tamanho) {
+        numero.setDocument(new LimiteDigitosMODEL2(tamanho));
+    }
 }

@@ -1,6 +1,7 @@
 package to;
 
 public class UsuarioTO {
+
     private int codUsuario;
     private String nomeUsuario;
     private String senhaUsuario;
@@ -15,7 +16,6 @@ public class UsuarioTO {
     public void setCodUsuario(int codUsuario) {
         this.codUsuario = codUsuario;
     }
-    
 
     public String getNomeFuncionario() {
         return nomeFuncionario;
@@ -24,7 +24,6 @@ public class UsuarioTO {
     public void setNomeFuncionario(String nomeFuncionario) {
         this.nomeFuncionario = nomeFuncionario;
     }
-    
 
     public String getNomeUsuario() {
         return nomeUsuario;

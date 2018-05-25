@@ -179,7 +179,7 @@ public class ConsultarFormaPagamento extends javax.swing.JInternalFrame {
         dados = pagCrtl.consultarTodos();
         int i = 0;
         while (i < dados.size()) {
-            dados1.add(new Object[]{dados.get(i).getCodformapagamento(), dados.get(i).getDescpagamento(), dados.get(i).getTipopagamento(),  dados.get(i).getQtdparcela()});
+            dados1.add(new Object[]{dados.get(i).getCodformapagamento(), dados.get(i).getDescpagamento(), dados.get(i).getTipopagamento(), dados.get(i).getQtdparcela()});
             i++;
 
         }
@@ -202,7 +202,7 @@ public class ConsultarFormaPagamento extends javax.swing.JInternalFrame {
 
         int i = 0;
         while (i < dados.size()) {
-           dados1.add(new Object[]{dados.get(i).getCodformapagamento(), dados.get(i).getDescpagamento(), dados.get(i).getTipopagamento(),  dados.get(i).getQtdparcela()});
+            dados1.add(new Object[]{dados.get(i).getCodformapagamento(), dados.get(i).getDescpagamento(), dados.get(i).getTipopagamento(), dados.get(i).getQtdparcela()});
             i++;
 
         }

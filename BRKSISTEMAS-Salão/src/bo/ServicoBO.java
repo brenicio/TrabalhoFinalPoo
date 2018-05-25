@@ -19,7 +19,7 @@ public class ServicoBO {
         if (!ret.equals("")) {
             return ret;
         }
-        ret = VerificaServico(servicoTo);
+        ret = verificaServico(servicoTo);
         if (!ret.equals("")) {
             return ret;
         }
@@ -35,7 +35,6 @@ public class ServicoBO {
         if (!ret.equals("")) {
             return ret;
         }
-        
 
         ret = servicoDao.alterar(servicoTo);
         return ret;
@@ -49,7 +48,7 @@ public class ServicoBO {
         return "";
     }
 
-    private String VerificaServico(ServicoTO servicoTo) throws Exception {
+    private String verificaServico(ServicoTO servicoTo) throws Exception {
         servTo = servicoDao.VerificarServicos(servicoTo.getDescrServico());
         if (servicoTo.getDescrServico().equals(servTo.getDescrServico())) {
             return "A Descrição do Serviço informada já existe no sistema!";
@@ -57,12 +56,12 @@ public class ServicoBO {
         return "";
     }
 
-    public ServicoTO Consultar(String nome) throws Exception {
+    public ServicoTO consultar(String nome) throws Exception {
         ServicoTO servicoTo = servicoDao.Consultar(nome);
         return servicoTo;
     }
 
-    public ServicoTO ConsultarID(int id) throws Exception {
+    public ServicoTO consultarID(int id) throws Exception {
         ServicoTO servicoTo = servicoDao.ConsultarID(id);
         return servicoTo;
     }

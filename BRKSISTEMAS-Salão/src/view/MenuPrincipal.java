@@ -487,7 +487,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         c.show();
         serv = this.escritorio1.getSelectedFrame();
 
-
     }//GEN-LAST:event_btnServicoActionPerformed
 
     private void btnRealizarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarVendaActionPerformed
@@ -503,7 +502,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "E necessário abrir o caixa para realizar uma venda!");
         }
-
 
     }//GEN-LAST:event_btnRealizarVendaActionPerformed
 
@@ -525,7 +523,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         n.show();
         func = this.escritorio1.getSelectedFrame();
 
-
     }//GEN-LAST:event_btnFuncionariosActionPerformed
 
     private void btnVendaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaProdActionPerformed
@@ -541,7 +538,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "E necessário abrir o caixa para realizar uma venda!");
         }
-
 
     }//GEN-LAST:event_btnVendaProdActionPerformed
 
@@ -706,8 +702,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     public void acesso(int codUsu, String tipoUsu, String usuario) throws Exception {
-        ClienteDAO cliDao = new ClienteDAO();     
-        
+        ClienteDAO cliDao = new ClienteDAO();
+
         if (tipoUsu.equals("Gerente")) {
             // btnVendaProd.setEnabled(true);
             menuUsuarios.setEnabled(false);
@@ -715,11 +711,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             btnVendaProd.setEnabled(false);
             menuUsuarios.setEnabled(false);
             menuProduto.setEnabled(true);
-            if(usuario.equals("amanda")){
-            btnProdutos.setEnabled(true);
-        }else{
-                btnProdutos.setEnabled(false);               
-            }            
+            if (usuario.equals("amanda")) {
+                btnProdutos.setEnabled(true);
+            } else {
+                btnProdutos.setEnabled(false);
+            }
             btnServico.setEnabled(false);
             btnCaixa.setEnabled(true);
             menuCaixa.setEnabled(true);
@@ -734,7 +730,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         codUsuarioLogado = codUsu;
         tipoUsuarioLogado = tipoUsu;
         this.setTitle("Menu Principal - " + usuario);
-        cliDao.VerificarStatus();
+        cliDao.verificarStatus();
     }
 
     /**

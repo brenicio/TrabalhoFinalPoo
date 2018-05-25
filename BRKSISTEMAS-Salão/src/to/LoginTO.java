@@ -1,5 +1,7 @@
 package to;
+
 public class LoginTO {
+
     private String login = "";
     private String senha = "";
 
@@ -18,5 +20,5 @@ public class LoginTO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+
 }

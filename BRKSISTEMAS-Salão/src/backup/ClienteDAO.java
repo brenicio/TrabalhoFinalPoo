@@ -12,7 +12,6 @@ import to.ClienteTO;
 public class ClienteDAO {
 
     public ClienteDAO() throws Exception {
-
     }
 
     public String incluir(ClienteTO clienteTo) throws Exception {
@@ -51,7 +50,7 @@ public class ClienteDAO {
         }
     }
 
-    public String AtualizarDataVisita(int codCliente) throws Exception {
+    public String atualizarDataVisita(int codCliente) throws Exception {
         try {
             Conexao con = new Conexao();
             String SQL;
@@ -67,7 +66,7 @@ public class ClienteDAO {
         }
     }
 
-    public ClienteTO Consultar(String nome) throws Exception {
+    public ClienteTO consultar(String nome) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -90,7 +89,7 @@ public class ClienteDAO {
         return cli;
     }
 
-    public ClienteTO ConsultarID(int id) throws Exception {
+    public ClienteTO consultarID(int id) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -184,7 +183,7 @@ public class ClienteDAO {
         return clienteA;
     }
 
-    public ClienteTO VerificarCliente(String rg, String cpf) throws Exception {
+    public ClienteTO verificarCliente(String rg, String cpf) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -210,7 +209,7 @@ public class ClienteDAO {
         return cli;
     }
 
-    public ClienteTO VerificarClienteNome(String nome) throws Exception {
+    public ClienteTO verificarClienteNome(String nome) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -242,7 +241,7 @@ public class ClienteDAO {
         return dateFormat.format(date);
     }
 
-    public String VerificarStatus() {
+    public String verificarStatus() throws Exception {
         try {
 
             Conexao con = new Conexao();
@@ -307,7 +306,7 @@ public class ClienteDAO {
         return clienteA;
     }
 
-    public ClienteTO ConsultarIDVenda(int id) throws Exception {
+    public ClienteTO consultarIDVenda(int id) throws Exception {
 
         Conexao con = new Conexao();
         String SQL;
@@ -330,7 +329,7 @@ public class ClienteDAO {
         return cli;
     }
 
-    public String DesbloquearClientes() {
+    public String desbloquearClientes() {
         try {
             Conexao con = new Conexao();
             String SQL;

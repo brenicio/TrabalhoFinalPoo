@@ -15,7 +15,7 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
         preencherTabela();
         MenuPrincipal.getPainel().add(enviaDados);
         enviaDados.setVisible(true);
-       // enviaDados.toBack();
+        // enviaDados.toBack();
 
 //        MenuPrincipal.getPainel().add(enviaDados);
 //        enviaDados.setVisible(true);
@@ -38,19 +38,17 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Consultar Categoria");
 
-        cbOpcao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Descrição", "Codigo" }));
+        cbOpcao.setModel(new javax.swing.DefaultComboBoxModel(new String[]{"Descrição", "Codigo"}));
 
         jTableCategoria.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
+                new Object[][]{
+                    {},
+                    {},
+                    {},
+                    {},
+                    {}
+                },
+                new String[]{}
         ));
         jScrollPane2.setViewportView(jTableCategoria);
 
@@ -82,9 +80,11 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyPressed(evt);
             }
+
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyReleased(evt);
             }
+
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPesquisaKeyTyped(evt);
             }
@@ -93,44 +93,44 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPesquisa))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPesquisa)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSelecionar)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnCancelar)))
-                .addContainerGap())
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtPesquisa))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnPesquisa)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(btnSelecionar)
+                                                .addGap(45, 45, 45)
+                                                .addComponent(btnCancelar)))
+                                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPesquisa)
-                    .addComponent(btnSelecionar)
-                    .addComponent(btnCancelar))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btnPesquisa)
+                                        .addComponent(btnSelecionar)
+                                        .addComponent(btnCancelar))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cbOpcao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         setBounds(450, 130, 446, 320);
     }// </editor-fold>                        
 
-    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {                                              
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {
         int linha = jTableCategoria.getSelectedRow();
         crtl.getCategoriaTo().setNomeCategoria(jTableCategoria.getValueAt(linha, 1).toString());
         crtl.getCategoriaTo().setCodCategoria(Integer.parseInt(jTableCategoria.getModel().getValueAt(linha, 0).toString()));
@@ -139,40 +139,41 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
         this.dispose();
         enviaDados.setVisible(true);
 
-    }                                             
+    }
 
-    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {                                       
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {
 
-    }                                      
+    }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                            
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-    }                                           
+    }
 
-    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {                                        
-        if(cbOpcao.getSelectedIndex()==0){
-           preencherTabela2(); 
-        }else{
+    private void txtPesquisaKeyReleased(java.awt.event.KeyEvent evt) {
+        if (cbOpcao.getSelectedIndex() == 0) {
+            preencherTabela2();
+        } else {
             preencherTabela3();
         }
-        
+
         if (txtPesquisa.getText().equalsIgnoreCase("")) {
             preencherTabela();
         }
-        
-    }                                       
 
-    private void txtPesquisaKeyTyped(java.awt.event.KeyEvent evt) {                                     
+    }
+
+    private void txtPesquisaKeyTyped(java.awt.event.KeyEvent evt) {
         // TODO add your handling code here:
-    }                                    
+    }
 
-    private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {                                         
-        if(cbOpcao.getSelectedIndex()==0){
+    private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {
+        if (cbOpcao.getSelectedIndex() == 0) {
             Maiuscula();
-        }else{
+        } else {
             somenteNumero();
         }
-    }                                        
+    }
+
     public void preencherTabela() {
         CategoriaCRTL marcCrtl = new CategoriaCRTL();
         ArrayList<CategoriaTO> dados = new ArrayList();
@@ -236,12 +237,13 @@ public class ConsultarCategoria extends javax.swing.JInternalFrame {
 
     }
 
-   public void Maiuscula(){
-       crtl.Maiuscula(txtPesquisa);
-   }
-   public void somenteNumero(){
-       crtl.somenteNumero(txtPesquisa, 4);
-   }
+    public void Maiuscula() {
+        crtl.maiuscula(txtPesquisa);
+    }
+
+    public void somenteNumero() {
+        crtl.somenteNumero(txtPesquisa, 4);
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnCancelar;

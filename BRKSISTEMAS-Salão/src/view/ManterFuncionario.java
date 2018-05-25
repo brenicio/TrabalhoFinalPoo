@@ -535,12 +535,11 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o funcionario " + txtNome.getText() + "", title, JOptionPane.YES_NO_OPTION);
         if (resposta == JOptionPane.YES_OPTION) {
-            funcCrtl.Excluir(funcTo);
+            funcCrtl.excluir(funcTo);
             LimparCampos();
         } else if (resposta == JOptionPane.NO_OPTION) {
 
         }
-
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -567,13 +566,12 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
             funcTo.setSetor(txtSetor.getText());
 
             funcCrtl.setPessoasTo(funcTo);
-            funcCrtl.Alterar();
+            funcCrtl.alterar();
             LimparCampos();
 
         } else if (resposta == JOptionPane.NO_OPTION) {
 
         }
-
 
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -614,9 +612,9 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
         funcTo.setTelefoneRecado(txtTelefoneRecado.getText());
         funcTo.setUf(txtUf.getSelectedItem().toString());
         funcTo.setSetor(txtSetor.getText());
-        
+
         funcCrtl.setPessoasTo(funcTo);
-        String ret = funcCrtl.Incluir();
+        String ret = funcCrtl.incluir();
         if (ret.equals("Matricula não informada!")) {
             JOptionPane.showMessageDialog(null, ret);
             GanharFoco(txtMatricula);
@@ -638,7 +636,7 @@ public class ManterFuncionario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Funcionario incluido com sucesso!");
 
             LimparCampos();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, ret);
         }
 

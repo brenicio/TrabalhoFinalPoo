@@ -28,7 +28,8 @@ public class RelatórioDeEstoqueDeMercadoria1 extends javax.swing.JInternalFrame
 
     ProdutoCRTL crtl = new ProdutoCRTL();
     MarcaTO marcaTo = new MarcaTO();
-     // MarcaTO marcTo = new MarcaTO();
+    // MarcaTO marcTo = new MarcaTO();
+
     /**
      * Creates new form RelatórioDeEstoqueDeMercadoria1
      */
@@ -162,14 +163,11 @@ public class RelatórioDeEstoqueDeMercadoria1 extends javax.swing.JInternalFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void rbMarcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbMarcaMouseClicked
-       if(rbMarca.isSelected()==true){
-           rbTodos.setSelected(false);
-           cbMarca.setEnabled(true);
-       }
-           
-       
-           
-       
+        if (rbMarca.isSelected() == true) {
+            rbTodos.setSelected(false);
+            cbMarca.setEnabled(true);
+        }
+
     }//GEN-LAST:event_rbMarcaMouseClicked
 
     private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
@@ -177,7 +175,7 @@ public class RelatórioDeEstoqueDeMercadoria1 extends javax.swing.JInternalFrame
     }//GEN-LAST:event_rbTodosActionPerformed
 
     private void rbTodosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbTodosMouseClicked
-        if(rbTodos.isSelected()==true){
+        if (rbTodos.isSelected() == true) {
             rbMarca.setSelected(false);
             cbMarca.setEnabled(false);
         }
@@ -191,38 +189,37 @@ public class RelatórioDeEstoqueDeMercadoria1 extends javax.swing.JInternalFrame
     private void RelatorioEstoque() {
         try {
             Conexao con = new Conexao();
-            
-         if(rbTodos.isSelected()== true){
-            String SQL = "select p.codbarra, p.descricaoprod, p.valorcusto, p.valorvenda, p.quantprod, m.nomemarca ,c.nomecategoria \n" +
-            "from produto p join marca m on p.codmarca=m.codmarca inner join categoria c on c.codcategoria=p.codcat;";
-            con.conectaBD();
-            ResultSet rs = con.executaConsulta(SQL);
-            JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
-            HashMap map = new HashMap();
-            String arquivo = "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioEst.jasper";
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
-            JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
-            jrviewer.setVisible(true);
-        } else {
-                String SQL = "select p.codbarra, p.descricaoprod, p.valorcusto, p.valorvenda, p.quantprod, m.nomemarca ,c.nomecategoria \n" +
-            "from produto p join marca m on p.codmarca=m.codmarca inner join categoria c on c.codcategoria=p.codcat" +
-            " and m.codmarca="+marcaTo.getCodMarca()+";";
-            con.conectaBD();
-            //JOptionPane.showMessageDialog(null, marcaTo.getCodMarca());
-            ResultSet rs = con.executaConsulta(SQL);
-            JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
-            HashMap map = new HashMap();
-            String arquivo = "C:\\Users\\Brenicio\\SkyDrive\\Projetos\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioEst.jasper";
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
-            JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
-            jrviewer.setVisible(true);
+
+            if (rbTodos.isSelected() == true) {
+                String SQL = "select p.codbarra, p.descricaoprod, p.valorcusto, p.valorvenda, p.quantprod, m.nomemarca ,c.nomecategoria \n"
+                        + "from produto p join marca m on p.codmarca=m.codmarca inner join categoria c on c.codcategoria=p.codcat;";
+                con.conectaBD();
+                ResultSet rs = con.executaConsulta(SQL);
+                JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
+                HashMap map = new HashMap();
+                String arquivo = "C:\\BRK-SISTEMAS\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioEst.jasper";
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
+                JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
+                jrviewer.setVisible(true);
+            } else {
+                String SQL = "select p.codbarra, p.descricaoprod, p.valorcusto, p.valorvenda, p.quantprod, m.nomemarca ,c.nomecategoria \n"
+                        + "from produto p join marca m on p.codmarca=m.codmarca inner join categoria c on c.codcategoria=p.codcat"
+                        + " and m.codmarca=" + marcaTo.getCodMarca() + ";";
+                con.conectaBD();
+                //JOptionPane.showMessageDialog(null, marcaTo.getCodMarca());
+                ResultSet rs = con.executaConsulta(SQL);
+                JRResultSetDataSource jrRS = new JRResultSetDataSource(rs);
+                HashMap map = new HashMap();
+                String arquivo = "C:\\Users\\Brenicio\\SkyDrive\\Projetos\\BRKSISTEMAS-Salão\\BRKSISTEMAStodas4.1\\BRKSISTEMAStodas4\\BRKSISTEMAS-Salão\\Nova Pasta\\relatorioEst.jasper";
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(arquivo);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, map, jrRS);
+                JasperViewer jrviewer = new JasperViewer(jasperPrint, false);
+                jrviewer.setVisible(true);
             }
-            
-    //caso queira usar o parâmetro  lido anteriormente no sql
-    //String SQL = "SELECT codigo, nome, registro from cliente where codigo = "+codigo+" order by codigo";
-            
+
+            //caso queira usar o parâmetro  lido anteriormente no sql
+            //String SQL = "SELECT codigo, nome, registro from cliente where codigo = "+codigo+" order by codigo";
         } catch (Exception e) {
             System.out.println(e);
         }

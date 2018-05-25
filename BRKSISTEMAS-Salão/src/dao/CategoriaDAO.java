@@ -6,13 +6,14 @@ import javax.swing.JOptionPane;
 import to.CategoriaTO;
 
 public class CategoriaDAO {
+
     public String incluir(CategoriaTO categoriaTo) throws Exception {
         try {
             Conexao teste = new Conexao();
             String SQL;
             SQL = "INSERT INTO CATEGORIA (nomecategoria)"
                     + "VALUES ('" + categoriaTo.getNomeCategoria() + "')";
-           // JOptionPane.showMessageDialog(null, categoriaTo.getNomeCategoria());
+            // JOptionPane.showMessageDialog(null, categoriaTo.getNomeCategoria());
             teste.conectaBD();
             teste.executaSQL(SQL);
             teste.desconectaBD();
@@ -28,7 +29,7 @@ public class CategoriaDAO {
             Conexao teste = new Conexao();
             String SQL;
 
-            SQL = "UPDATE categoria SET nomeCategoria='" + categoriaTo.getNomeCategoria() + "' WHERE codcategoria="+categoriaTo.getCodCategoria()+"";
+            SQL = "UPDATE categoria SET nomeCategoria='" + categoriaTo.getNomeCategoria() + "' WHERE codcategoria=" + categoriaTo.getCodCategoria() + "";
             teste.conectaBD();
             teste.executaSQL(SQL);
             teste.desconectaBD();
@@ -38,7 +39,7 @@ public class CategoriaDAO {
         }
     }
 
-    public CategoriaTO Consultar(String nome) throws Exception {
+    public CategoriaTO consultar(String nome) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -64,7 +65,7 @@ public class CategoriaDAO {
         return categoria;
     }
 
-    public CategoriaTO ConsultarID(int id) throws Exception {
+    public CategoriaTO consultarID(int id) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -75,10 +76,8 @@ public class CategoriaDAO {
         try {
 
             if (rs.next()) {
-
                 categoria.setCodCategoria(rs.getInt("codcategoria"));
                 categoria.setNomeCategoria(rs.getString("nomecategoria"));
-
             }
             return categoria;
         } catch (Exception e) {
@@ -108,7 +107,6 @@ public class CategoriaDAO {
             categoria.setCodCategoria(rs.getInt("codcategoria"));
             categoria.setNomeCategoria(rs.getString("nomecategoria"));
             categoriaA.add(categoria);
-
         }
         //************************************************************
 
@@ -117,7 +115,8 @@ public class CategoriaDAO {
         con.desconectaBD();
         return categoriaA;
     }
-     public ArrayList<CategoriaTO> consultarTodosM(String nome) throws Exception {
+
+    public ArrayList<CategoriaTO> consultarTodosM(String nome) throws Exception {
         ArrayList<CategoriaTO> categoriaA = new ArrayList();
         //*********************************************
         //RECUPERA TODOS OS ALUNOS DO BANCO
@@ -125,7 +124,7 @@ public class CategoriaDAO {
         ResultSet rs;
         Conexao con = new Conexao();
         con.conectaBD();
-        String SQL = "SELECT * FROM categoria WHERE nomecategoria LIKE  '%"+nome+"%'";
+        String SQL = "SELECT * FROM categoria WHERE nomecategoria LIKE  '%" + nome + "%'";
         rs = con.executaConsulta(SQL);
         //***********************************************
         //PARA CADA ALUNO MONTA UM TO E ADICONA O MESMO AO ARRAYLIST
@@ -135,7 +134,6 @@ public class CategoriaDAO {
             categoria.setCodCategoria(rs.getInt("codcategoria"));
             categoria.setNomeCategoria(rs.getString("nomecategoria"));
             categoriaA.add(categoria);
-
         }
         //************************************************************
 
@@ -145,7 +143,7 @@ public class CategoriaDAO {
         return categoriaA;
     }
 
-    public CategoriaTO VerificarCategoria(String nome) throws Exception {
+    public CategoriaTO verificarCategoria(String nome) throws Exception {
 
         Conexao teste = new Conexao();
         String SQL;
@@ -182,7 +180,6 @@ public class CategoriaDAO {
         SQL = "DELETE FROM CATEGORIA WHERE CODCATEGORIA =" + ID + "";
         con.executaSQL(SQL);
         con.desconectaBD();
-return "";
+        return "";
     }
-    
 }

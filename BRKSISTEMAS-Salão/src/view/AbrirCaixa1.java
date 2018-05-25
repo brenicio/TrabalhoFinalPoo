@@ -27,7 +27,6 @@ public class AbrirCaixa1 extends javax.swing.JInternalFrame {
     Calendar hora;
     BigDecimal valorInicial;
     Caixa1 caixa = new Caixa1();
-    
 
     public AbrirCaixa1(Caixa1 caixa) {
         initComponents();
@@ -223,7 +222,7 @@ public class AbrirCaixa1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtValorInicialMouseExited
 
     private void txtValorInicialKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtValorInicialKeyPressed
-       if ("".equals(txtValorInicial.getText())) {
+        if ("".equals(txtValorInicial.getText())) {
             crtl.somenteNumero2(txtValorInicial, 10);
         }
     }//GEN-LAST:event_txtValorInicialKeyPressed
@@ -246,7 +245,6 @@ public class AbrirCaixa1 extends javax.swing.JInternalFrame {
     private void formataPreco(JTextField txt) {
         crtl.somenteNumero(txt, 40);
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;

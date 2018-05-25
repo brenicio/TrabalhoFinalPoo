@@ -1,9 +1,11 @@
 package to;
+
 public class PagamentoTO {
-   String descpagamento;
-   String tipopagamento;
-   int qtdparcela=0;
-   int codformapagamento=0;
+
+    String descpagamento;
+    String tipopagamento;
+    int qtdparcela = 0;
+    int codformapagamento = 0;
 
     public int getCodformapagamento() {
         return codformapagamento;

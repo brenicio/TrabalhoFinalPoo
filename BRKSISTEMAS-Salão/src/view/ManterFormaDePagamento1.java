@@ -14,9 +14,10 @@ import to.PagamentoTO;
  * @author suporte
  */
 public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
+
     private Object jframe;
     PagamentoCRTL crtl = new PagamentoCRTL();
-    int codigoFp =0;
+    int codigoFp = 0;
 
     /**
      * Creates new form ManterFormaDePagamento1
@@ -25,7 +26,7 @@ public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
         initComponents();
         desabitilarBotoes();
         desabilitarOpcao();
-        
+
     }
 
     /**
@@ -179,10 +180,10 @@ public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       crtl.getPagamentoTo().setDescpagamento(cbDescPag.getSelectedItem().toString());
-       crtl.getPagamentoTo().setTipopagamento(cbTipoPag.getSelectedItem().toString());
-       crtl.getPagamentoTo().setQtdparcela(Integer.parseInt(jsQtde.getValue().toString()));
-       crtl.incluirFormaPagamento();
+        crtl.getPagamentoTo().setDescpagamento(cbDescPag.getSelectedItem().toString());
+        crtl.getPagamentoTo().setTipopagamento(cbTipoPag.getSelectedItem().toString());
+        crtl.getPagamentoTo().setQtdparcela(Integer.parseInt(jsQtde.getValue().toString()));
+        crtl.incluirFormaPagamento();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -207,19 +208,19 @@ public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cbDescPagMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDescPagMouseEntered
-        
+
     }//GEN-LAST:event_cbDescPagMouseEntered
 
     private void cbDescPagMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDescPagMouseExited
-       
+
     }//GEN-LAST:event_cbDescPagMouseExited
 
     private void cbDescPagMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDescPagMouseReleased
-        
+
     }//GEN-LAST:event_cbDescPagMouseReleased
 
     private void cbDescPagMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDescPagMouseClicked
-      
+
     }//GEN-LAST:event_cbDescPagMouseClicked
 
     private void cbDescPagMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbDescPagMousePressed
@@ -227,21 +228,21 @@ public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbDescPagMousePressed
 
     private void cbDescPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDescPagActionPerformed
-         if(cbDescPag.getSelectedItem().toString().equals("DINHEIRO")){
-           jsQtde.setEnabled(false);
-           cbTipoPag.removeItem("A PRAZO");
-           jsQtde.setValue(0);
-       }else{
-           jsQtde.setEnabled(true);
-           if(cbTipoPag.getItemCount()!=2){
-           cbTipoPag.addItem("A PRAZO");
-                      
-           }
-       }
-         if(cbTipoPag.getSelectedItem().toString().equals("A VISTA")){
-               jsQtde.setEnabled(false);
-               jsQtde.setValue(0);
-           }
+        if (cbDescPag.getSelectedItem().toString().equals("DINHEIRO")) {
+            jsQtde.setEnabled(false);
+            cbTipoPag.removeItem("A PRAZO");
+            jsQtde.setValue(0);
+        } else {
+            jsQtde.setEnabled(true);
+            if (cbTipoPag.getItemCount() != 2) {
+                cbTipoPag.addItem("A PRAZO");
+
+            }
+        }
+        if (cbTipoPag.getSelectedItem().toString().equals("A VISTA")) {
+            jsQtde.setEnabled(false);
+            jsQtde.setValue(0);
+        }
     }//GEN-LAST:event_cbDescPagActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -249,35 +250,38 @@ public class ManterFormaDePagamento1 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void cbTipoPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoPagActionPerformed
-        if(cbTipoPag.getSelectedItem().toString().equals("A PRAZO")){
-               jsQtde.setEnabled(true);
-               jsQtde.setValue(0);
-           }else{
+        if (cbTipoPag.getSelectedItem().toString().equals("A PRAZO")) {
+            jsQtde.setEnabled(true);
+            jsQtde.setValue(0);
+        } else {
             jsQtde.setEnabled(false);
             jsQtde.setValue(0);
         }
     }//GEN-LAST:event_cbTipoPagActionPerformed
-public void recebendo(PagamentoTO to) {
+    public void recebendo(PagamentoTO to) {
         codigoFp = to.getCodformapagamento();
         cbDescPag.setSelectedItem(to.getDescpagamento());
         cbTipoPag.setSelectedItem(to.getTipopagamento());
         jsQtde.setValue(to.getQtdparcela());
         habilitarBotoes();
     }
-private void habilitarBotoes() {
+
+    private void habilitarBotoes() {
         btnAlterar.setEnabled(true);
         btnExcluir.setEnabled(true);
     }
-private void desabitilarBotoes() {
+
+    private void desabitilarBotoes() {
         btnAlterar.setEnabled(false);
         btnExcluir.setEnabled(false);
     }
-private void desabilitarOpcao(){
-    if(cbDescPag.getSelectedItem().toString().equals("DINHEIRO")){
-        cbTipoPag.removeItem("A PRAZO");
-        jsQtde.setEnabled(false);
+
+    private void desabilitarOpcao() {
+        if (cbDescPag.getSelectedItem().toString().equals("DINHEIRO")) {
+            cbTipoPag.removeItem("A PRAZO");
+            jsQtde.setEnabled(false);
+        }
     }
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;

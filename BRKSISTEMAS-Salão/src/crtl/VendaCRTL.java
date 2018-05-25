@@ -1,4 +1,5 @@
 package crtl;
+
 import bo.VendaBO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -7,17 +8,20 @@ import model.LimiteDigitosMODEL;
 import model.LimiteDigitosMODEL2;
 import to.ItemVendaTO;
 import to.VendaTO;
+
 public class VendaCRTL {
+
     private VendaTO vendaTo;
     private ItemVendaTO itemTo;
     private VendaTO vendaConsultaTo;
     private ArrayList<VendaTO> vendas;
     private ArrayList<ItemVendaTO> itens;
-    
-    public VendaCRTL(){
+
+    public VendaCRTL() {
         vendaTo = new VendaTO();
         itemTo = new ItemVendaTO();
     }
+
     public VendaTO getVendaTo() {
         return vendaTo;
     }
@@ -57,12 +61,12 @@ public class VendaCRTL {
     public void setItens(ArrayList<ItemVendaTO> itens) {
         this.itens = itens;
     }
-    
+
     public String incluirVenda() {
         try {
             VendaBO vendaBo = new VendaBO();
             String ret = vendaBo.incluirVenda(vendaTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Venda incluida com sucesso!");
@@ -71,18 +75,18 @@ public class VendaCRTL {
         } catch (Exception ex) {
             System.out.println("Erro ao incluir!!");
         }
-
         return "";
     }
+
     public String incluirItemVenda() {
         try {
             VendaBO vendaBo = new VendaBO();
-         //   JOptionPane.showMessageDialog(null, itemTo.getCodFuncionario() +" "+itemTo.getCodvenda()+" "+itemTo.getCodServico()+" "+itemTo.getPrecoUnit()+"");
+            //   JOptionPane.showMessageDialog(null, itemTo.getCodFuncionario() +" "+itemTo.getCodvenda()+" "+itemTo.getCodServico()+" "+itemTo.getPrecoUnit()+"");
             String ret = vendaBo.incluirItemVenda(itemTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
-               // JOptionPane.showMessageDialog(null, "Item incluido com sucesso!");
+                // JOptionPane.showMessageDialog(null, "Item incluido com sucesso!");
             }
             return "";
         } catch (Exception ex) {
@@ -91,30 +95,30 @@ public class VendaCRTL {
 
         return "";
     }
-    
+
     public String incluirItemVendaProd() {
         try {
             VendaBO vendaBo = new VendaBO();
-         //   JOptionPane.showMessageDialog(null, itemTo.getCodFuncionario() +" "+itemTo.getCodvenda()+" "+itemTo.getCodServico()+" "+itemTo.getPrecoUnit()+"");
+            //   JOptionPane.showMessageDialog(null, itemTo.getCodFuncionario() +" "+itemTo.getCodvenda()+" "+itemTo.getCodServico()+" "+itemTo.getPrecoUnit()+"");
             String ret = vendaBo.incluirItemVendaProd(itemTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
-               // JOptionPane.showMessageDialog(null, "Item incluido com sucesso!");
+                // JOptionPane.showMessageDialog(null, "Item incluido com sucesso!");
             }
             return "";
         } catch (Exception ex) {
             System.out.println("Erro ao incluir!!");
         }
-
         return "";
     }
-    
+
     public void somenteNumero(JTextField numero, int tamanho) {
         numero.setDocument(new LimiteDigitosMODEL(tamanho));
     }
+
     public void somenteNumero2(JTextField numero, int tamanho) {
         numero.setDocument(new LimiteDigitosMODEL2(tamanho));
     }
-    
+
 }

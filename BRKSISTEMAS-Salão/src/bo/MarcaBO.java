@@ -15,20 +15,18 @@ public class MarcaBO {
     }
 
     public String incluir(MarcaTO marcaTo) throws Exception {
-        marcTo = marcaDao.VerificarMarca(marcaTo.getNomeMarca());
+        marcTo = marcaDao.verificarMarca(marcaTo.getNomeMarca());
         String ret = consisteDados(marcaTo);
         if (!ret.equals("")) {
             return ret;
         }
 
         ret = marcaDao.incluir(marcaTo);
-
         return ret;
-
     }
 
     public String alterar(MarcaTO marcaTo) throws Exception {
-        marcTo = marcaDao.VerificarMarca(marcaTo.getNomeMarca());
+        marcTo = marcaDao.verificarMarca(marcaTo.getNomeMarca());
         String ret = consisteDados(marcaTo);
         if (!ret.equals("")) {
             return ret;
@@ -50,15 +48,15 @@ public class MarcaBO {
         return "";
     }
 
-    public MarcaTO Consultar(String nome) throws Exception {
+    public MarcaTO consultar(String nome) throws Exception {
 
-        MarcaTO marcaTo = marcaDao.Consultar(nome);
+        MarcaTO marcaTo = marcaDao.consultar(nome);
         return marcaTo;
     }
 
-    public MarcaTO ConsultarID(int id) throws Exception {
+    public MarcaTO consultarID(int id) throws Exception {
 
-        MarcaTO funcionarioTo = marcaDao.ConsultarID(id);
+        MarcaTO funcionarioTo = marcaDao.consultarID(id);
         return funcionarioTo;
     }
 

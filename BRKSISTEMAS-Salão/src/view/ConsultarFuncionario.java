@@ -126,7 +126,7 @@ public class ConsultarFuncionario extends javax.swing.JInternalFrame {
     private void preencherTabela() {
         ArrayList<FuncionarioTO> dados = new ArrayList();
         ArrayList dados1 = new ArrayList();
-        ito = funcCrtl.ConsultarTodos("funcionario").iterator();
+        ito = funcCrtl.consultarTodos("funcionario").iterator();
         while (ito.hasNext()) {
             dados.add((FuncionarioTO) ito.next());
         }
@@ -139,7 +139,7 @@ public class ConsultarFuncionario extends javax.swing.JInternalFrame {
 
         TableMODEL modelo = new TableMODEL(dados1, Colunas);
         jTableFuncionarios.setModel(modelo);
-        
+
         jTableFuncionarios.getColumnModel().getColumn(0).setPreferredWidth(80);
         jTableFuncionarios.getColumnModel().getColumn(0).setMaxWidth(80);
         jTableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(600);
@@ -185,8 +185,7 @@ public class ConsultarFuncionario extends javax.swing.JInternalFrame {
         jTableFuncionarios.getColumnModel().getColumn(14).setPreferredWidth(200);
         jTableFuncionarios.getColumnModel().getColumn(14).setMaxWidth(200);
         jTableFuncionarios.getColumnModel().getColumn(14).setMinWidth(200);
-        
-        
+
         jTableFuncionarios.getTableHeader().setReorderingAllowed(false);
         jTableFuncionarios.setAutoResizeMode(jTableFuncionarios.AUTO_RESIZE_OFF);
     }

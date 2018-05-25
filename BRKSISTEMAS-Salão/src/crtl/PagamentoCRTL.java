@@ -3,7 +3,6 @@ package crtl;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import bo.PagamentoBO;
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import model.LimiteDigitosMODEL;
 import model.UpperCaseMODEL;
@@ -12,8 +11,8 @@ import to.PagamentoTO;
 public class PagamentoCRTL {
 
     private PagamentoTO pagamentoTo;
-    private PagamentoTO formapagConsultaTo;
-    private ArrayList<PagamentoTO> fpagamentos;
+    private PagamentoTO formaPagConsultaTo;
+    private ArrayList<PagamentoTO> fPagamentos;
 
     public PagamentoTO getPagamentoTo() {
         return pagamentoTo;
@@ -24,25 +23,25 @@ public class PagamentoCRTL {
     }
 
     public PagamentoTO getFormapagConsultaTo() {
-        return formapagConsultaTo;
+        return formaPagConsultaTo;
     }
 
     public void setFormapagConsultaTo(PagamentoTO formapagConsultaTo) {
-        this.formapagConsultaTo = formapagConsultaTo;
+        this.formaPagConsultaTo = formapagConsultaTo;
     }
 
     public ArrayList<PagamentoTO> getFpagamentos() {
-        return fpagamentos;
+        return fPagamentos;
     }
 
     public void setFpagamentos(ArrayList<PagamentoTO> fpagamentos) {
-        this.fpagamentos = fpagamentos;
+        this.fPagamentos = fpagamentos;
     }
 
     public PagamentoCRTL() {
         try {
             pagamentoTo = new PagamentoTO();
-            formapagConsultaTo = new PagamentoTO();
+            formaPagConsultaTo = new PagamentoTO();
         } catch (Exception e) {
             System.out.println("Erro");
         }
@@ -52,7 +51,7 @@ public class PagamentoCRTL {
         try {
             PagamentoBO pagBo = new PagamentoBO();
             String ret = pagBo.incluir(pagamentoTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Forma de pagamento incluida com sucesso!");
@@ -69,23 +68,21 @@ public class PagamentoCRTL {
         try {
             PagamentoBO pagBo = new PagamentoBO();
             String ret = pagBo.alterar(pagamentoTo);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Forma de pagamento alterada com sucesso!");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao alterar");
-
         }
-
     }
 
     public PagamentoTO consultar(String nome) {
 
         try {
             PagamentoBO pagBo = new PagamentoBO();
-            pagamentoTo = pagBo.Consultar(nome);
+            pagamentoTo = pagBo.consultar(nome);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
@@ -97,25 +94,23 @@ public class PagamentoCRTL {
 
         try {
             PagamentoBO pagBo = new PagamentoBO();
-            pagamentoTo = pagBo.ConsultarID(id);
+            pagamentoTo = pagBo.consultarID(id);
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Erro ao consultar");
         }
         return pagamentoTo;
-
     }
 
     public ArrayList<PagamentoTO> consultarTodos() {
 
         try {
-
             PagamentoBO pagBo = new PagamentoBO();
-            fpagamentos = pagBo.consultarTodos();
+            fPagamentos = pagBo.consultarTodos();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return fpagamentos;
+        return fPagamentos;
     }
 
     public ArrayList<PagamentoTO> consultarTodosP(String nome) {
@@ -123,11 +118,11 @@ public class PagamentoCRTL {
         try {
 
             PagamentoBO pagBo = new PagamentoBO();
-            fpagamentos = pagBo.consultarTodosM(nome);
+            fPagamentos = pagBo.consultarTodosM(nome);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return fpagamentos;
+        return fPagamentos;
     }
 
     public void excluir(int id) {
@@ -135,7 +130,7 @@ public class PagamentoCRTL {
 
             PagamentoBO pagBo = new PagamentoBO();
             String ret = pagBo.excluirID(id);
-            if (ret != "") {
+            if (!"".equals(ret)) {
                 JOptionPane.showMessageDialog(null, ret);
             } else {
                 JOptionPane.showMessageDialog(null, "Foma de pagamento excluida com sucesso!");

@@ -115,7 +115,6 @@ public class RelatórioDeMargemDeLucro1 extends javax.swing.JInternalFrame {
         setBounds(450, 130, 397, 177);
     }// </editor-fold>//GEN-END:initComponents
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
