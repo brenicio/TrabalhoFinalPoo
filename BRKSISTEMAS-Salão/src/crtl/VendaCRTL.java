@@ -13,7 +13,6 @@ public class VendaCRTL {
 
     private VendaTO vendaTo;
     private ItemVendaTO itemTo;
-    private VendaTO vendaConsultaTo;
     private ArrayList<VendaTO> vendas;
     private ArrayList<ItemVendaTO> itens;
 
@@ -38,14 +37,7 @@ public class VendaCRTL {
         this.itemTo = itemTo;
     }
 
-    public VendaTO getVendaConsultaTo() {
-        return vendaConsultaTo;
-    }
-
-    public void setVendaConsultaTo(VendaTO vendaConsultaTo) {
-        this.vendaConsultaTo = vendaConsultaTo;
-    }
-
+ 
     public ArrayList<VendaTO> getVendas() {
         return vendas;
     }

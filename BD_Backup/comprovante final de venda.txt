@@ -1,8 +1,0 @@
-novo comprovante:
-
-
-select v.horaven,v.dataven, s.descricao AS Servico, i.precounit, v.totalven,c.nome  from itenvenda i 
-join venda v on i.codvenda = v.codvenda
-join servico s on s.codservico = i.codservico
-join cliente c on c.codcliente = v.codcliente
-where v.codvenda = 102
