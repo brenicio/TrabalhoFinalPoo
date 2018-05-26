@@ -156,7 +156,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(btnServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 165, 69));
 
         btnRealizarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/1433995668_shopping cart.png"))); // NOI18N
-        btnRealizarVenda.setText("Realizar Venda");
+        btnRealizarVenda.setText("Venda Serviço");
         btnRealizarVenda.setAlignmentY(0.0F);
         btnRealizarVenda.setAutoscrolls(true);
         btnRealizarVenda.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
@@ -230,6 +230,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/fnd3.png"))); // NOI18N
         jLabel1.setText("jLabel1");
 
+        escritorio1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout escritorio1Layout = new javax.swing.GroupLayout(escritorio1);
         escritorio1.setLayout(escritorio1Layout);
         escritorio1Layout.setHorizontalGroup(
@@ -240,9 +242,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             escritorio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        escritorio1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        getContentPane().add(escritorio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 1720, 620));
+        getContentPane().add(escritorio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 2070, 1070));
 
         btnMarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/clients.png"))); // NOI18N
         btnMarca.setText("Cliente");
@@ -257,7 +258,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(btnMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 165, 69));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/azul.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1720, 80));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2070, 80));
 
         jMenuCadastro.setText("Cadastros");
 
@@ -473,7 +474,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(1739, 784));
+        setSize(new java.awt.Dimension(2120, 961));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -694,8 +695,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
     private void verificarCaixa() {
         CaixaCRTL crtl = new CaixaCRTL();
-        CaixaTO to = new CaixaTO();
-        to = crtl.consultar("Aberto");
+        CaixaTO to = crtl.consultar("Aberto");        
         if (to.getStatus().equals("Fechado")) {
             btnRealizarVenda.setEnabled(false);
         }
