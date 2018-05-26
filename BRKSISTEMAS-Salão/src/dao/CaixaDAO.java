@@ -1,6 +1,8 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -407,48 +409,61 @@ public class CaixaDAO {
         return caixa;
     }
 
-    public CaixaTO valorTotalEntrada() throws Exception {
+    public CaixaTO valorTotalEntrada() {
         Conexao con = new Conexao();
         CaixaTO caixa = new CaixaTO();
+        BigDecimal saidacaixa = new BigDecimal(0.0);
+        BigDecimal valortotal = new BigDecimal(0.0);
         String SQL;
-        SQL = "select ((valortotal)-(saidacaixa)) as total FROM\n"
+        SQL = "select valortotal,saidacaixa FROM\n"
                 + "\n"
                 + "(select ((select sum(cast(valinicial as real)) from caixa where status='Aberto')+(select (case when (sum(cast(valor as real))) is null then 0 else sum(cast(valor as real)) end) \n"
                 + "from entradacaixa e, caixa c where c.status='Aberto' and c.codcaixa = e.codcaixa )) as ValorTotal, (select sum(cast(valor as real)) from saidacaixa sc JOIN caixa c on sc.codcaixa = c.codcaixa and c.status = 'Aberto') as saidacaixa from caixa c left join entradacaixa ec on \n"
                 + "c.codcaixa=ec.codcaixa and c.status ='Aberto' LIMIT 1) as temp";
-        con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
+
         try {
+            con.conectaBD();
+            ResultSet rs = con.executaConsulta(SQL);
             if (rs.first()) {
-                caixa.setSaldoTotal(rs.getBigDecimal("total"));
+                saidacaixa = rs.getBigDecimal("saidacaixa");
+                valortotal = rs.getBigDecimal("valortotal");
             }
+            
+            if(saidacaixa == null){
+                caixa.setSaldoTotal(valortotal);
+            }else{
+                caixa.setSaldoTotal((valortotal.subtract(saidacaixa)));
+            }
+
             return caixa;
-        } catch (Exception e) {
-            System.out.println("Falha ao executar o sql e a pegar os dados");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
-        rs.close();
+       
         con.desconectaBD();
 
         return caixa;
     }
 
-    public CaixaTO valorEntrada0() throws Exception {
+    public CaixaTO valorEntrada0() {
         Conexao con = new Conexao();
         CaixaTO caixa = new CaixaTO();
         String SQL;
         SQL = "select ((select (case when sum(cast(valor as real)) is null then 0 else sum(cast(valor as real))end) from entradacaixa e, caixa c where c.status='Aberto' and c.codcaixa = e.codcaixa)) as ValorTotal\n"
                 + "from caixa c left join entradacaixa ec on c.codcaixa=ec.codcaixa and c.status ='Aberto' LIMIT 1";
         con.conectaBD();
-        ResultSet rs = con.executaConsulta(SQL);
+
         try {
+            ResultSet rs = con.executaConsulta(SQL);
             if (rs.first()) {
                 caixa.setSaldoTotal(rs.getBigDecimal("ValorTotal"));
             }
+            rs.close();
             return caixa;
         } catch (Exception e) {
             System.out.println("Falha ao executar o sql e a pegar os dados");
         }
-        rs.close();
+
         con.desconectaBD();
 
         return caixa;

@@ -129,25 +129,20 @@ public class RetirarDinheiro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
-        CaixaTO caixaTo = new CaixaTO();
-        CaixaTO to = new CaixaTO();
-        to = crtl.consultar("Aberto");
-
         CaixaDAO dao = new CaixaDAO();
-        try {
-            caixaTo = dao.valorTotalEntrada();
-        } catch (Exception ex) {
-            Logger.getLogger(RetirarDinheiro.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        CaixaTO caixaTo = dao.valorTotalEntrada();
+        CaixaTO to = crtl.consultar("Aberto");
+
+        JOptionPane.showMessageDialog(null, "STATUS CAIXA: " + to.getStatus());
+        JOptionPane.showMessageDialog(null, "SALDO CAIXA: " + caixaTo.getSaldoTotal());
+
         if (caixaTo.getSaldoTotal().doubleValue() < (valorRetirar.doubleValue())) {
             JOptionPane.showMessageDialog(null, "Tentativa de retirada maior que o saldo atual do caixa! \r\n \r\n Saldo atual: R$" + caixaTo.getSaldoTotal() + "");
         } else if ("Aberto".equals(to.getStatus())) {
             CaixaTO caxto = new CaixaTO();
-            try {
-                caxto = dao.valorEntrada0();
-            } catch (Exception ex) {
-                Logger.getLogger(RetirarDinheiro.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            caxto = dao.valorEntrada0();
+
 //            if(caxto.getSaldoTotal().doubleValue()==0.0){
 //                caixaTo.setValinicial(caixaTo.getSaldoTotal().subtract(valorRetirar));
 //                caixaTo.setCodCaixa(to.getCodCaixa());

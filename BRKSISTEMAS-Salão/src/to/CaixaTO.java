@@ -14,7 +14,7 @@ public class CaixaTO {
     private String status;
     private BigDecimal valinicial;
     private BigDecimal valfinal;
-    private BigDecimal saldoTotal = null;
+    private BigDecimal saldoTotal;
     private BigDecimal faltando;
     private String observacao = "";
 
