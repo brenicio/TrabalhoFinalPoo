@@ -14,17 +14,17 @@
 
 4) Após a instalação, armazena a senha definida para o banco de dados na instalação do mesmo.
 
-5) Altere o arquivo [[conexao.java](/BD_Backup/conexao.java)] para inserir a senha do postgre na variavel password.
+5) Altere o arquivo [[conexao.java](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/BD_Backup/conexao.java)] para inserir a senha do postgre na variavel password.
 
-![](/images/brkimage2.jpg)
+![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage2.jpg)
 
-6)Abra o banco de dados (Caminho: C:\Program Files\PostgreSQL\10\pgAdmin4\bin\pgAdmin4.exe).
+6) Abra o banco de dados (Caminho: C:\Program Files\PostgreSQL\10\pgAdmin4\bin\pgAdmin4.exe).
 
-![](/images/brkimage3.jpg)
+![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage3.jpg)
 
-7) Crie um novo DataBase com nome de db_paulo e restaure o Banco de dados [[db_paulo.backup](/Bd_Backup/db_paulo.backup)] localizado em (Bd_Backup/db_paulo.backup) no repositorio.
+7) Crie um novo DataBase com nome de db_paulo e restaure o Banco de dados [[db_paulo.backup](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Bd_Backup/db_paulo.backup)] localizado em (Bd_Backup/db_paulo.backup) no repositorio.
 
-![](/images/brkimage4.jpg)
+![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage4.jpg)
 
 8) Em seguida, execute o projeto pelo netbeans. <br/>
 Use os seguintes dados para acessar:
