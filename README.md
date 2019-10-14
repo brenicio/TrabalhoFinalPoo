@@ -6,7 +6,7 @@
 
 1) O projeto está versionado em um repositório do GitHub, no seguinte link:  [ [Link Github Hiago](https://github.com/koziel101/TrabalhoFinalPoo) ] ou [[Link Github Brenicio](https://github.com/brenicio/TrabalhoFinalPoo.git)]. É possivel obter uma cópia do sistema baixando um arquivo .zip ou clonando-o.
 
-![](../images/brkimage1.jpg)
+![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage1.jpg)
 
 2) O Sistema utiiza a IDE NetBeans. Abra o projeto pelo Netbeans.
 
