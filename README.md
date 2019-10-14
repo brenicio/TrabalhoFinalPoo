@@ -14,7 +14,7 @@
 
 4) Após a instalação, armazena a senha definida para o banco de dados na instalação do mesmo.
 
-5) Altere o arquivo [[conexao.java](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/BD_Backup/conexao.java)] para inserir a senha do postgre na variavel password.
+5) Altere o arquivo [[Conexao.java](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/BD_Backup/Conexao.java)] para inserir a senha do postgre na variavel password.
 
 ![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage2.jpg)
 
@@ -22,7 +22,7 @@
 
 ![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage3.jpg)
 
-7) Crie um novo DataBase com nome de db_paulo e restaure o Banco de dados [[db_paulo.backup](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Bd_Backup/db_paulo.backup)] localizado em (Bd_Backup/db_paulo.backup) no repositorio.
+7) Crie um novo DataBase com nome de db_paulo e restaure o Banco de dados [[db_paulo.backup](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/BD_Backup/db_paulo.backup)] localizado em (Bd_Backup/db_paulo.backup) no repositorio.
 
 ![](https://github.com/brenicio/TrabalhoFinalPoo/blob/master/Images/brkimage4.jpg)
 
